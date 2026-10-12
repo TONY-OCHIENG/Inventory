@@ -1,4 +1,5 @@
 import { hashPassword } from "../configs/hashPassword.js"
+import { generateVerificationCode } from "../configs/verificationCode.js"
 
 export const registerAccount = (request,response) => {
     const { firstName, lastName, email, password,confirmPassword} = request.body
@@ -33,6 +34,12 @@ export const registerAccount = (request,response) => {
     }
 
     const hashpassword = hashPassword(password)
+    /**
+     * Generating a verification code that will be sent to user's email
+     * Setting the verification code to expire after 5 minutes
+     */
+    const verificationToken = generateVerificationCode()
+    const verificationTokenExpires = Date.now() + 5 * 60 * 1000
 
 
 } 
