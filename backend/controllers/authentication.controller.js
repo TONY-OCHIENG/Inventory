@@ -41,5 +41,11 @@ export const registerAccount = (request,response) => {
     const verificationToken = generateVerificationCode()
     const verificationTokenExpires = Date.now() + 5 * 60 * 1000
 
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: 'Internal server error'})
+    }
 
 } 
