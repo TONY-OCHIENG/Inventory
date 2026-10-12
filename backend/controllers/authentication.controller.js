@@ -68,4 +68,12 @@ export const registerAccount = async (request,response) => {
         console.log(error)
         return response.status(500).json({success: false, message: 'Internal server error'})
     }
-} 
+}
+
+export const verifyCode = (request,response) => {
+    const { code } = request.body
+    if (!code) {
+        return response.status(200).json({success: false, message: "Enter a valid code"})
+    }
+    
+}
