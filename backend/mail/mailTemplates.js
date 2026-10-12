@@ -37,7 +37,7 @@ export const VERIFICATION_CODE = `
           <tr>
             <td align="center" style="background:#16A34A;background-image:linear-gradient(135deg,#4ADE80 0%,#16A34A 100%);padding:40px 24px;">
               <!-- Host ims-logo.png on your server and replace the src with its full URL -->
-              <img src="/home/tony-ochieng/Downloads/ims-box-green.svg" alt="IMS" width="72" height="72"
+              <img src="http://localhost:3000/images/ims-logo-120.png" alt="IMS" width="72" height="72"
                    style="width:72px;height:72px;border-radius:18px;margin:0 auto; background-color: white;">
               <h1 style="margin:20px 0 0;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:24px;line-height:30px;font-weight:700;color:#FFFFFF;">
                 Verify your email
