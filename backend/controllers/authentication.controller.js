@@ -1,5 +1,6 @@
 import { hashPassword } from "../configs/hashPassword.js"
 import { generateVerificationCode } from "../configs/verificationCode.js"
+import databaseconnection from "../database/db.js"
 
 export const registerAccount = (request,response) => {
     const { firstName, lastName, email, password,confirmPassword} = request.body
@@ -42,7 +43,12 @@ export const registerAccount = (request,response) => {
     const verificationTokenExpires = Date.now() + 5 * 60 * 1000
 
     try {
-        
+        const registerAccount = "INSERT INTO users (firstName,lastName,email,password,verificationToken,verificationTokenExpires) VALUES(?,?,?,?,?,?)"
+        databaseconnection.query(registerAccount,[firstName,lastName,email,hashpassword,verificationToken,verificationTokenExpires],
+            (error, result) => {
+                if (error) return response.status(500).json({success: false, message: error})
+            }
+        )
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: 'Internal server error'})
