@@ -1,7 +1,7 @@
 
 export const VERIFICATION_CODE = `
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,6 @@ export const VERIFICATION_CODE = `
           <!-- Body -->
           <tr>
             <td class="px" style="padding:40px 48px 16px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2937;">
-              <p style="margin:0 0 16px;font-size:16px;line-height:26px;">Hi {first_name},</p>
               <p style="margin:0 0 24px;font-size:16px;line-height:26px;color:#4B5563;">
                 Thanks for signing up for IMS. To finish setting up your account,  use the code below to verify your identity and continue signing in to IMS.
               </p>
@@ -64,7 +63,7 @@ export const VERIFICATION_CODE = `
                   <td align="center" style="padding:20px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">
                     
                     <p class="code" style="margin:0;font-family:'Courier New',Courier,monospace;font-size:32px;font-weight:700;letter-spacing:10px;color:#15803D;">
-                      {{verification_code}}
+                      {verification_code}
                     </p>
                   </td>
                 </tr>

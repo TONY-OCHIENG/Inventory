@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from 'dotenv'
-import { VERIFICATION_CODE } from "./mailTemplates";
+import { VERIFICATION_CODE } from "./mailTemplates.js";
 dotenv.config()
 
 export const verificationCodeEmail = async (email,verificationCode) => {

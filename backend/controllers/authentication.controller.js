@@ -41,19 +41,29 @@ export const registerAccount = async (request,response) => {
      * Setting the verification code to expire after 5 minutes
      */
     const verificationToken = generateVerificationCode()
-    const verificationTokenExpires = Date.now() + 5 * 60 * 1000
+    const verificationTokenExpires = new Date(Date.now() + 5 * 60 * 1000)
 
     try {
-        const registerAccount = "INSERT INTO users (firstName,lastName,email,password,verificationToken,verificationTokenExpires) VALUES(?,?,?,?,?,?)"
-        databaseconnection.query(registerAccount,[firstName,lastName,email,hashpassword,verificationToken,verificationTokenExpires],
-            (error, result) => {
-                if (error) return response.status(500).json({success: false, message: error})
-                if (result) {
-                    verificationCodeEmail(email,verificationToken)
-                    return response.status(201).json({success: true, message: "Account created successfully"})
-                }
+        const checkEmail = "SELECT email FROM users WHERE email = ?"
+        databaseconnection.query(checkEmail, [email], (error,results) => {
+            if (error) return response.status(200).json({success: false, message: error})
+            if (results.length > 0) {
+                return response.status(200).json({success: false, message: "Account already exists"})
+            } else {
+                const registerAccount = "INSERT INTO users (firstName,lastName,email,password,verificationToken,verificationTokenExpires) VALUES(?,?,?,?,?,?)"
+                databaseconnection.query(registerAccount,[firstName,lastName,email,hashpassword,verificationToken,verificationTokenExpires],
+                    (error, result) => {
+                        if (error) return response.status(500).json({success: false, message: error})
+                        if (result) {
+                            verificationCodeEmail(email,verificationToken)
+                            return response.status(201).json({success: true, message: "Account created successfully"})
+                        }
+                    }
+                )
+
             }
-        )
+        })
+     
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: 'Internal server error'})
