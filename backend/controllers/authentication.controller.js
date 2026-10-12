@@ -119,4 +119,11 @@ export const loginUser = (request,response) => {
             message:"Enter a valid email"
         })
     }
+
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message:"Internal server error"})        
+    }
 }
