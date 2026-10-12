@@ -68,5 +68,4 @@ export const registerAccount = async (request,response) => {
         console.log(error)
         return response.status(500).json({success: false, message: 'Internal server error'})
     }
-
 } 
