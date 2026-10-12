@@ -1,8 +1,9 @@
 import { hashPassword } from "../configs/hashPassword.js"
 import { generateVerificationCode } from "../configs/verificationCode.js"
 import databaseconnection from "../database/db.js"
+import { verificationCodeEmail } from "../mail/mail.js"
 
-export const registerAccount = (request,response) => {
+export const registerAccount = async (request,response) => {
     const { firstName, lastName, email, password,confirmPassword} = request.body
 
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
@@ -47,6 +48,10 @@ export const registerAccount = (request,response) => {
         databaseconnection.query(registerAccount,[firstName,lastName,email,hashpassword,verificationToken,verificationTokenExpires],
             (error, result) => {
                 if (error) return response.status(500).json({success: false, message: error})
+                if (result) {
+                    verificationCodeEmail(email,verificationToken)
+                    return response.status(201).json({success: true, message: "Account created successfully"})
+                }
             }
         )
     } catch (error) {
