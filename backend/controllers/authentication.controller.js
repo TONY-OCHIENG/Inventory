@@ -2,6 +2,9 @@ import { comparepassword, hashPassword } from "../configs/hashPassword.js"
 import { generateVerificationCode } from "../configs/verificationCode.js"
 import databaseconnection from "../database/db.js"
 import { verificationCodeEmail } from "../mail/mail.js"
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const registerAccount = async (request,response) => {
     const { firstName, lastName, email, password,confirmPassword} = request.body
@@ -128,9 +131,29 @@ export const loginUser = (request,response) => {
                 const pass = results[0].password
                 const hpassword = comparepassword(password,pass)
                 if (hpassword) {
+                    const user_id = results[0].user_id
+                    const access_token = jwt.sign({user_id},process.env.ACCESS_TOKEN,{expiresIn:'1m'}) 
+                    const refresh_token = jwt.sign({user_id},process.env.ACCESS_TOKEN,{expiresIn:'7d'})
 
+                    // Assigning cookies
+                      response.cookie("refresh",refresh_token,({
+                        httpOnly: true,
+                        secure:process.env.NODE_ENV === "production",
+                        sameSite: "strict",
+                        maxAge: 7 * 24 * 60 * 60 * 1000
+                    }))
+
+                    //storing access token in http only cookie
+
+                    response.cookie("access",access_token,({
+                        httpOnly: true,
+                        secure:process.env.NODE_ENV === "production",
+                        sameSite: "strict",
+                        maxAge: 1 * 60 * 1000
+                    })) 
+                    return response.status(200).json({success: true, message:"login successfully"})
                 } else {
-                    return response.status(200).json({success: false, message:"Wrong credentials"})
+                    return response.status(200).json({success: false, message:"wrong credentials"})
                 }
             }
         })
