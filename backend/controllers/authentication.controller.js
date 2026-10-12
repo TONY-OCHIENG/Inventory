@@ -77,7 +77,7 @@ export const verifyCode = (request,response) => {
     }
     
     try {
-        const getCode = "SELECT verificationToken, verificationTokenExpires from user WHERE verficationToken = ?"
+        const getCode = "SELECT verificationToken , verificationTokenExpires from users WHERE verificationToken  = ?"
         databaseconnection.query(getCode, [code], (error,result) => {
             if (error) return response.status(200).json({success: false, message: error})
             if (result.length > 0) {
@@ -93,6 +93,8 @@ export const verifyCode = (request,response) => {
                         return response.status(200).json({success: true, message:"Email verified successfully"})
                     })
                 }
+            } else {
+                return response.status(200).json({success: false, message: "Invalid code"})
             }
         })
         
