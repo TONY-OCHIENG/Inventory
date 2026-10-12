@@ -1,7 +1,7 @@
+
 function App() {
   return (
-    <div>
-      
+    <div className="w-full h-screen bg-linear-to-br from-green-200  to-green-100 fixed overflow-y-auto">   
     </div>
   )
 }
