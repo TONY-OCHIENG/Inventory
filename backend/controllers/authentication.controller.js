@@ -76,4 +76,10 @@ export const verifyCode = (request,response) => {
         return response.status(200).json({success: false, message: "Enter a valid code"})
     }
     
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
 }
