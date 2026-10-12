@@ -168,14 +168,14 @@ export const refreshToken = (request,response) => {
     const token = request.cookies.refresh
     let exist = false;
     if (!token) {
-           return res.status(200).json({success: false, message:"Unauthorised access"})
+           return response.status(200).json({success: false, message:"Unauthorised access"})
     } else {
         jwt.verify(token,process.env.ACCESS_TOKEN,(err,decoded) => {
             if (err) { 
                 return response.status(200).json({success:false, message:"Access denied"})
             } else {
                 const access_token = jwt.sign({user_id: decoded.user_id},process.env.ACCESS_TOKEN,{expiresIn:'5m'})
-                res.cookie("access",access_token,({
+                response.cookie("access",access_token,({
                         httpOnly: true,
                         secure:process.env.NODE_ENV === "production",
                         sameSite: "strict",
