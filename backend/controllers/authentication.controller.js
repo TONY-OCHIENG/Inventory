@@ -1,3 +1,4 @@
+import { hashPassword } from "../configs/hashPassword.js"
 
 export const registerAccount = (request,response) => {
     const { firstName, lastName, email, password,confirmPassword} = request.body
@@ -23,12 +24,15 @@ export const registerAccount = (request,response) => {
     }
 
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
     if (!regex.test(email)) {
         return response.status(200).json({
             success: false,
             message:"Enter a valid email"
         })
     }
+
+    const hashpassword = hashPassword(password)
 
 
 } 
