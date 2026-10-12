@@ -1,4 +1,4 @@
-import { hashPassword } from "../configs/hashPassword.js"
+import { comparepassword, hashPassword } from "../configs/hashPassword.js"
 import { generateVerificationCode } from "../configs/verificationCode.js"
 import databaseconnection from "../database/db.js"
 import { verificationCodeEmail } from "../mail/mail.js"
@@ -121,6 +121,19 @@ export const loginUser = (request,response) => {
     }
 
     try {
+        const checkuser = "SELECT * FROM users WHERE email = ?"
+        databaseconnection.query(checkuser,[email],(error, results) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (results.length > 0) {
+                const pass = results[0].password
+                const hpassword = comparepassword(password,pass)
+                if (hpassword) {
+
+                } else {
+                    return response.status(200).json({success: false, message:"Wrong credentials"})
+                }
+            }
+        })
         
     } catch (error) {
         console.log(error)
