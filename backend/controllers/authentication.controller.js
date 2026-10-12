@@ -77,6 +77,25 @@ export const verifyCode = (request,response) => {
     }
     
     try {
+        const getCode = "SELECT verificationToken, verificationTokenExpires from user WHERE verficationToken = ?"
+        databaseconnection.query(getCode, [code], (error,result) => {
+            if (error) return response.status(200).json({success: false, message: error})
+            if (result.length > 0) {
+                const currentTime = new Date()
+                const tokenExpireTime = new Date(result[0].verificationTokenExpires)
+                
+                if (currentTime > tokenExpireTime) {
+                    return response.status(200).json({success: false, message:"Token expired"})
+                } else {
+                    const updateVerification = "UPDATE users SET isVerified = TRUE WHERE verificationToken = ?"
+                    databaseconnection.query(updateVerification,[code], (error, results) => {
+                        if (error) return response.status(500).json({success: false, message: error})
+                        return response.status(200).json({success: true, message:"Email verified successfully"})
+                    })
+
+                }
+            }
+        })
         
     } catch (error) {
         console.log(error)
