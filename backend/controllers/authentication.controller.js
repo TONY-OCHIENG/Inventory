@@ -22,4 +22,13 @@ export const registerAccount = (request,response) => {
         return response.status(200).json({success: false, message:"Password must be at least eight characters long"})
     }
 
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!regex.test(email)) {
+        return response.status(200).json({
+            success: false,
+            message:"Enter a valid email"
+        })
+    }
+
+
 } 
