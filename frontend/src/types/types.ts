@@ -23,7 +23,5 @@ export interface Response {
 }
 
 export interface FormDetail {
-  details: FormInput[];
-  setDetail: (details: FormInput[]) =>  void,
   registerAccount: (details: FormInput[]) => Promise<Response>;
 }

@@ -23,12 +23,6 @@ export const useForm = create<FormData>()(
 export const useFormDetail = create<FormDetail>()(
     devtools(
         (set) => ({
-            details: [],
-            setDetail: () => {
-                set((state) =>({
-                    details: state.details
-                }))
-             },
             registerAccount: async (details: FormInput[]): Promise<Response> => {
                 const response = await axios.post("http://localhost:3000/api/v1/registerAccount",details)
                 const { success, message} = await response.data

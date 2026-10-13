@@ -1,13 +1,25 @@
 import { Link } from "react-router-dom"
-import { Eye, EyeClosed, EyeClosedIcon, EyeOffIcon } from 'lucide-react'
-import { useState } from "react"
+import { Eye, EyeOffIcon } from 'lucide-react'
+import { useState, type ChangeEvent } from "react"
 import { useForm } from "../store/authStore"
+import type { FormInput } from "../types/types"
 
 function Register() {
     const [showPassword, setShowPassword] = useState<Boolean>(false)
+    const [detail, setDetail] = useState<FormInput>({
+        firstName:'',
+        lastName:'',
+        email:'',
+        password:'',
+        confirmPassword:''
+    })
     const {firstName,lastName,email,password,confirmPassword,
         setFirstName,setLastName,setEmail,setPassword,setConfirmPassword
      } = useForm()
+
+
+     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
+     }
      
   return (
     <div className="w-full h-full flex justify-center items-center px-2">
