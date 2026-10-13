@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Eye, EyeOffIcon } from 'lucide-react'
+import { Eye, EyeOffIcon, Loader } from 'lucide-react'
 import { useState, type ChangeEvent } from "react"
 
 import type { FormInput } from "../types/types"
@@ -21,16 +21,19 @@ function Register() {
        setDetail((v) => ({ ...v, [name]: value }));
     }
     
-    const { registerAccount } = useFormDetail()
+    const { registerAccount, loading, setLoading } = useFormDetail()
  
 
     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
         event.preventDefault()
+        setLoading()
         const { success, message} = await registerAccount(detail) 
         if (success) {
             toast.success(message)
+            setLoading()
         }else {
             toast.error(message)
+            setLoading()
         }       
     }
      
@@ -71,7 +74,11 @@ function Register() {
             }
             
          </div>
-         <button className="py-2.5 text-white cursor-pointer font-extrabold  w-full mt-2 bg-[#244504] rounded-md">Register</button>
+         <button className="py-2.5 text-white cursor-pointer font-extrabold flex justify-center  w-full mt-2 bg-[#244504] rounded-md">
+            {
+                loading ? <Loader className="animate-spin"/> : "Register"
+            }
+         </button>
          <p className="mt-2 text-gray-400 text-xs">Already have an Account <Link className="font-extrabold sm" to={'/login'}>Click to login</Link></p>
         </form>      
     </div>

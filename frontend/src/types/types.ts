@@ -13,5 +13,7 @@ export interface Response {
 }
 
 export interface FormDetail {
+  loading: Boolean,
+  setLoading: () => void
   registerAccount: (details: FormInput) => Promise<Response>;
 }
