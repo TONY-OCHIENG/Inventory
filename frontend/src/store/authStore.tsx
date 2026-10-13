@@ -20,7 +20,7 @@ export const useForm = create<FormData>()(
     )
 )
 
-export const useDetail = create<FormDetail>()(
+export const useFormDetail = create<FormDetail>()(
     devtools(
         (set) => ({
             details: [],
