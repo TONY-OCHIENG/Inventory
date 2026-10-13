@@ -1,5 +1,5 @@
 
-interface FormInput {
+export interface FormInput {
     firstName: String,
     lastName : String,
     email: String,
@@ -16,3 +16,14 @@ interface FormActions {
 }
 
 export type FormData = FormInput & FormActions
+
+export interface Response {
+  success: boolean;
+  message: string;
+}
+
+export interface FormDetail {
+  details: FormInput[];
+  setDetail: (details: FormInput[]) =>  void,
+  registerAccount: (details: FormInput[]) => Promise<Response>;
+}
