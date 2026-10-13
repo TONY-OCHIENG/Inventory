@@ -3,6 +3,8 @@ import { Eye, EyeOffIcon } from 'lucide-react'
 import { useState, type ChangeEvent } from "react"
 
 import type { FormInput } from "../types/types"
+import { useFormDetail } from "../store/authStore"
+import toast from "react-hot-toast"
 
 function Register() {
     const [showPassword, setShowPassword] = useState<Boolean>(false)
@@ -18,17 +20,23 @@ function Register() {
        const { name, value} = event.target
        setDetail((v) => ({ ...v, [name]: value }));
     }
-    console.log(detail)
+    
+    const { registerAccount } = useFormDetail()
  
 
     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
         event.preventDefault()
-        
-     }
+        const { success, message} = await registerAccount(detail) 
+        if (success) {
+            toast.success(message)
+        }else {
+            toast.error(message)
+        }       
+    }
      
   return (
     <div className="w-full h-full flex justify-center items-center px-2">
-        <form action="" className="max-w-md p-4 rounded-md bg-white/50">
+        <form action="" onSubmit={handleSubmit} className="max-w-md p-4 rounded-md bg-white/50">
         <div className="flex items-center justify-center w-full gap-4">
             <img src="/ims-box-green.svg" alt="" className="h-6" />
              <h1 className="text-center text-sm font-extrabold text-gray-600">REGISTER TO IMS</h1>

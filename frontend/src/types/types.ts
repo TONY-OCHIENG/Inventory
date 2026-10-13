@@ -13,5 +13,5 @@ export interface Response {
 }
 
 export interface FormDetail {
-  registerAccount: (details: FormInput[]) => Promise<Response>;
+  registerAccount: (details: FormInput) => Promise<Response>;
 }
