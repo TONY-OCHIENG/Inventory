@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import axios from 'axios'
 import type { FormDetail, FormInput, Response } from '../types/types'
+import { apiClient } from '../components/ClientURL'
 
 export const useFormDetail = create<FormDetail>()(
     devtools(
@@ -13,7 +13,7 @@ export const useFormDetail = create<FormDetail>()(
                 }))
             },
             registerAccount: async (details: FormInput): Promise<Response> => {
-                const response = await axios.post("http://localhost:3000/api/v1/registerAccount",details)
+                const response = await apiClient.post("/api/v1/registerAccount",details)
                 const { success, message} = await response.data
                 return { success, message}
             }
