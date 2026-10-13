@@ -16,6 +16,6 @@ export const useForm = create<FormData>()(
             setEmail: (email) => set({email: email}),
             setPassword: (password) => set({password: password}),
             setConfirmPassword: (confirmPassword) => set({confirmPassword: confirmPassword})
-        })
+        }), {name: "use-form"}
     )
 )
