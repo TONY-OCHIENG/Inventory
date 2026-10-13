@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Eye, EyeOffIcon } from 'lucide-react'
 import { useState, type ChangeEvent } from "react"
-import { useForm } from "../store/authStore"
+
 import type { FormInput } from "../types/types"
 
 function Register() {
@@ -12,13 +12,12 @@ function Register() {
         email:'',
         password:'',
         confirmPassword:''
-    })
-    const {firstName,lastName,email,password,confirmPassword,
-        setFirstName,setLastName,setEmail,setPassword,setConfirmPassword
-     } = useForm()
-
+    })    
+ 
 
      const handleSubmit = async (event: ChangeEvent): Promise<void> => {
+        event.preventDefault()
+        
      }
      
   return (
@@ -29,19 +28,19 @@ function Register() {
              <h1 className="text-center text-sm font-extrabold text-gray-600">REGISTER TO IMS</h1>
         </div>       
          <label htmlFor="" className="text-sm text-gray-600">First name</label>
-         <input type="text"  onChange={(event) => setFirstName(event.target.value)} name="firstName" required placeholder="First name" className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
+         <input type="text"  name="firstName" required placeholder="First name" className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
          <label htmlFor="lastName" className="text-gray-600 text-sm">Last name</label>
-          <input type="text" onChange={(event) => setLastName(event.target.value)} name="lastName" id="lastName" placeholder= "Last name" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type="text"  name="lastName" id="lastName" placeholder= "Last name" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
           <label htmlFor="lastName" className="text-gray-600 text-sm">Email</label>
-          <input type="email" onChange={(event) => setEmail(event.target.value)} name="email" id="email" placeholder="eg. johndoe@gmail.com" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type="email"  name="email" id="email" placeholder="eg. johndoe@gmail.com" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
           <label htmlFor="password"  className="text-gray-600 text-sm flex justify-between">Password</label>          
-          <input type={showPassword ? 'text' : 'password'} onChange={(event) => setPassword(event.target.value)} name="password" id="password" required className="w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type={showPassword ? 'text' : 'password'} name="password" id="password" required className="w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
           <label htmlFor="confirmPassword" className="text-gray-600 text-sm">Confirm password</label>
-          <input type={showPassword ? 'text' : 'password'}  onChange={(event) => setConfirmPassword(event.target.value)} name="confirmPassword" id="confirmPassword" required className="w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type={showPassword ? 'text' : 'password'}   name="confirmPassword" id="confirmPassword" required className="w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
          <div className="flex gap-2 cursor-pointer" onClick={() => {setShowPassword(!showPassword)}}>
             {

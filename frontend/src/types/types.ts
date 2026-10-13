@@ -7,16 +7,6 @@ export interface FormInput {
     confirmPassword: String
 }
 
-interface FormActions {
-    setFirstName: (firstName: String) => void,
-    setLastName: (lastName: String) => void,
-    setEmail: (email: String) => void,
-    setPassword: (password: String) => void,
-    setConfirmPassword: (confirmPassword: String) => void
-}
-
-export type FormData = FormInput & FormActions
-
 export interface Response {
   success: boolean;
   message: string;
