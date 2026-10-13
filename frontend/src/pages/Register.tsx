@@ -13,9 +13,15 @@ function Register() {
         password:'',
         confirmPassword:''
     })    
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+       const { name, value} = event.target
+       setDetail((v) => ({ ...v, [name]: value }));
+    }
+    console.log(detail)
  
 
-     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
+    const handleSubmit = async (event: ChangeEvent): Promise<void> => {
         event.preventDefault()
         
      }
@@ -28,19 +34,19 @@ function Register() {
              <h1 className="text-center text-sm font-extrabold text-gray-600">REGISTER TO IMS</h1>
         </div>       
          <label htmlFor="" className="text-sm text-gray-600">First name</label>
-         <input type="text"  name="firstName" required placeholder="First name" className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
+         <input type="text"  name="firstName" onChange={handleChange} required placeholder="First name" className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
          <label htmlFor="lastName" className="text-gray-600 text-sm">Last name</label>
-          <input type="text"  name="lastName" id="lastName" placeholder= "Last name" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type="text"  name="lastName" onChange={handleChange} id="lastName" placeholder= "Last name" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
           <label htmlFor="lastName" className="text-gray-600 text-sm">Email</label>
-          <input type="email"  name="email" id="email" placeholder="eg. johndoe@gmail.com" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type="email"  name="email" onChange={handleChange} id="email" placeholder="eg. johndoe@gmail.com" required className="placeholder:text-sm w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
           <label htmlFor="password"  className="text-gray-600 text-sm flex justify-between">Password</label>          
-          <input type={showPassword ? 'text' : 'password'} name="password" id="password" required className="w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type={showPassword ? 'text' : 'password'} onChange={handleChange} name="password" id="password" required className="w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
           <label htmlFor="confirmPassword" className="text-gray-600 text-sm">Confirm password</label>
-          <input type={showPassword ? 'text' : 'password'}   name="confirmPassword" id="confirmPassword" required className="w-full p-2 border rounded-md outline-none focus:ring-2
+          <input type={showPassword ? 'text' : 'password'}  onChange={handleChange} name="confirmPassword" id="confirmPassword" required className="w-full p-2 border rounded-md outline-none focus:ring-2
          focus:ring-green-700 mb-2"/>
          <div className="flex gap-2 cursor-pointer" onClick={() => {setShowPassword(!showPassword)}}>
             {
