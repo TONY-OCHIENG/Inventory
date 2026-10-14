@@ -72,7 +72,7 @@ function VerificationCode() {
           Verify Your Email
         </h2>
         <p className="text-center text-gray-400 mb-6">
-          Enter the 6-digit verification code sent to your email address.
+          Enter the 6-digit verification code sent to your email address or spam folder.
         </p>
 
         <form className="space-y-6" onSubmit={handleSubmit}>

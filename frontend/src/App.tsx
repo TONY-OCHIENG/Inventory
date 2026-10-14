@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import Register from "./pages/Register"
 import VerificationCode from "./pages/VerificationCode"
 import NotFound from "./pages/NotFound"
+import Login from "./pages/Login"
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     <Routes>
       <Route path="/signup" element={<Register/>}/>
       <Route path="/verificationCode" element={<VerificationCode/>}/>
+      <Route path="/login" element={<Login/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Routes>
     </div>

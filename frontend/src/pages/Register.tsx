@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOffIcon, Loader } from 'lucide-react'
 import { useState, type ChangeEvent } from "react"
 
@@ -8,6 +8,7 @@ import toast from "react-hot-toast"
 
 function Register() {
     const [showPassword, setShowPassword] = useState<Boolean>(false)
+    const navigate = useNavigate()
     const [detail, setDetail] = useState<FormInput>({
         firstName:'',
         lastName:'',
@@ -30,6 +31,7 @@ function Register() {
         const { success, message} = await registerAccount(detail) 
         if (success) {
             toast.success(message)
+            navigate("/verificationCode")
             setLoading()
         }else {
             toast.error(message)
