@@ -19,7 +19,7 @@ export const useFormDetail = create<FormDetail>()(
                 return { success, message}                
             },
             authenticateUser : async (): Promise<ResponseAuth> => {
-                const response = await apiClient.get('/authentication')
+                const response = await apiClient.get('/api/v1/authentication')
                 const { success, user_id} = await response.data
                 return { success, user_id}
             },
