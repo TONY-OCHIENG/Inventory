@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import type { FormDetail, FormInput, LoginINFO, Response, ResponseAuth, UserDetails } from '../types/types'
+import type { FormDetail, FormInput, LoginINFO, Response, ResponseAuth } from '../types/types'
 import { apiClient } from '../components/ClientURL'
 
 export const useFormDetail = create<FormDetail>()(

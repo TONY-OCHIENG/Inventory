@@ -35,16 +35,20 @@ function Login() {
                navigate('/login')
            }
     }
+
+    useEffect(() => {
+        authenticateUser()
+    },[])
     
-    authentication() 
     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
         event.preventDefault()
         setLoading()
         const { success, message} = await loginAccount(detail)
         if (success) {
+            navigate('/dashboard')
             toast.success(message)
             setLoading()
-            navigate('/dashboard')
+           
         } else {
             toast.error(message)
             setLoading()

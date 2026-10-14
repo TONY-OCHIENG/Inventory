@@ -155,6 +155,8 @@ export const loginUser = (request,response) => {
                 } else {
                     return response.status(200).json({success: false, message:"wrong credentials"})
                 }
+            } else {
+                return response.status(200).json({success: false, message: "user not found"})
             }
         })
         

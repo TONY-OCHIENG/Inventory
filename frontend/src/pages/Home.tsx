@@ -22,8 +22,6 @@ function Home() {
             navigate('/login')
         }
     }
-
-    authentication()
     
     /**
      * Implementing a function that fetches user details 
@@ -46,7 +44,9 @@ function Home() {
     const logoutUser = async (): Promise<void> => {
         const { success, message } = await logout()
         if (success) {
+            navigate('/login')
             toast.success(message)
+           
         } else {
             toast.error("An error occured")
         }
@@ -60,8 +60,8 @@ function Home() {
                 <div className="flex gap-2 items-center">
                     <img src="/ims-box-green.svg" className="h-10" alt="" />
                     <div className="flex flex-col w-full"> 
-                        <h1 className={`text-2xl text-gray-800 font-bold transition-all duration-500 ${open ? 'hidden' : 'block'}`}>IMS</h1>
-                        <p className={`text-gray-700 text-[0.5rem] transition-all duration-500 ${open ? 'hidden' : 'block'}`}>INVENTORY MANAGEMENT SYSTEM</p>
+                        <h1 className={`text-2xl text-gray-800 font-bold transition-all  ${open ? 'hidden' : 'block'}`}>IMS</h1>
+                        <p className={`text-gray-700 text-[0.5rem] transition-all  ${open ? 'hidden' : 'block'}`}>INVENTORY MANAGEMENT SYSTEM</p>
                     </div>
                 </div>                
             </div>
@@ -85,8 +85,8 @@ function Home() {
             </div>
         </div>
         <div>
-            <div className={`absolute right-0 shadow-md cursor-pointer flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
-            <div onClick={() => {setOpen(!open)}} className="bg-white ml-4 rounded-md p-1">
+            <div className={`absolute right-0 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
+            <div onClick={() => {setOpen(!open)}} className="bg-white cursor-pointer ml-4 rounded-md p-1">
                 <Menu className={`h-5 text-green-950`}/>
             </div>
             </div>
