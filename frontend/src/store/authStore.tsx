@@ -12,6 +12,11 @@ export const useFormDetail = create<FormDetail>()(
                     loading: !state.loading
                 }))
             },
+            setCode: async (code: String): Promise<Response> => {
+                const response = await apiClient.post("/api/v1/verifyCode",code)
+                const { success, message} = await response.data
+                return { success, message}                
+            },
             registerAccount: async (details: FormInput): Promise<Response> => {
                 const response = await apiClient.post("/api/v1/registerAccount",details)
                 const { success, message} = await response.data

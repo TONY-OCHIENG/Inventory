@@ -53,6 +53,7 @@ function VerificationCode() {
     event.preventDefault();
     const code = verificationCode.join("");
     setLoading(true);
+    console.log(code)
     
   };
 

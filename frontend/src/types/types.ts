@@ -14,6 +14,7 @@ export interface Response {
 
 export interface FormDetail {
   loading: Boolean,
-  setLoading: () => void
+  setLoading: () => void,
+  setCode: (code: String) => Promise<Response>,
   registerAccount: (details: FormInput) => Promise<Response>;
 }
