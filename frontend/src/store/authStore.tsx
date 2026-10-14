@@ -10,7 +10,6 @@ export const useFormDetail = create<FormDetail>()(
             details: [],
             setDetails: async (userID: String) => {
                 const response = await apiClient.get(`/api/v1/detail/${userID}`)   
-                console.log(response)
                 const { result } = await response.data
                 set(() => ({
                   details: result
