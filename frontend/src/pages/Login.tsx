@@ -1,8 +1,7 @@
 import { Eye, EyeOffIcon, Loader } from "lucide-react"
 import { useState, type ChangeEvent } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useFormDetail } from "../store/authStore"
-import axios from "axios"
 import toast from "react-hot-toast"
 interface LOGIN{
     email: String,
@@ -14,7 +13,7 @@ function Login() {
             email:'',
             password:'',
     })  
-    axios.defaults.withCredentials = true 
+    const navigate = useNavigate()
     const {loading,setLoading, loginAccount } = useFormDetail()
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value} = event.target
@@ -27,6 +26,7 @@ function Login() {
         if (success) {
             toast.success(message)
             setLoading()
+            navigate('/dashboard')
         } else {
             toast.error(message)
             setLoading()

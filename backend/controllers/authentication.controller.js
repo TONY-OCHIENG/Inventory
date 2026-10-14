@@ -132,7 +132,7 @@ export const loginUser = (request,response) => {
                 const hpassword = comparepassword(password,pass)
                 if (hpassword) {
                     const user_id = results[0].user_id
-                    const access_token = jwt.sign({user_id},process.env.ACCESS_TOKEN,{expiresIn:'1m'}) 
+                    const access_token = jwt.sign({user_id},process.env.ACCESS_TOKEN,{expiresIn:'5m'}) 
                     const refresh_token = jwt.sign({user_id},process.env.ACCESS_TOKEN,{expiresIn:'7d'})
 
                     // Assigning cookies
@@ -149,7 +149,7 @@ export const loginUser = (request,response) => {
                         httpOnly: true,
                         secure:process.env.NODE_ENV === "production",
                         sameSite: "strict",
-                        maxAge: 1 * 60 * 1000
+                        maxAge: 5 * 60 * 1000
                     })) 
                     return response.status(200).json({success: true, message:"login successfully"})
                 } else {
@@ -179,7 +179,7 @@ export const refreshToken = (request,response) => {
                         httpOnly: true,
                         secure:process.env.NODE_ENV === "production",
                         sameSite: "strict",
-                        maxAge: 1 * 60 * 1000
+                        maxAge: 5 * 60 * 1000
                 }))
                 exist = true                 
             }
