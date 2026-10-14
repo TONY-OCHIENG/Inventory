@@ -1,21 +1,18 @@
 
-import { useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent } from "react";
+import { useRef, useState, type ChangeEvent, type KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
-
-interface VerifyResponse {
-  success: boolean;
-  message: string;
-}
-
+import { useFormDetail } from "../store/authStore";
+import toast from "react-hot-toast";
 
 
 const CODE_LENGTH = 6;
 
 function VerificationCode() {
-  const [verificationCode, setCode] = useState<string[]>(Array(CODE_LENGTH).fill(""));
+  const [verificationCode, setCodes] = useState<string[]>(Array(CODE_LENGTH).fill(""));
   const [isLoading, setLoading] = useState<boolean>(false);
   const inputRef = useRef<(HTMLInputElement | null)[]>([]);
   const navigate = useNavigate();
+  const { setCode } = useFormDetail()
 
   const handleChange = (index: number, value: string): void => {
     const newCode = [...verificationCode];
@@ -26,7 +23,7 @@ function VerificationCode() {
       for (let i = 0; i < CODE_LENGTH; i++) {
         newCode[i] = pastedCode[i] || "";
       }
-      setCode(newCode);
+      setCodes(newCode);
 
       // Focus the last filled input, or the next empty one
       const lastFilledIndex = newCode.findLastIndex((digit) => digit !== "");
@@ -34,7 +31,7 @@ function VerificationCode() {
       inputRef.current[focusIndex]?.focus();
     } else {
       newCode[index] = value;
-      setCode(newCode);
+      setCodes(newCode);
 
       // Move to the next input when a digit is entered
       if (value && index < CODE_LENGTH - 1) {
@@ -49,11 +46,19 @@ function VerificationCode() {
     }
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (event: ChangeEvent): Promise<void> => {
     event.preventDefault();
     const code = verificationCode.join("");
     setLoading(true);
-    console.log(code)
+    const { success, message} = await setCode(code)
+    if (success) {
+      setLoading(false)
+       toast.success(message)
+       navigate('/login')
+    } else{
+      toast.error(message)
+      setLoading(false)
+    }
     
   };
 
@@ -82,6 +87,7 @@ function VerificationCode() {
                 inputMode="numeric"
                 maxLength={CODE_LENGTH}
                 value={digit}
+                name="code"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 className="w-12 h-12 text-center text-2xl font-bold bg-green-700 text-white border-2 border-gray-600 rounded-lg focus:border-white focus:outline-none"

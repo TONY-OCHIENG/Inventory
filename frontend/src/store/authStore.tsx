@@ -13,7 +13,8 @@ export const useFormDetail = create<FormDetail>()(
                 }))
             },
             setCode: async (code: String): Promise<Response> => {
-                const response = await apiClient.post("/api/v1/verifyCode",code)
+                console.log(code)
+                const response = await apiClient.post("/api/v1/verifyCode",{code})
                 const { success, message} = await response.data
                 return { success, message}                
             },
