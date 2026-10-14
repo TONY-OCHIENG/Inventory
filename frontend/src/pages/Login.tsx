@@ -1,5 +1,5 @@
 import { Eye, EyeOffIcon, Loader } from "lucide-react"
-import { useState, type ChangeEvent } from "react"
+import { useEffect, useState, type ChangeEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useFormDetail } from "../store/authStore"
 import toast from "react-hot-toast"
@@ -12,13 +12,31 @@ function Login() {
     const [detail, setDetail] = useState<LOGIN>({
             email:'',
             password:'',
-    })  
+    })   
     const navigate = useNavigate()
-    const {loading,setLoading, loginAccount } = useFormDetail()
+    const {loading,setLoading, loginAccount, authenticateUser } = useFormDetail()
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value} = event.target
         setDetail((v) => ({ ...v, [name]: value }));
     }
+    /**
+     * 
+     * Handling authentication and redirection to dashboard
+     */
+          useEffect(() => {
+          authentication()
+        },[])
+    
+    const authentication = async () => {
+           const {success, user_id} = await authenticateUser()
+           if (success) {
+                navigate("/dashboard")            
+           } else {
+               navigate('/login')
+           }
+    }
+    
+    authentication() 
     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
         event.preventDefault()
         setLoading()
