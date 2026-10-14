@@ -3,6 +3,7 @@ import { useState, type ChangeEvent } from "react"
 import { Link } from "react-router-dom"
 import { useFormDetail } from "../store/authStore"
 import axios from "axios"
+import toast from "react-hot-toast"
 interface LOGIN{
     email: String,
     password: String
@@ -14,14 +15,26 @@ function Login() {
             password:'',
     })  
     axios.defaults.withCredentials = true 
-    const {loading,setLoading } = useFormDetail()
+    const {loading,setLoading, loginAccount } = useFormDetail()
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value} = event.target
         setDetail((v) => ({ ...v, [name]: value }));
     }
+    const handleSubmit = async (event: ChangeEvent): Promise<void> => {
+        event.preventDefault()
+        setLoading()
+        const { success, message} = await loginAccount(detail)
+        if (success) {
+            toast.success(message)
+            setLoading()
+        } else {
+            toast.error(message)
+            setLoading()
+        }
+    }
   return (
     <div className="h-screen w-full flex justify-center items-center px-2">
-     <form action="" className="md:w-[28%] w-full p-4 rounded-md bg-white/50">
+     <form action="" onSubmit={handleSubmit} className="md:w-[28%] w-full p-4 rounded-md bg-white/50">
         <div className="flex items-center justify-center w-full gap-4">
             <img src="/ims-box-green.svg" alt="" className="h-6" />
              <h1 className="text-center text-sm font-extrabold text-gray-600">LOGIN TO IMS</h1>
