@@ -210,3 +210,9 @@ export const userDetail = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const logoutAdmin = (request,response) => {
+    response.clearCookie('access')
+    response.clearCookie('refresh')
+    return response.status(200).json({status: true, message:"logout successfully"})
+}
