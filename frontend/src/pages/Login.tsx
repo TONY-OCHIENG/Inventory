@@ -28,7 +28,7 @@ function Login() {
         },[])
     
     const authentication = async () => {
-           const {success, user_id} = await authenticateUser()
+           const {success} = await authenticateUser()
            if (success) {
                 navigate("/dashboard")            
            } else {

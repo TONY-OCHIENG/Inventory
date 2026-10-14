@@ -1,12 +1,16 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import type { FormDetail, FormInput, LoginINFO, Response, ResponseAuth } from '../types/types'
+import type { FormDetail, FormInput, LoginINFO, Response, ResponseAuth, UserDetails } from '../types/types'
 import { apiClient } from '../components/ClientURL'
 
 export const useFormDetail = create<FormDetail>()(
     devtools(
         (set) => ({
             loading: false,
+            details: [],
+            setDetails: async (userID: String) => {
+                const response = await apiClient.get(`/api/v1/detail/${userID}`)          
+            },
             setLoading: () => {
                 set((state) => ({
                     loading: !state.loading

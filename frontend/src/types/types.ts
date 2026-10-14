@@ -21,8 +21,15 @@ export interface ResponseAuth{
   success: boolean,
   user_id: String
 }
+
+export interface UserDetails{
+  firstName: String,
+  lastName: String
+}
 export interface FormDetail {
   loading: Boolean,
+  details: UserDetails[],
+  setDetails: (userID: String) => void,
   setLoading: () => void,
   setCode: (code: String) => Promise<Response>,
   authenticateUser: () => Promise<ResponseAuth>,
