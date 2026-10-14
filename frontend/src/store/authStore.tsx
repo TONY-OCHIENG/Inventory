@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import type { FormDetail, FormInput, LoginINFO, Response } from '../types/types'
+import type { FormDetail, FormInput, LoginINFO, Response, ResponseAuth } from '../types/types'
 import { apiClient } from '../components/ClientURL'
 
 export const useFormDetail = create<FormDetail>()(
@@ -17,6 +17,11 @@ export const useFormDetail = create<FormDetail>()(
                 const response = await apiClient.post("/api/v1/verifyCode",{code})
                 const { success, message} = await response.data
                 return { success, message}                
+            },
+            authenticateUser : async (): Promise<ResponseAuth> => {
+                const response = await apiClient.get('/authentication')
+                const { success, user_id} = await response.data
+                return { success, user_id}
             },
             loginAccount: async (details: LoginINFO): Promise<Response> => {
                 const response = await apiClient.post('/api/v1/login',details)
