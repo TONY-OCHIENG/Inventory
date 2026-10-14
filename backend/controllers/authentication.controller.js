@@ -214,5 +214,5 @@ export const userDetail = (request,response) => {
 export const logoutAdmin = (request,response) => {
     response.clearCookie('access')
     response.clearCookie('refresh')
-    return response.status(200).json({status: true, message:"logout successfully"})
+    return response.status(200).json({success: true, message:"logout successfully"})
 }

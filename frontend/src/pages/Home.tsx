@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
 import { Outlet, useNavigate } from "react-router-dom"
 import { LogOut, Menu } from "lucide-react"
+import toast from "react-hot-toast"
 
 function Home() {
-    const { authenticateUser,details, setDetails } = useFormDetail()
+    const { authenticateUser,details, setDetails,logout } = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
     useEffect(() => {
@@ -37,6 +38,19 @@ function Home() {
      * Opening and closing nav bar
      */
     const [open, setOpen] = useState<Boolean>(false)
+
+    /**
+     * Implementing a function that calls logout api
+     */
+
+    const logoutUser = async (): Promise<void> => {
+        const { success, message } = await logout()
+        if (success) {
+            toast.success(message)
+        } else {
+            toast.error("An error occured")
+        }
+    }
   return (
     <div className={`flex dark w-full`}>
         <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
@@ -66,7 +80,7 @@ function Home() {
                     }</h1>
                      <p className={`${open ? 'hidden' : 'block'} text-gray-700 text-sm`}>Admin</p>
                     </div>  
-                    <LogOut className={`h-10 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
+                    <LogOut onClick={logoutUser} className={`h-10 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
                 </div>                
             </div>
         </div>
