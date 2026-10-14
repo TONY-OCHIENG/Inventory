@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
 import { Outlet, useNavigate } from "react-router-dom"
-import { Menu } from "lucide-react"
+import { LogOut, Menu } from "lucide-react"
 
 function Home() {
     const { authenticateUser,details, setDetails } = useFormDetail()
@@ -39,8 +39,8 @@ function Home() {
     const [open, setOpen] = useState<Boolean>(false)
   return (
     <div className={`flex dark w-full`}>
-        <div className={`fixed left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
-        shadow-md p-2
+        <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
+        shadow-md p-2 flex justify-between flex-col
         `}>
             <div className={`p-2 bg-white shadow-md rounded-md top-0 `}>
                 <div className="flex gap-2 items-center">
@@ -49,7 +49,25 @@ function Home() {
                         <h1 className={`text-2xl text-gray-800 font-bold transition-all duration-500 ${open ? 'hidden' : 'block'}`}>IMS</h1>
                         <p className={`text-gray-700 text-[0.5rem] transition-all duration-500 ${open ? 'hidden' : 'block'}`}>INVENTORY MANAGEMENT SYSTEM</p>
                     </div>
-                </div>
+                </div>                
+            </div>
+              <div className={`p-2 h-15 bg-white shadow-md rounded-md  mb-1 bottom-0 `}>
+                <div className="flex justify-between items-center">
+                    <div className={`h-10 w-10 bg-green-50 flex justify-center items-center font-extrabold  rounded-full shadow-md`}>
+                        <h1 className="font-extrabold text-gray-600">
+                            {
+                                details.map((item) => (<span>{item.firstName.charAt(0)}{item.lastName.charAt(0)}</span>))               
+                            }
+                        </h1>
+                    </div>
+                    <div className="flex flex-col">
+                     <h1 className={`${open ? 'hidden' : 'block'} text-gray-600 text-xs font-serif`}>{
+                       details.map((item) => (<span>{item.firstName} {item.lastName}</span>))    
+                    }</h1>
+                     <p className={`${open ? 'hidden' : 'block'} text-gray-700 text-sm`}>Admin</p>
+                    </div>  
+                    <LogOut className={`h-10 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
+                </div>                
             </div>
         </div>
         <div>
