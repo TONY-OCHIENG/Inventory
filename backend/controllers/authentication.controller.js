@@ -196,7 +196,15 @@ export const authenticateUser = (request,response) => {
 export const userDetail = (request,response) => {
     const { id } = request.params
     try {
-        
+        const fetchUser = "SELECT firstName, lastName FROM users WHERE user_id = ?"
+        databaseconnection.query(fetchUser,[id], (err, result) => {
+            if (err) return response.status(500).json({success: false, message: err})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result})
+            } else {
+                return response.status(404).json({success: false, message: "user not found"})
+            }
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
