@@ -31,6 +31,7 @@ export interface FormDetail {
   details: UserDetails[],
   setDetails: (userID: String) => void,
   setLoading: () => void,
+  logout: () => Promise<Response>,
   setCode: (code: String) => Promise<Response>,
   authenticateUser: () => Promise<ResponseAuth>,
   loginAccount: (details: LoginINFO) => Promise<Response>,

@@ -26,6 +26,11 @@ export const useFormDetail = create<FormDetail>()(
                 const { success, message} = await response.data
                 return { success, message}                
             },
+            logout: async () : Promise<Response> => {
+                const response = await apiClient.get('/api/v1/logout')
+                const { success, message} = await response.data
+                return { success, message}
+            },
             authenticateUser : async (): Promise<ResponseAuth> => {
                 const response = await apiClient.get('/api/v1/authentication')
                 const { success, user_id} = await response.data
