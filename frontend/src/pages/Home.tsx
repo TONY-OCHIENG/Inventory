@@ -55,6 +55,7 @@ function Home() {
      * Opening and closing notification tab state
      */
     const [openNotificaton, setopenNotification] = useState<Boolean>(false)
+    const [openProfile, setopenProfile] = useState<Boolean>(false)
   return (
     <div className={`flex dark w-full`}>
         <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
@@ -98,7 +99,7 @@ function Home() {
                     <Moon className="h-5 text-gray-500 cursor-pointer"/>
                 </div>
                 <div>
-                    <Bell onClick={() => setopenNotification(!openNotificaton)} className="h-5 text-gray-500 cursor-pointer"/>
+                    <Bell onClick={() => {setopenNotification(!openNotificaton), setopenProfile(false)}} className="h-5 text-gray-500 cursor-pointer"/>
                     <div className={`${openNotificaton ? 'block' : 'hidden'} absolute bg-white/80 rounded-md shadow-md p-4 w-[300px] h-[120px] right-[10%] bottom-[-7rem]`}>
                         <div className="flex justify-between border-b-1 items-center">
                             <h1 className="text-sm text-green-900">Notifications</h1>
@@ -110,18 +111,18 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center items-center gap-2">
+                <div className={`flex justify-center items-center gap-2`}>
                     <div className="h-8 w-8 rounded-full bg-white flex justify-center items-center">
-                         <h1 className="font-extrabold text-gray-600 cursor-pointer">
+                         <h1 onClick={() => {setopenProfile(!openProfile), setopenNotification(false)}}  className="font-extrabold text-gray-600 cursor-pointer">
                             {
                                 details.map((item) => (<span>{item.firstName.charAt(0)}{item.lastName.charAt(0)}</span>))               
                             }
                         </h1>
                     </div>
                     <div>
-                        <ChevronDown className="text-gray-500 cursor-pointer h-5"/>
+                        <ChevronDown onClick={() => {setopenProfile(!openProfile), setopenNotification(false)}}  className={`text-gray-500 ${openProfile ? 'rotate-180' : ''} transition-all duration-200 cursor-pointer h-5`}/>
                     </div>
-                       <div className={`absolute bg-white/80 rounded-md shadow-md p-4 w-[200px] h-[120px] right-[1%] bottom-[-7rem]`}>
+                       <div className={`${openProfile ? 'block' : 'hidden' } absolute bg-white/80 rounded-md shadow-md p-4 w-[200px] h-[120px] right-[1%] bottom-[-7rem]`}>
                         <div className="flex flex-col border-b-1 ">
                         <h1 className="text-sm text-gray-800 font-serif">{
                            details.map((item) => (<span>{item.firstName} {item.lastName}</span>))  
