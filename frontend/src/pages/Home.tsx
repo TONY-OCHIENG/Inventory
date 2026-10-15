@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
-import { Bell, Box, ChevronDown, Icon, LayoutDashboard, LogOut, Menu, Moon, RotateCcw, Settings, ShoppingBag, Truck, User } from "lucide-react"
+import { Barcode, Bell, Box, ChevronDown, Icon, LayoutDashboard, LogOut, Menu, Moon, Notebook, NotebookPen, Package, Receipt, ReceiptText, RotateCcw, Settings, ShoppingBag, Store, Truck, User } from "lucide-react"
 import toast from "react-hot-toast"
 
 function Home() {
@@ -57,7 +57,7 @@ function Home() {
     const [openNotificaton, setopenNotification] = useState<Boolean>(false)
     const [openProfile, setopenProfile] = useState<Boolean>(false)
     /**
-     * Main menu links
+     * Navigation menu links
      */
     const mainLinks = [
         {name: "Dashboard",link:'/dashboard', icon:LayoutDashboard},
@@ -66,9 +66,29 @@ function Home() {
         {name: "Suppliers",link:'/dashboard/supplier', icon:Truck},
         {name: "Returns",link:'/dashboard/returns', icon:RotateCcw}
     ]
+    const stockLinks = [
+        {name: "Stock",link:'/dashboard/stock', icon:Package}
+    ]
+    const documents = [
+        {name: "Invoice",link:'/dashboard/invoice', icon:ReceiptText},
+        {name: "Quotation",link:'/dashboard/quotation', icon:Receipt},
+        {name: "Goods recieved note",link:'/dashboard/quotation', icon:Notebook},
+        {name: "Purchase order",link:'/dashboard/purchaseorder', icon:NotebookPen}
+    ]
+    const barcode = [
+         {name: "Barcode",link:'/dashboard/barcode', icon:Barcode}
+    ]
+    const notifications = [
+        {name: "Notification",link:'/dashboard/notification', icon:Bell}
+    ]
+
+    const settings = [
+        {name: "Settings",link:'/dashboard/settings', icon:Settings}
+    ]
+
   return (
     <div className={`flex dark w-full`}>
-        <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
+        <div className={`relative left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
         shadow-md p-2 flex justify-between flex-col
         `}>
             <div className={`p-2 bg-white shadow-md rounded-md top-0 `}>
@@ -80,7 +100,7 @@ function Home() {
                     </div>
                 </div>                
             </div>
-            <div className="py-10 flex flex-col">
+            <div className="py-5 flex flex-col overflow-auto scrollbar-none">
                 <h1 className="text-xs text-gray-400">MAIN</h1>
                 <div>
                     <ul className="">
@@ -98,7 +118,97 @@ function Home() {
                             ))
                         }
                     </ul>                
-                </div>                
+                </div> 
+                  <h1 className="text-xs text-gray-400">STOCK</h1>
+                <div>
+                    <ul className="">
+                        {
+                            stockLinks.map((item) => (
+                                <li className="mb-1"><NavLink 
+                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                                to={item.link}> <item.icon className="h-5 text-gray-400">
+                                <title>{item.name}</title>
+                                </item.icon>
+                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
+                                </NavLink></li>
+                            ))
+                        }
+                    </ul>                
+                </div>
+                  <h1 className="text-xs text-gray-400">DOCUMENTS</h1>
+                <div>
+                    <ul className="">
+                        {
+                            documents.map((item) => (
+                                <li className="mb-1"><NavLink 
+                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                                to={item.link}> <item.icon className="h-5 text-gray-400">
+                                <title>{item.name}</title>
+                                </item.icon>
+                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
+                                </NavLink></li>
+                            ))
+                        }
+                    </ul>                
+                </div>    
+                   <h1 className="text-xs text-gray-400">BARCODE</h1>
+                <div>
+                    <ul className="">
+                        {
+                            barcode.map((item) => (
+                                <li className="mb-1"><NavLink 
+                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                                to={item.link}> <item.icon className="h-5 text-gray-400">
+                                <title>{item.name}</title>
+                                </item.icon>
+                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
+                                </NavLink></li>
+                            ))
+                        }
+                    </ul>                
+                </div>   
+                  <h1 className="text-xs text-gray-400">NOTIFICATIONS</h1>
+                <div>
+                    <ul className="">
+                        {
+                            notifications.map((item) => (
+                                <li className="mb-1"><NavLink 
+                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                                to={item.link}> <item.icon className="h-5 text-gray-400">
+                                <title>{item.name}</title>
+                                </item.icon>
+                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
+                                </NavLink></li>
+                            ))
+                        }
+                    </ul>                
+                </div>    
+                   <h1 className="text-xs text-gray-400">SETTINGS</h1>
+                <div>
+                    <ul className="">
+                        {
+                            settings.map((item) => (
+                                <li className="mb-1"><NavLink 
+                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                                to={item.link}> <item.icon className="h-5 text-gray-400">
+                                <title>{item.name}</title>
+                                </item.icon>
+                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
+                                </NavLink></li>
+                            ))
+                        }
+                    </ul>                
+                </div>                      
             </div>
               <div className={`p-2 h-15 bg-white shadow-md rounded-md  mb-1 bottom-0 `}>
                 <div className="flex justify-between items-center">
