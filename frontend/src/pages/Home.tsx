@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
 import { Outlet, useNavigate } from "react-router-dom"
-import { LogOut, Menu } from "lucide-react"
+import { Bell, ChevronDown, LogOut, Menu, Moon } from "lucide-react"
 import toast from "react-hot-toast"
 
 function Home() {
@@ -51,6 +51,9 @@ function Home() {
             toast.error("An error occured")
         }
     }
+    /**
+     * Opening and closing notification tab state
+     */
   return (
     <div className={`flex dark w-full`}>
         <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
@@ -85,9 +88,39 @@ function Home() {
             </div>
         </div>
         <div>
-            <div className={`absolute right-0 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
-            <div onClick={() => {setOpen(!open)}} className="bg-white cursor-pointer ml-4 rounded-md p-1">
+            <div className={`absolute fixed right-0 px-4 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
+            <div onClick={() => {setOpen(!open)}} className="bg-white cursor-pointer  rounded-md p-1">
                 <Menu className={`h-5 text-green-950`}/>
+            </div>
+            <div className="flex gap-6 items-center mr-6">
+                <div>
+                    <Moon className="h-5 text-gray-500 cursor-pointer"/>
+                </div>
+                <div>
+                    <Bell className="h-5 text-gray-500 cursor-pointer"/>
+                    <div className={`absolute bg-white/60 rounded-md shadow-md p-4 w-[300px] h-[120px] right-[10%] bottom-[-7rem]`}>
+                        <div className="flex justify-between border-b-1 items-center">
+                            <h1 className="text-sm text-green-900">Notifications</h1>
+                            <p className="text-xs cursor-pointer text-gray-600">view all</p>
+                        </div>
+                        <div className="flex flex-col w-full justify-center items-center p-4">
+                            <Bell/>
+                            <p className="text-xs text-gray-600">No new notifications</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex justify-center items-center gap-2 cursor-pointer">
+                    <div className="h-8 w-8 rounded-full bg-white flex justify-center items-center">
+                         <h1 className="font-extrabold text-gray-600">
+                            {
+                                details.map((item) => (<span>{item.firstName.charAt(0)}{item.lastName.charAt(0)}</span>))               
+                            }
+                        </h1>
+                    </div>
+                    <div>
+                        <ChevronDown className="text-gray-500 h-5"/>
+                    </div>
+                </div>
             </div>
             </div>
             <Outlet/>
