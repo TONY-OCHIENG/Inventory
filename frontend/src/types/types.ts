@@ -24,7 +24,8 @@ export interface ResponseAuth{
 
 export interface UserDetails{
   firstName: String,
-  lastName: String
+  lastName: String,
+  email: String
 }
 export interface FormDetail {
   loading: Boolean,

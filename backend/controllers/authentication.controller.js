@@ -198,7 +198,7 @@ export const authenticateUser = (request,response) => {
 export const userDetail = (request,response) => {
     const { id } = request.params
     try {
-        const fetchUser = "SELECT firstName, lastName FROM users WHERE user_id = ?"
+        const fetchUser = "SELECT firstName, lastName, email FROM users WHERE user_id = ?"
         databaseconnection.query(fetchUser,[id], (err, result) => {
             if (err) return response.status(500).json({success: false, message: err})
             if (result.length > 0) {

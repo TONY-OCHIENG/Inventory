@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
 import { Outlet, useNavigate } from "react-router-dom"
-import { Bell, ChevronDown, LogOut, Menu, Moon } from "lucide-react"
+import { Bell, ChevronDown, LogOut, Menu, Moon, Settings, User } from "lucide-react"
 import toast from "react-hot-toast"
 
 function Home() {
@@ -54,6 +54,7 @@ function Home() {
     /**
      * Opening and closing notification tab state
      */
+    const [openNotificaton, setopenNotification] = useState<Boolean>(false)
   return (
     <div className={`flex dark w-full`}>
         <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
@@ -97,29 +98,50 @@ function Home() {
                     <Moon className="h-5 text-gray-500 cursor-pointer"/>
                 </div>
                 <div>
-                    <Bell className="h-5 text-gray-500 cursor-pointer"/>
-                    <div className={`absolute bg-white/60 rounded-md shadow-md p-4 w-[300px] h-[120px] right-[10%] bottom-[-7rem]`}>
+                    <Bell onClick={() => setopenNotification(!openNotificaton)} className="h-5 text-gray-500 cursor-pointer"/>
+                    <div className={`${openNotificaton ? 'block' : 'hidden'} absolute bg-white/80 rounded-md shadow-md p-4 w-[300px] h-[120px] right-[10%] bottom-[-7rem]`}>
                         <div className="flex justify-between border-b-1 items-center">
                             <h1 className="text-sm text-green-900">Notifications</h1>
                             <p className="text-xs cursor-pointer text-gray-600">view all</p>
                         </div>
                         <div className="flex flex-col w-full justify-center items-center p-4">
-                            <Bell/>
+                            <Bell className="text-gray-500 h-5"/>
                             <p className="text-xs text-gray-600">No new notifications</p>
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center items-center gap-2 cursor-pointer">
+                <div className="flex justify-center items-center gap-2">
                     <div className="h-8 w-8 rounded-full bg-white flex justify-center items-center">
-                         <h1 className="font-extrabold text-gray-600">
+                         <h1 className="font-extrabold text-gray-600 cursor-pointer">
                             {
                                 details.map((item) => (<span>{item.firstName.charAt(0)}{item.lastName.charAt(0)}</span>))               
                             }
                         </h1>
                     </div>
                     <div>
-                        <ChevronDown className="text-gray-500 h-5"/>
+                        <ChevronDown className="text-gray-500 cursor-pointer h-5"/>
                     </div>
+                       <div className={`absolute bg-white/80 rounded-md shadow-md p-4 w-[200px] h-[120px] right-[1%] bottom-[-7rem]`}>
+                        <div className="flex flex-col border-b-1 ">
+                        <h1 className="text-sm text-gray-800 font-serif">{
+                           details.map((item) => (<span>{item.firstName} {item.lastName}</span>))  
+                        }</h1>
+                            <p className="text-[0.8rem] cursor-pointer text-gray-600">{
+                              details.map((item) => (<span>{item.email}</span>))     
+                            }</p>
+                        </div>
+                        <div className="flex flex-col w-full ">
+                            <div className={`flex gap-2 items-center mt-2 cursor-pointer`}>
+                             <Settings className="h-5 text-gray-600"/>
+                             <p className="text-sm text-gray-600">Settings</p>
+                            </div>  
+                            <div className={`flex gap-2 items-center mt-2 cursor-pointer`}>
+                             <User className="h-5 text-gray-600"/>
+                             <p className="text-sm text-gray-600">Profile</p>
+                            </div>                           
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             </div>
