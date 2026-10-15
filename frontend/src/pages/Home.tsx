@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
-import { Barcode, Bell, Box, ChevronDown, Icon, LayoutDashboard, LogOut, Menu, Moon, Notebook, NotebookPen, Package, Receipt, ReceiptText, RotateCcw, Settings, ShoppingBag, Store, Truck, User } from "lucide-react"
+import { NavLink, Outlet, useNavigate } from "react-router-dom"
+import { Barcode, Bell, Box, ChevronDown, LayoutDashboard, LogOut, Menu, Notebook, NotebookPen, Package, Receipt, ReceiptText, RotateCcw, Settings, ShoppingBag, Truck, User } from "lucide-react"
 import toast from "react-hot-toast"
 
 function Home() {
@@ -283,7 +283,9 @@ function Home() {
                 </div>
             </div>
             </div>
-            <Outlet/>
+            <div className={`${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'}`}>
+                <Outlet/>
+            </div>
         </div>
     </div>
   )
