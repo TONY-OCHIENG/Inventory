@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
-import { Outlet, useNavigate } from "react-router-dom"
-import { Bell, ChevronDown, LogOut, Menu, Moon, Settings, User } from "lucide-react"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
+import { Bell, Box, ChevronDown, Icon, LayoutDashboard, LogOut, Menu, Moon, RotateCcw, Settings, ShoppingBag, Truck, User } from "lucide-react"
 import toast from "react-hot-toast"
 
 function Home() {
@@ -56,6 +56,16 @@ function Home() {
      */
     const [openNotificaton, setopenNotification] = useState<Boolean>(false)
     const [openProfile, setopenProfile] = useState<Boolean>(false)
+    /**
+     * Main menu links
+     */
+    const mainLinks = [
+        {name: "Dashboard",link:'/dashboard', icon:LayoutDashboard},
+        {name: "Products",link:'/dashboard/products', icon:Box},
+        {name: "Purchases",link:'/dashboard/purchases', icon:ShoppingBag},
+        {name: "Suppliers",link:'/dashboard/supplier', icon:Truck},
+        {name: "Returns",link:'/dashboard/returns', icon:RotateCcw}
+    ]
   return (
     <div className={`flex dark w-full`}>
         <div className={`relative  left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
@@ -68,6 +78,26 @@ function Home() {
                         <h1 className={`text-2xl text-gray-800 font-bold transition-all  ${open ? 'hidden' : 'block'}`}>IMS</h1>
                         <p className={`text-gray-700 text-[0.5rem] transition-all  ${open ? 'hidden' : 'block'}`}>INVENTORY MANAGEMENT SYSTEM</p>
                     </div>
+                </div>                
+            </div>
+            <div className="py-10 flex flex-col">
+                <h1 className="text-xs text-gray-400">MAIN</h1>
+                <div>
+                    <ul className="">
+                        {
+                            mainLinks.map((item) => (
+                                <li className="mb-1"><NavLink 
+                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
+                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                                to={item.link}> <item.icon className="h-5 text-gray-400">
+                                <title>{item.name}</title>
+                                </item.icon>
+                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
+                                </NavLink></li>
+                            ))
+                        }
+                    </ul>                
                 </div>                
             </div>
               <div className={`p-2 h-15 bg-white shadow-md rounded-md  mb-1 bottom-0 `}>
