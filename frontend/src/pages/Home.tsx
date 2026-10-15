@@ -96,9 +96,6 @@ function Home() {
             </div>
             <div className="flex gap-6 items-center mr-6">
                 <div>
-                    <Moon className="h-5 text-gray-500 cursor-pointer"/>
-                </div>
-                <div>
                     <Bell onClick={() => {setopenNotification(!openNotificaton), setopenProfile(false)}} className="h-5 text-gray-500 cursor-pointer"/>
                     <div className={`${openNotificaton ? 'block' : 'hidden'} absolute bg-white/80 rounded-md shadow-md p-4 w-[300px] h-[120px] right-[10%] bottom-[-7rem]`}>
                         <div className="flex justify-between border-b-1 items-center">
@@ -111,16 +108,16 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className={`flex justify-center items-center gap-2`}>
+                <div  onClick={() => {setopenProfile(!openProfile), setopenNotification(false)}}  className={`flex justify-center items-center gap-2`}>
                     <div className="h-8 w-8 rounded-full bg-white flex justify-center items-center">
-                         <h1 onClick={() => {setopenProfile(!openProfile), setopenNotification(false)}}  className="font-extrabold text-gray-600 cursor-pointer">
+                         <h1 className="font-extrabold text-gray-600 cursor-pointer">
                             {
                                 details.map((item) => (<span>{item.firstName.charAt(0)}{item.lastName.charAt(0)}</span>))               
                             }
                         </h1>
                     </div>
                     <div>
-                        <ChevronDown onClick={() => {setopenProfile(!openProfile), setopenNotification(false)}}  className={`text-gray-500 ${openProfile ? 'rotate-180' : ''} transition-all duration-200 cursor-pointer h-5`}/>
+                        <ChevronDown className={`text-gray-500 ${openProfile ? 'rotate-180' : ''} transition-all duration-200 cursor-pointer h-5`}/>
                     </div>
                        <div className={`${openProfile ? 'block' : 'hidden' } absolute bg-white/80 rounded-md shadow-md p-4 w-[200px] h-[120px] right-[1%] bottom-[-7rem]`}>
                         <div className="flex flex-col border-b-1 ">
