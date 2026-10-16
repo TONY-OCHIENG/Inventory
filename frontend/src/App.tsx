@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard"
 
 function App() {
   return (
-    <div className="w-full h-screen bg-linear-to-br from-[#A5E6A5]  to-green-100 fixed overflow-y-auto">   
+    <div className="bg-linear-to-br from-[#A5E6A5] fixed w-full overflow-auto  to-green-100 ">   
     <Routes>
       <Route path="/signup" element={<Register/>}/>
       <Route path="/verificationCode" element={<VerificationCode/>}/>

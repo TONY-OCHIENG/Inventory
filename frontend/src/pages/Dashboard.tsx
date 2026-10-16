@@ -1,17 +1,11 @@
 
+
 function Dashboard() {
   return (
-    <div className="py-20 bg-amber-200 w-full">
-        <div className=" w-full px-2 grid grid-cols-1 md:grid-cols-2"> 
-            <div className="w-full">
-                <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-2">
-                    <div className=" rounded-md bg-white/70 p-4 shadow-md cursor-pointer">
-                       <h1>Total products</h1>
-                    </div>                   
-                </div>
-            </div>
-            <div></div>        
-        </div>      
+    <div className={`w-full py-16`}>
+      <div className="h-[200vh]">
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam minima tempora similique harum nihil sequi maxime optio, repellat enim corrupti, vitae nesciunt officiis reiciendis illum? Placeat libero veniam ad ex.</h1>
+      </div>      
     </div>
   )
 }

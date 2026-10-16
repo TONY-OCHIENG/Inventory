@@ -87,8 +87,8 @@ function Home() {
     ]
 
   return (
-    <div className={`flex dark w-full`}>
-        <div className={`relative left-0 inset-0 h-screen ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
+    <div className={`flex  w-[100%] h-screen`}>
+       <div className={` bottom-0 top-0 inset-y-0   left-0 ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
         shadow-md p-2 flex justify-between flex-col
         `}>
             <div className={`p-2 bg-white shadow-md rounded-md top-0 `}>
@@ -228,9 +228,9 @@ function Home() {
                     <LogOut onClick={logoutUser} className={`h-10 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
                 </div>                
             </div>
-        </div>
-        <div>
-            <div className={`absolute fixed right-0 px-4 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
+        </div>        
+        <div className={`overflow-y-auto scrollbar-thin w-full flex-1 ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%] right-0 '}`}>
+            <div className={` fixed right-0 px-4 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
             <div onClick={() => {setOpen(!open)}} className="bg-white cursor-pointer  rounded-md p-1">
                 <Menu className={`h-5 text-green-950`}/>
             </div>
@@ -283,11 +283,9 @@ function Home() {
                 </div>
             </div>
             </div>
-            <div className={`${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'}`}>
-                <Outlet/>
-            </div>
-        </div>
-    </div>
+           <Outlet/>                               
+        </div>       
+     </div>
   )
 }
 
