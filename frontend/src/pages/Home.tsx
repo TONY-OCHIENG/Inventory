@@ -223,13 +223,13 @@ function Home() {
                      <h1 className={`${open ? 'hidden' : 'block'} text-gray-600 text-xs font-serif`}>{
                        details.map((item) => (<span>{item.firstName} {item.lastName}</span>))    
                     }</h1>
-                     <p className={`${open ? 'hidden' : 'block'} text-gray-700 text-sm`}>Admin</p>
+                     <p className={`${open ? 'hidden' : 'block'} text-gray-700 text-xs`}>Admin</p>
                     </div>  
-                    <LogOut onClick={logoutUser} className={`h-10 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
+                    <LogOut onClick={logoutUser} className={`w-5 h-5 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
                 </div>                
             </div>
         </div>        
-        <div className={`overflow-y-auto scrollbar-thin w-full flex-1 ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%] right-0 '}`}>
+        <div className={`overflow-y-auto scrollbar-none w-full flex-1 ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%] right-0 '}`}>
             <div className={` fixed right-0 px-4 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
             <div onClick={() => {setOpen(!open)}} className="bg-white cursor-pointer  rounded-md p-1">
                 <Menu className={`h-5 text-green-950`}/>
@@ -283,7 +283,9 @@ function Home() {
                 </div>
             </div>
             </div>
-           <Outlet/>                               
+            <div className="scrollbar-thin h-screen overflow-auto w-full  mt-15 ">
+                <Outlet/> 
+            </div>                                       
         </div>       
      </div>
   )
