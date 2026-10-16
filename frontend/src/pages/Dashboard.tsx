@@ -129,10 +129,23 @@ function Dashboard() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
-          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
-          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
-          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
+           <h1 className="font-bold text-sm text-gray-600">Stock Movement</h1>
+           <hr  className="mt-2 text-gray-600"/>
+          </div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
+           <h1 className="font-bold text-sm text-gray-600">Stock Distribution</h1>
+           <hr  className="mt-2 text-gray-600"/>
+          </div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
+           <h1 className="font-bold text-sm text-gray-600">Stock Alert</h1>
+           <hr  className="mt-2 text-gray-600"/>
+          </div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
+           <h1 className="font-bold text-sm text-gray-600">Recent Invoice</h1>
+           <hr  className="mt-2 text-gray-600"/>
+          </div>
+          
         </div>
        </div>
        <div></div>  
