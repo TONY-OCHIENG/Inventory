@@ -1,11 +1,142 @@
+import { Box } from "lucide-react"
 
 
 function Dashboard() {
   return (
-    <div className={`w-full py-16`}>
-      <div className="h-[200vh]">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam minima tempora similique harum nihil sequi maxime optio, repellat enim corrupti, vitae nesciunt officiis reiciendis illum? Placeat libero veniam ad ex.</h1>
-      </div>      
+    <div className={`w-full py-4`}>
+      <div className=" md:px-10 flex gap-2 flex-col flex-1 md:flex-row">
+       <div className="flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <div className="flex gap-4 ">
+              <Box className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
+          <div className="p-4 bg-white/70 shadow-md rounded-md"></div>
+        </div>
+       </div>
+       <div></div>  
+      </div>     
     </div>
   )
 }
