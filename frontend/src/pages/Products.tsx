@@ -1,5 +1,6 @@
-import { Box, ChevronRight, Download, FileSpreadsheet, Plus } from "lucide-react"
+import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Plus } from "lucide-react"
 import { useState } from "react"
+import { FaFileCsv } from "react-icons/fa6"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(false)
@@ -48,32 +49,32 @@ function Products() {
           </div>
         </div> 
         <div className="mt-4 w-full flex gap-4 h-[83%]">
-         <div className={`transition duration-300 ${open ? 'w-[180px]' : 'w-[100px]'} bg-white/70 p-2 shadow-md rounded-md h-[40vh]`}>
+         <div className={`transition duration-300 border-t-2 border-t-white ${open ? 'w-[180px]' : 'w-[50px]'} bg-white/70 p-2 shadow-md rounded-md h-[40vh]`}>
          <div className="flex justify-between items-center">
-            <h1 className="text-sm text-gray-600 font-bold">Actions</h1>
+            <h1 className={`${open ? 'block' : 'hidden'} text-sm text-gray-600 font-bold`}>Actions</h1>
             <ChevronRight onClick={() => setopen(!open)}  className={`transition duration-300 ${open ? 'rotate-180' : ''} h-4 w-4 text-gray-600 cursor-pointer`}/>
          </div>
          <hr className="mt-2"/>
          <div className="mt-4 flex flex-col gap-5">
             <div className="flex gap-2 items-center cursor-pointer">
-                <Plus className="h-4 w-4 text-gray-600"/>
-                <h1 className="text-xs text-gray-400">Add Products</h1>
+                <Plus  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Add Products</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <Download className="h-4 w-4 text-gray-600"/>
-                <h1 className="text-xs text-gray-400">Download As Excel</h1>
+                <Download className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Download As Excel</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <FileSpreadsheet className="h-4 w-4 text-gray-600"/>
-                <h1 className="text-xs text-gray-400">Import Excel Sheet</h1>
+                <FileSpreadsheet  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Import Excel Sheet</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <Plus className="h-4 w-4 text-gray-600"/>
-                <h1 className="text-xs text-gray-400">Add Products</h1>
+                <FileDown  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Download As CSV</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <Plus className="h-4 w-4 text-gray-600"/>
-                <h1 className="text-xs text-gray-400">Add Products</h1>
+                <FaFileCsv  className={`${open ? '' : 'h-5 w-5 ml-1'}  text-gray-600`}/>
+                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Import As CSV</h1>
             </div>
 
          </div>
