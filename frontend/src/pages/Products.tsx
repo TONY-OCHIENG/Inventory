@@ -95,7 +95,7 @@ function Products() {
             <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Low Stock</button>
             </div>
             <div>
-                <input type="text" placeholder="Search product..." className="border rounded-md px-1 bg-white outline-none 
+                <input type="text" placeholder="Search product name..." className="border text-sm rounded-md px-2 bg-white outline-none 
                 text-gray-600 placeholder:text-xs"/>
             </div>
          </div>
@@ -116,7 +116,9 @@ function Products() {
             <tbody className="overflow-y-auto"></tbody>
          </table>
          <hr className="text-gray-600 mb-1"/>
-         <div className="flex w-full justify-between"></div>
+         <div className="flex w-full justify-between items-center">
+            <h1 className="text-xs text-gray-400">Showing 1 to 10 out of 50 </h1>
+         </div>
          </div>
         </div>             
     </div>
