@@ -66,7 +66,7 @@ function Products() {
                 <Download className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
                     <title>Download As Excel</title>
                 </Download>
-                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Download As Excel</h1>
+                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Export As Excel</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
                 <FileSpreadsheet  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
@@ -86,19 +86,37 @@ function Products() {
             </div>
          </div>
          </div>
-         <div className="overflow-y-auto h-full w-full bg-white/70 rounded-md shadow-md p-2">
+         <div className="overflow-y-auto h-full w-full bg-white/70 border-t-2 border-t-white rounded-md shadow-md p-2">
          <div className="flex justify-between items-center">
             <div className="flex gap-2">
-            <button className="px-4 border text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">All</button>
-            <button className="px-4 border text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">In Stock</button>
-            <button className="px-4 border text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Out of Stock</button>
-            <button className="px-4 border text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Low Stock</button>
+            <button className="px-4  text-xs rounded-md bg-green-100 py-1 shadow-md cursor-pointer">All</button>
+            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">In Stock</button>
+            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Out of Stock</button>
+            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Low Stock</button>
             </div>
             <div>
                 <input type="text" placeholder="Search product..." className="border rounded-md px-1 bg-white outline-none 
                 text-gray-600 placeholder:text-xs"/>
             </div>
          </div>
+         <hr className="text-gray-600 mt-1"/>
+         <table className="w-full overflow-y-auto bg-white h-[90%]">
+            <thead className="text-sm text-gray-600 border-b">
+                <th></th>
+                <th className="p-2">SKU</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
+                <th>Quantity</th>
+                <th>Stock</th>
+                <th>Supplier</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+            <tbody className="overflow-y-auto"></tbody>
+         </table>
+         <hr className="text-gray-600 mb-1"/>
+         <div className="flex w-full justify-between"></div>
          </div>
         </div>             
     </div>
