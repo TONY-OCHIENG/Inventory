@@ -57,23 +57,31 @@ function Products() {
          <hr className="mt-2"/>
          <div className="mt-4 flex flex-col gap-5">
             <div className="flex gap-2 items-center cursor-pointer">
-                <Plus  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <Plus  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
+                    <title>Add Products</title>
+                </Plus>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Add Products</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <Download className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <Download className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
+                    <title>Download As Excel</title>
+                </Download>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Download As Excel</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <FileSpreadsheet  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <FileSpreadsheet  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
+                    <title>Import Excel Sheet</title>
+                </FileSpreadsheet>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Import Excel Sheet</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <FileDown  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}/>
+                <FileDown  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
+                    <title>Download As CSV</title>
+                </FileDown>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Download As CSV</h1>
             </div>
               <div className="flex gap-2 items-center cursor-pointer">
-                <FaFileCsv  className={`${open ? '' : 'h-5 w-5 ml-1'}  text-gray-600`}/>
+                <FaFileCsv title="Import As CSV" className={`${open ? '' : 'h-5 w-5 ml-1'}  text-gray-600`}/>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Import As CSV</h1>
             </div>
 
