@@ -17,7 +17,7 @@ function Home() {
         const {success, user_id} = await authenticateUser()
         if (success) {
             setUserID(user_id)
-             navigate("/dashboard")            
+            //  navigate("/dashboard")            
         } else {
             navigate('/login')
         }
