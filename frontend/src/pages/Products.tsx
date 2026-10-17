@@ -1,6 +1,8 @@
-import { Box, ChevronRight } from "lucide-react"
+import { Box, ChevronRight, Download, FileSpreadsheet, Plus } from "lucide-react"
+import { useState } from "react"
 
 function Products() {
+    const [open, setopen] = useState<Boolean>(false)
   return (
     <div className="p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -46,12 +48,35 @@ function Products() {
           </div>
         </div> 
         <div className="mt-4 w-full flex gap-4 h-[83%]">
-         <div className="bg-white/70 p-2 shadow-md rounded-md h-[40vh]">
+         <div className={`transition duration-300 ${open ? 'w-[180px]' : 'w-[100px]'} bg-white/70 p-2 shadow-md rounded-md h-[40vh]`}>
          <div className="flex justify-between items-center">
             <h1 className="text-sm text-gray-600 font-bold">Actions</h1>
-            <ChevronRight  className="cursor-pointer h-4 w-4 text-gray-600 cursor-pointer"/>
+            <ChevronRight onClick={() => setopen(!open)}  className={`transition duration-300 ${open ? 'rotate-180' : ''} h-4 w-4 text-gray-600 cursor-pointer`}/>
          </div>
          <hr className="mt-2"/>
+         <div className="mt-4 flex flex-col gap-5">
+            <div className="flex gap-2 items-center cursor-pointer">
+                <Plus className="h-4 w-4 text-gray-600"/>
+                <h1 className="text-xs text-gray-400">Add Products</h1>
+            </div>
+              <div className="flex gap-2 items-center cursor-pointer">
+                <Download className="h-4 w-4 text-gray-600"/>
+                <h1 className="text-xs text-gray-400">Download As Excel</h1>
+            </div>
+              <div className="flex gap-2 items-center cursor-pointer">
+                <FileSpreadsheet className="h-4 w-4 text-gray-600"/>
+                <h1 className="text-xs text-gray-400">Import Excel Sheet</h1>
+            </div>
+              <div className="flex gap-2 items-center cursor-pointer">
+                <Plus className="h-4 w-4 text-gray-600"/>
+                <h1 className="text-xs text-gray-400">Add Products</h1>
+            </div>
+              <div className="flex gap-2 items-center cursor-pointer">
+                <Plus className="h-4 w-4 text-gray-600"/>
+                <h1 className="text-xs text-gray-400">Add Products</h1>
+            </div>
+
+         </div>
          </div>
         </div>             
     </div>
