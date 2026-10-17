@@ -106,7 +106,7 @@ function Home() {
                     <ul className="">
                         {
                             mainLinks.map((item) => (
-                                <li className="mb-1"><NavLink 
+                                <li className="mb-1"><NavLink end
                                className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
                               max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
                                ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
@@ -199,7 +199,7 @@ function Home() {
                                 <li className="mb-1"><NavLink 
                                className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
                               max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
-                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
+                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`} end
                                 to={item.link}> <item.icon className="h-5 text-gray-400">
                                 <title>{item.name}</title>
                                 </item.icon>

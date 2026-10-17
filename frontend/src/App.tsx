@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound"
 import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Dashboard from "./pages/Dashboard"
+import Products from "./pages/Products"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/verificationCode" element={<VerificationCode/>}/>
       <Route path="/dashboard" element={<Home/>}>
        <Route path="" element={<Dashboard/>}/>
+       <Route path="/dashboard/products" element={<Products/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="*" element={<NotFound/>}/>
