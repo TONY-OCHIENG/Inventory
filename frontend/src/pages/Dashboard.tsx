@@ -3,8 +3,8 @@ import { Box } from "lucide-react"
 
 function Dashboard() {
   return (
-    <div className={`w-full py-4`}>
-      <div className=" md:px-10 flex gap-2 flex-col flex-1 md:flex-row">
+    <div className={`w-full py-2`}>
+      <div className=" px-10 flex gap-2 flex-col flex-1 md:flex-row mt-4">
        <div className="flex flex-col">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="bg-white/70 p-4 rounded-md w-[200px] shadow-md cursor-pointer">
@@ -148,7 +148,16 @@ function Dashboard() {
           
         </div>
        </div>
-       <div></div>  
+       <div className="flex flex-col gap-4">
+          <div className="p-4 h-[300px] w-[380px] rounded-md shadow-md bg-white/70 border-t-2 border-t-white md:fixed">
+          <h1 className="text-sm text-gray-600 font-bold">Inventory value</h1>
+          <hr className="text-gray-600 mt-2"/>
+          </div>
+           <div className="p-4 h-[320px] w-[380px] rounded-md shadow-md bg-white/70 border-t-2 border-t-white md:fixed md:top-[55%]">
+          <h1 className="text-sm text-gray-600 font-bold">Reminders</h1>
+          <hr className="text-gray-600 mt-2"/>
+          </div>
+       </div>  
       </div>     
     </div>
   )

@@ -283,7 +283,7 @@ function Home() {
                 </div>
             </div>
             </div>
-            <div className="scrollbar-thin h-screen overflow-auto w-full  mt-15 ">
+            <div className="scrollbar-thin h-[92%] overflow-auto w-full  mt-15 ">
                 <Outlet/> 
             </div>                                       
         </div>       
