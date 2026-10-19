@@ -1,4 +1,4 @@
-import { Box, ClipboardList, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, Truck } from "lucide-react"
+import { Box, CalendarClock, ClipboardList, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
 
 
 function Dashboard() {
@@ -68,12 +68,12 @@ function Dashboard() {
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Expired Products</h1>
+            <h1 className="text-center text-sm text-gray-600">Quotations</h1>
             <div className="flex gap-4 ">
-              <ShieldAlert className="w-10 h-10 text-gray-600"/>
+              <Receipt className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">units</p>
+                <p className="text-xs text-gray-400">documents</p>
               </div>
             </div>
           </div>
@@ -83,34 +83,24 @@ function Dashboard() {
               <Truck className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">units</p>
+                <p className="text-xs text-gray-400">supplier</p>
               </div>
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <h1 className="text-center text-sm text-gray-600">Expired Products</h1>
             <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
+              <ShieldAlert className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
           </div>
-           <div className="bg-white/70 p-4 rounded-md w-[200px] sborder-t-2 border-t-white hadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white hadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Slow Moving Products</h1>
             <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
-              <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">units</p>
-              </div>
-            </div>
-          </div>
-           <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
-            <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
+              <CalendarClock className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
                 <p className="text-xs text-gray-400">units</p>
@@ -118,9 +108,19 @@ function Dashboard() {
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Total Products</h1>
+            <h1 className="text-center text-sm text-gray-600">Recent Purchases</h1>
             <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
+              <ShoppingBag className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <p className="text-xs text-gray-400">units</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Reserved Products</h1>
+            <div className="flex gap-4 ">
+              <HandPlatter className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
                 <p className="text-xs text-gray-400">units</p>
