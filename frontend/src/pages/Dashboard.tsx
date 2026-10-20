@@ -1,6 +1,6 @@
 import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
 import { useActions } from "../store/actionStore"
-import { useState, type ChangeEvent } from "react"
+import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 
@@ -15,6 +15,10 @@ function Dashboard() {
     event.preventDefault()
 
   }
+
+  useEffect(() => {
+    authentication()
+  },[userID])
 
   //user authentication function
 
