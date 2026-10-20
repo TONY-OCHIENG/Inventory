@@ -4,12 +4,15 @@ import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
+import type { Reminders } from "../types/types"
 
 
 function Dashboard() {
   const { addReminder } = useActions()
   const { authenticateUser } = useFormDetail()
-  const [reminder, setReminder] = useState<string>("")
+  const [reminder, setReminder] = useState<Reminders>({
+    reminder: ""
+  })
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
   const handleSubmit = async (event: ChangeEvent): Promise<void> => {
@@ -20,7 +23,6 @@ function Dashboard() {
     } else {
       toast.error(message)
     }
-    setReminder("")
   }
 
   useEffect(() => {
@@ -38,7 +40,15 @@ function Dashboard() {
     }
   }
 
-  
+  // handling value change
+
+  const handleOnchange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setReminder((prev) => ({
+      ...prev,
+      [name] : value
+    }))
+  }
   
   return (
     <div className={`w-full py-2`}>
@@ -195,7 +205,7 @@ function Dashboard() {
           <h1 className="text-sm text-gray-600 font-bold">Reminders</h1>
           <hr className="text-gray-600 mt-2"/>
           <form onSubmit={handleSubmit} className="flex justify-between gap-4 mt-3">
-            <input type="text" name="reminder" value={reminder} onChange={(event) => setReminder(event.target.value)} placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
+            <input type="text" name="reminder" onChange={handleOnchange} placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
             <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4 cursor-pointer">Add</button>
           </form>
            <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border">

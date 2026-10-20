@@ -46,5 +46,5 @@ export interface Reminders{
 
 export interface Reminder{
   reminder: Reminders[],
-  addReminder: (user_id: String, reminder: String) => Promise<Response>
+  addReminder: (user_id: String, reminder: Reminders[]) => Promise<Response>
 }
