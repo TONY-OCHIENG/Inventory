@@ -42,6 +42,10 @@ export const getReminders = (request,response) => {
 export const deleteReminders = (request, response) => {
     const { id } = request.params
     try {
+        const deleteReminders = "DELETE FROM reminder WHERE rem_id = ?"
+        databaseconnection.query(deleteReminders,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+        })
         
     } catch (error) {
         console.log(error)
