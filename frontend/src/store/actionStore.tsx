@@ -18,6 +18,11 @@ export const useActions = create<Reminder>()(
             const response = await apiClient.post(`/api/v1/addReminder/${user_id}`,reminder)
             const { success, message} = await response.data
             return {success, message}            
+        },
+        deleteReminder: async (rem_id: String) => {
+            const response = await apiClient.delete(`/api/v1/deleteReminder/${rem_id}`)
+            const { success, message} = await response.data
+            return { success, message}            
         }
     }),{name:"actions"})
 )
