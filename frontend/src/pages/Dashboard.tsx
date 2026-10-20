@@ -1,11 +1,31 @@
 import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useState, type ChangeEvent } from "react"
+import { useFormDetail } from "../store/authStore"
+import { useNavigate } from "react-router-dom"
 
 
 function Dashboard() {
   const { addReminder } = useActions()
+  const { authenticateUser } = useFormDetail()
   const [reminder, setReminder] = useState("")
+  const [userID, setUserID] = useState<String>("")
+  const navigate = useNavigate()
+  const handleSubmit = (event: ChangeEvent): void => {
+    event.preventDefault()
+
+  }
+
+  //user authentication function
+
+  const authentication = async () => {
+    const { success, user_id} = await authenticateUser()
+    if (success) {
+      setUserID(user_id)
+    } else {
+      navigate('/login')      
+    }
+  }
   
   return (
     <div className={`w-full py-2`}>
@@ -161,10 +181,10 @@ function Dashboard() {
            <div className="p-4 h-[320px] w-[380px] rounded-md shadow-md bg-white/70 border-t-2 border-t-white md:fixed md:top-[55%]">
           <h1 className="text-sm text-gray-600 font-bold">Reminders</h1>
           <hr className="text-gray-600 mt-2"/>
-          <div className="flex justify-between gap-4 mt-3">
+          <form onSubmit={handleSubmit} className="flex justify-between gap-4 mt-3">
             <input type="text" name="reminder" value={reminder} onChange={(event) => setReminder(event.target.value)} placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
             <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4 cursor-pointer">Add</button>
-          </div>
+          </form>
            <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border">
             <div className="flex items-center flex-col">
               <FolderOpen className="text-gray-600"/>
