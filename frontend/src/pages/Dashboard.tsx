@@ -8,7 +8,7 @@ import type { Reminders } from "../types/types"
 
 
 function Dashboard() {
-  const { addReminder,setReminders,reminder } = useActions()
+  const { addReminder,setReminders,reminder, deleteReminder } = useActions()
   const { authenticateUser } = useFormDetail()
   const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
@@ -55,7 +55,14 @@ function Dashboard() {
     }))
   }
 
-  console.log(reminder)
+  const handleDeleteReminder = async (rem_id: String): Promise<void> => {
+    const { success, message} = await deleteReminder(rem_id)
+    if (success) {
+      toast.success(message)
+    }else {
+      toast.error("An error occured")
+    }    
+  }
   
   return (
     <div className={`w-full py-2`}>
