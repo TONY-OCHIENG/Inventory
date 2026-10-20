@@ -221,7 +221,9 @@ function Dashboard() {
                 <ul className="text-xs text-gray-600">
                    {reminder.map((item) =>(
                     <li className="p-2 bg-white flex justify-between items-center rounded-md mb-2">
-                      <span className="flex flex-col">{item.reminder} <p className="mt-1">12/3/2026</p></span>
+                      <span className="flex flex-col">{item.reminder} <p className="mt-1">
+                        {new Date(item.time).toLocaleDateString()}
+                        </p></span>
                       <span><Trash className="h-5 w-5 cursor-pointer text-red-300">
                         <title>Delete</title>
                         </Trash></span>
