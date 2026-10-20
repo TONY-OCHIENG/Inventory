@@ -1,7 +1,14 @@
 import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
+import { useActions } from "../store/actionStore"
+import { useState } from "react"
+import type { Reminders } from "../types/types"
 
 
 function Dashboard() {
+  const { addReminder } = useActions()
+  const [reminder, setReminder] = useState<Reminders>({
+    reminder: ""
+  })
   return (
     <div className={`w-full py-2`}>
       <div className=" px-10 flex gap-2 flex-col flex-1 md:flex-row mt-4">
