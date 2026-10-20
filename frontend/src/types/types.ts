@@ -41,7 +41,13 @@ export interface FormDetail {
 
 //Add reminder types
 export interface Reminders{
-  reminder: String
+  reminder: String,
+}
+
+export interface ReminderDetails{
+  reminder: String,
+  user_id: String,
+  time: Date
 }
 
 export interface Reminder{

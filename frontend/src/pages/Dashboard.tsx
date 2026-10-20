@@ -1,4 +1,4 @@
-import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
+import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Trash, Truck } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
@@ -23,7 +23,7 @@ function Dashboard() {
     } else {
       toast.error(message)
     }
-
+    setReminders(userID)
     setReminder({
       reminder: ""
     })
@@ -215,11 +215,27 @@ function Dashboard() {
             <input type="text" name="reminder" value={String(reminders.reminder)} onChange={handleOnchange} placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
             <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4 cursor-pointer">Add</button>
           </form>
-           <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border">
-            <div className="flex items-center flex-col">
-              <FolderOpen className="text-gray-600"/>
-              <h1 className="text-xs text-gray-600">No reminders made</h1>  
-             </div>
+           <div className="h-[70%] p-2 border-gray-400  rounded-md overflow-auto scrollbar-none w-full mt-2 border">
+              {
+                reminder.length > 0 ? 
+                <ul className="text-xs text-gray-600">
+                   {reminder.map((item) =>(
+                    <li className="p-2 bg-white flex justify-between items-center rounded-md mb-2">
+                      <span className="flex flex-col">{item.reminder} <p className="mt-1">12/3/2026</p></span>
+                      <span><Trash className="h-5 w-5 cursor-pointer text-red-300">
+                        <title>Delete</title>
+                        </Trash></span>
+                    </li>
+                   ))}
+                </ul>                 
+                : 
+                <div className="flex items-center justify-center flex-col bg-amber-50 w-full h-full">
+                
+                  <FolderOpen className="text-gray-600"/>
+                  <h1 className="text-xs text-gray-600">No reminders made</h1>  
+                </div>
+              }
+           
            </div>
           </div>
        </div>  
