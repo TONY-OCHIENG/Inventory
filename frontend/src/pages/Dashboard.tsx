@@ -156,6 +156,11 @@ function Dashboard() {
            <div className="p-4 h-[320px] w-[380px] rounded-md shadow-md bg-white/70 border-t-2 border-t-white md:fixed md:top-[55%]">
           <h1 className="text-sm text-gray-600 font-bold">Reminders</h1>
           <hr className="text-gray-600 mt-2"/>
+          <div className="flex justify-between gap-4 mt-3">
+            <input type="text" placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
+            <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4">Add</button>
+          </div>
+           <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border"></div>
           </div>
        </div>  
       </div>     

@@ -10,7 +10,7 @@ import Purchases from "./pages/Purchases"
 
 function App() {
   return (
-    <div className="bg-linear-to-br from-[#A5E6A5] fixed w-full overflow-auto  to-green-100 ">   
+    <div className="bg-linear-to-br from-[#A5E6A5] fixed h-screen w-full overflow-auto  to-green-100 ">   
     <Routes>
       <Route path="/signup" element={<Register/>}/>
       <Route path="/verificationCode" element={<VerificationCode/>}/>
