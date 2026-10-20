@@ -1,4 +1,4 @@
-import { Box, CalendarClock, ClipboardList, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
+import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Truck } from "lucide-react"
 
 
 function Dashboard() {
@@ -158,9 +158,14 @@ function Dashboard() {
           <hr className="text-gray-600 mt-2"/>
           <div className="flex justify-between gap-4 mt-3">
             <input type="text" placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
-            <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4">Add</button>
+            <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4 cursor-pointer">Add</button>
           </div>
-           <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border"></div>
+           <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border">
+            <div className="flex items-center flex-col">
+              <FolderOpen className="text-gray-600"/>
+              <h1 className="text-xs text-gray-600">No reminders made</h1>  
+             </div>
+           </div>
           </div>
        </div>  
       </div>     
