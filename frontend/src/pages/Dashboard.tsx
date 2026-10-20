@@ -8,16 +8,16 @@ import type { Reminders } from "../types/types"
 
 
 function Dashboard() {
-  const { addReminder } = useActions()
+  const { addReminder,setReminders,reminder } = useActions()
   const { authenticateUser } = useFormDetail()
-  const [reminder, setReminder] = useState<Reminders>({
+  const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
   })
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
   const handleSubmit = async (event: ChangeEvent): Promise<void> => {
     event.preventDefault()
-    const {success, message} = await addReminder(userID, reminder)
+    const {success, message} = await addReminder(userID, reminders)
     if (success) {
       toast.success(message)
     } else {
@@ -209,7 +209,7 @@ function Dashboard() {
           <h1 className="text-sm text-gray-600 font-bold">Reminders</h1>
           <hr className="text-gray-600 mt-2"/>
           <form onSubmit={handleSubmit} className="flex justify-between gap-4 mt-3">
-            <input type="text" name="reminder" value={String(reminder.reminder)} onChange={handleOnchange} placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
+            <input type="text" name="reminder" value={String(reminders.reminder)} onChange={handleOnchange} placeholder="Add Reminder..." className="text-sm p-2 outline-none focus:ring-1 text-gray-600 focus:ring-[#244504] rounded-md border w-full"/>
             <button className="p-2 bg-[#244504] text-white font-extrabold rounded-md px-4 cursor-pointer">Add</button>
           </form>
            <div className="h-[70%] border-gray-400 flex justify-center items-center rounded-md overflow-auto scrollbar-none w-full mt-2 border">
