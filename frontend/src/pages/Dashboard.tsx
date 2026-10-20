@@ -31,6 +31,7 @@ function Dashboard() {
 
   useEffect(() => {
     authentication()
+    setReminders(userID)
   },[userID])
 
   //user authentication function
@@ -53,6 +54,8 @@ function Dashboard() {
       [name] : value
     }))
   }
+
+  console.log(reminder)
   
   return (
     <div className={`w-full py-2`}>

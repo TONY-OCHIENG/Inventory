@@ -7,8 +7,8 @@ import { apiClient } from "../components/ClientURL";
 export const useActions = create<Reminder>()(
     devtools((set) => ({
         reminder: [],
-        setReminders: async() => {
-            const response = await apiClient.get('/api/v1/reminders')
+        setReminders: async(userID: String) => {
+            const response = await apiClient.get(`/api/v1/reminders/${userID}`)
             const { result } = await response.data
             set(() => ({
                 reminder: result
