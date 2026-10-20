@@ -46,7 +46,7 @@ export interface Reminders{
 
 export interface ReminderDetails{
   reminder: String,
-  user_id: String,
+  rem_id: String,
   time: Date
 }
 
