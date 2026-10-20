@@ -3,17 +3,24 @@ import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 
 function Dashboard() {
   const { addReminder } = useActions()
   const { authenticateUser } = useFormDetail()
-  const [reminder, setReminder] = useState("")
+  const [reminder, setReminder] = useState<string>("")
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
-  const handleSubmit = (event: ChangeEvent): void => {
+  const handleSubmit = async (event: ChangeEvent): Promise<void> => {
     event.preventDefault()
-
+    const {success, message} = await addReminder(userID, reminder)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error(message)
+    }
+    setReminder("")
   }
 
   useEffect(() => {
@@ -30,6 +37,8 @@ function Dashboard() {
       navigate('/login')      
     }
   }
+
+  
   
   return (
     <div className={`w-full py-2`}>
