@@ -61,7 +61,9 @@ function Dashboard() {
       toast.success(message)
     }else {
       toast.error("An error occured")
-    }    
+    } 
+    
+    await setReminders(userID)
   }
   
   return (
@@ -231,14 +233,14 @@ function Dashboard() {
                       <span className="flex flex-col">{item.reminder} <p className="mt-1">
                         {new Date(item.time).toLocaleDateString()}
                         </p></span>
-                      <span><Trash className="h-5 w-5 cursor-pointer text-red-300">
+                      <span><Trash onClick={() => handleDeleteReminder(item.rem_id)} className="h-5 w-5 cursor-pointer text-red-300">
                         <title>Delete</title>
                         </Trash></span>
                     </li>
                    ))}
                 </ul>                 
                 : 
-                <div className="flex items-center justify-center flex-col bg-amber-50 w-full h-full">
+                <div className="flex items-center justify-center flex-col w-full h-full">
                 
                   <FolderOpen className="text-gray-600"/>
                   <h1 className="text-xs text-gray-600">No reminders made</h1>  
