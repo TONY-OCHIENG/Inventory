@@ -1,0 +1,16 @@
+import { create } from "zustand";
+import { devtools } from "zustand/middleware";
+import type { Reminder, Reminders } from "../types/types";
+import { apiClient } from "../components/ClientURL";
+
+
+export const useActions = create<Reminder>()(
+    devtools((set) => ({
+        reminder: [],
+        addReminder: async (user_id: String, reminder: Reminders[]) => {
+            const response = await apiClient.post(`/api/v1/addreminder/${user_id}`,reminder)
+            const { success, message} = await response.data
+            return {success, message}            
+        }
+    }),{name:"actions"})
+)

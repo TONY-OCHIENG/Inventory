@@ -38,3 +38,13 @@ export interface FormDetail {
   loginAccount: (details: LoginINFO) => Promise<Response>,
   registerAccount: (details: FormInput) => Promise<Response>;
 }
+
+//Add reminder types
+export interface Reminders{
+  reminder: String
+}
+
+export interface Reminder{
+  reminder: Reminders[],
+  addReminder: (user_id: String, reminder: Reminders[]) => Promise<Response>
+}
