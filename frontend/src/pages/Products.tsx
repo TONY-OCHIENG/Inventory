@@ -1,16 +1,21 @@
 import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
-import { useRef, useState, type ChangeEvent } from "react"
+import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import type { Products } from "../types/types"
 import { useProduct } from "../store/productStore"
 import toast from "react-hot-toast"
+import { useFormDetail } from "../store/authStore"
+import { useNavigate } from "react-router-dom"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
     const { product, createProducts } = useProduct()
-    const fileInputRef = useRef<HTMLInputElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null)
+    const [userID, setUserID] = useState<String>("")
+    const { authenticateUser } = useFormDetail()
+    const navigate = useNavigate()
     const [productDetail, setProductdetails] = useState<Products>({
       sku: "",
       productName:"",
@@ -19,6 +24,21 @@ function Products() {
       supplier:"",
       category:""
     })
+
+       useEffect(() => {
+        authentication()
+      },[userID])
+    
+      //user authentication function
+    
+      const authentication = async () => {
+        const { success, user_id} = await authenticateUser()
+        if (success) {
+          setUserID(user_id)
+        } else {
+          navigate('/login')      
+        }
+      }
     
     const handleOnchange = (event: ChangeEvent<HTMLInputElement>) => {
       const { name, value} = event.target
@@ -49,7 +69,7 @@ function Products() {
 
       //An api call that post product to the database
 
-      const { success, message} = await createProducts(formData)
+      const { success, message} = await createProducts(formData, userID)
       if (success) {
         toast.success(message)
         setOpenAddProduct(false)
@@ -70,7 +90,10 @@ function Products() {
        if (fileInputRef.current) fileInputRef.current.value = "";
        setImage(null);
 
-    }  
+    } 
+    
+    
+   
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
