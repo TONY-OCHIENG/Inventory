@@ -56,3 +56,17 @@ export interface Reminder{
   addReminder: (user_id: String, reminder: Reminders) => Promise<Response>,
   deleteReminder: (rem_id: String) => Promise<Response>
 }
+
+export interface Products{
+  sku:String,
+  productName: String,
+  productImage: File,
+  quantity: String,
+  supplier: String,
+  category: String
+}
+
+export interface ProductDetails{
+  product: Products[],
+  setProducts: () => Promise<Response>
+}
