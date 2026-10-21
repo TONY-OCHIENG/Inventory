@@ -6,7 +6,7 @@ import { useProduct } from "../store/productStore"
 import toast from "react-hot-toast"
 
 function Products() {
-    const [open, setopen] = useState<Boolean>(false)
+    const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
     const { product, createProducts } = useProduct()
@@ -173,7 +173,7 @@ function Products() {
          </div>
         </div>   
         <div className={`${openAddProduct ? 'block' : 'hidden'} absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
-          <form className="relative p-4 bg-white rounded-md max-w-md">
+          <form onSubmit={handleSubmit} className="relative p-4 bg-white rounded-md max-w-md">
            <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
            <X onClick={() => setOpenAddProduct(!openAddProduct)} className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-3"/>
            <label htmlFor="" className="text-sm text-gray-600 ">SKU</label>
