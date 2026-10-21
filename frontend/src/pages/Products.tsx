@@ -1,12 +1,12 @@
-import { Box, ChevronRight, Download, File, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
-import { useState } from "react"
+import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
+import { useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import type { Products } from "../types/types"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(false)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
-    const [productDetail, setProductdetaul] = useState<Products>({
+    const [productDetail, setProductdetails] = useState<Products>({
       sku: "",
       productName:"",
       productImage: null,
@@ -14,6 +14,15 @@ function Products() {
       supplier:"",
       category:""
     })
+    
+    const handleOnchange = (event: ChangeEvent<HTMLInputElement>) => {
+      const { name, value} = event.target
+      setProductdetails((prev) => ({
+        ...prev,
+        [name] : value
+      }))
+    }
+  
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
