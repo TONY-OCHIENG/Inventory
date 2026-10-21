@@ -60,7 +60,7 @@ export interface Reminder{
 export interface Products{
   sku:String,
   productName: String,
-  productImage: File,
+  productImage: File | null,
   quantity: String,
   supplier: String,
   category: String

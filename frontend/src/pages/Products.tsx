@@ -1,10 +1,19 @@
-import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
+import { Box, ChevronRight, Download, File, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
 import { useState } from "react"
 import { FaFileCsv } from "react-icons/fa6"
+import type { Products } from "../types/types"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(false)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
+    const [productDetail, setProductdetaul] = useState<Products>({
+      sku: "",
+      productName:"",
+      productImage: null,
+      quantity:"",
+      supplier:"",
+      category:""
+    })
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -126,17 +135,17 @@ function Products() {
            <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
            <X onClick={() => setOpenAddProduct(!openAddProduct)} className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-3"/>
            <label htmlFor="" className="text-sm text-gray-600 ">SKU</label>
-           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="sku" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product name</label>
-           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="productName" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product image</label>
-           <input type="file"  accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="file"  name="productImage" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
-           <input type="number" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="number" name="quantity" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
-           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="supplier" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product Category</label>
-           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="category" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <button className="py-2 w-full bg-[#244504] font-extrabold text-white mt-2 cursor-pointer rounded-md">Add products</button>
           </form>
         </div>          
