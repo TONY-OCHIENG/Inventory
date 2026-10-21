@@ -68,5 +68,5 @@ export interface Products{
 
 export interface ProductDetails{
   product: Products[],
-  setProducts: () => Promise<Response>
+  setProducts: (product: Products[]) => Promise<Response>
 }
