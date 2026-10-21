@@ -11,7 +11,7 @@ function Products() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
-    const { product, createProducts } = useProduct()
+    const { product, createProducts, setProducts } = useProduct()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
@@ -27,6 +27,7 @@ function Products() {
 
        useEffect(() => {
         authentication()
+        setProducts(userID)
       },[userID])
     
       //user authentication function
@@ -91,7 +92,6 @@ function Products() {
        setImage(null);
 
     } 
-    
     
    
   return (
