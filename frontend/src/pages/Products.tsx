@@ -41,7 +41,7 @@ function Products() {
       const formData = new FormData()
       formData.append('sku',productDetail.sku)
       formData.append('productName',productDetail.productName)
-      formData.append('productImage',image)
+      formData.append('image',image)
       formData.append('quantity',productDetail.quantity)
       formData.append('supplier',productDetail.supplier)
       formData.append('category',productDetail.category)
