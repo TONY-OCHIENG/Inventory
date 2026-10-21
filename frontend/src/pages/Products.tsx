@@ -1,11 +1,12 @@
-import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus } from "lucide-react"
+import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
 import { useState } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(false)
+    const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
   return (
-    <div className="p-4 w-full h-full">
+    <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
          <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer border-t-2 border-t-white">
             <h1 className="text-center text-sm text-gray-600">Total Products</h1>
@@ -119,7 +120,26 @@ function Products() {
             <h1 className="text-xs text-gray-400">Showing 1 to 10 out of 50 </h1>
          </div>
          </div>
-        </div>             
+        </div>   
+        <div className={`absolute w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+          <form className="relative p-4 bg-white rounded-md max-w-md">
+           <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
+           <X className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">SKU</label>
+           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">Product name</label>
+           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">Product image</label>
+           <input type="file" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
+           <input type="number" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
+           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">Product Category</label>
+           <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <button className="py-2 w-full bg-[#244504] font-extrabold text-white mt-2 cursor-pointer rounded-md">Add products</button>
+          </form>
+        </div>          
     </div>
   )
 }
