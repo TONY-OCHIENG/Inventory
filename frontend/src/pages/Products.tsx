@@ -57,7 +57,7 @@ function Products() {
          </div>
          <hr className="mt-2"/>
          <div className="mt-4 flex flex-col gap-5">
-            <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
+            <div onClick={() => setOpenAddProduct(!openAddProduct)} className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
                 <Plus  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
                     <title>Add Products</title>
                 </Plus>
@@ -121,16 +121,16 @@ function Products() {
          </div>
          </div>
         </div>   
-        <div className={`absolute w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+        <div className={`${openAddProduct ? 'block' : 'hidden'} absolute w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
           <form className="relative p-4 bg-white rounded-md max-w-md">
            <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
-           <X className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-2"/>
+           <X onClick={() => setOpenAddProduct(!openAddProduct)} className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-3"/>
            <label htmlFor="" className="text-sm text-gray-600 ">SKU</label>
            <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product name</label>
            <input type="text" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product image</label>
-           <input type="file" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="file"  accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
            <input type="number" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
