@@ -2,11 +2,14 @@ import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, Packag
 import { useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import type { Products } from "../types/types"
+import { useProduct } from "../store/productStore"
+import toast from "react-hot-toast"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(false)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
+    const { product, createProducts } = useProduct()
     const [productDetail, setProductdetails] = useState<Products>({
       sku: "",
       productName:"",
@@ -42,6 +45,15 @@ function Products() {
       formData.append('quantity',productDetail.quantity)
       formData.append('supplier',productDetail.supplier)
       formData.append('category',productDetail.category)
+
+      //An api call that post product to the database
+
+      const { success, message} = await createProducts(formData)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
 
     }  
   return (

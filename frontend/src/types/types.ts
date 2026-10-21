@@ -68,5 +68,5 @@ export interface Products{
 
 export interface ProductDetails{
   product: Products[],
-  setProducts: (product: Products[]) => Promise<Response>
+  createProducts: (product: FormData) => Promise<Response>
 }
