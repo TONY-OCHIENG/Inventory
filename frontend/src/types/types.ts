@@ -58,12 +58,12 @@ export interface Reminder{
 }
 
 export interface Products{
-  sku:String,
-  productName: String,
+  sku:string,
+  productName: string,
   productImage: File | null,
-  quantity: String,
-  supplier: String,
-  category: String
+  quantity: string,
+  supplier: string,
+  category: string
 }
 
 export interface ProductDetails{

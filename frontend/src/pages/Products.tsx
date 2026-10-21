@@ -30,7 +30,20 @@ function Products() {
         setImage(file)
     }
     
-  
+    const handleSubmit = async (event: ChangeEvent): Promise<void> => {
+      event.preventDefault()
+    
+      if (!image) return //checking if file exists
+
+      const formData = new FormData()
+      formData.append('sku',productDetail.sku)
+      formData.append('productName',productDetail.productName)
+      formData.append('productImage',image)
+      formData.append('quantity',productDetail.quantity)
+      formData.append('supplier',productDetail.supplier)
+      formData.append('category',productDetail.category)
+
+    }  
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -156,7 +169,7 @@ function Products() {
            <label htmlFor="" className="text-sm text-gray-600 ">Product name</label>
            <input type="text" name="productName" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product image</label>
-           <input type="file"  name="productImage" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="file"  onChange={handleFileChange} name="productImage" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
            <input type="number" name="quantity" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
