@@ -6,5 +6,5 @@ const actionRoutes = express.Router()
 actionRoutes.post("/addReminder/:id", addReminders)
 actionRoutes.get("/reminders/:id",getReminders)
 actionRoutes.delete("/deleteReminder/:id",deleteReminders)
-actionRoutes.post("/addProducts",upload.single('image'), addProducts)
+actionRoutes.post("/addProducts/:id",upload.single('image'), addProducts)
 export default actionRoutes
