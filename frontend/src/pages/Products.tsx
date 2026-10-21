@@ -6,6 +6,7 @@ import type { Products } from "../types/types"
 function Products() {
     const [open, setopen] = useState<Boolean>(false)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
+    const [image, setImage] = useState<File | null>()
     const [productDetail, setProductdetails] = useState<Products>({
       sku: "",
       productName:"",
@@ -22,6 +23,13 @@ function Products() {
         [name] : value
       }))
     }
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        if (!file) return    
+        setImage(file)
+    }
+    
   
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
@@ -139,22 +147,22 @@ function Products() {
          </div>
          </div>
         </div>   
-        <div className={`${openAddProduct ? 'block' : 'hidden'} absolute w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+        <div className={`${openAddProduct ? 'block' : 'hidden'} absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
           <form className="relative p-4 bg-white rounded-md max-w-md">
            <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
            <X onClick={() => setOpenAddProduct(!openAddProduct)} className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-3"/>
            <label htmlFor="" className="text-sm text-gray-600 ">SKU</label>
-           <input type="text" name="sku" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="sku" onChange={handleOnchange} className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product name</label>
-           <input type="text" name="productName" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="productName" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product image</label>
            <input type="file"  name="productImage" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
-           <input type="number" name="quantity" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="number" name="quantity" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
-           <input type="text" name="supplier" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="supplier" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product Category</label>
-           <input type="text" name="category" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="category" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <button className="py-2 w-full bg-[#244504] font-extrabold text-white mt-2 cursor-pointer rounded-md">Add products</button>
           </form>
         </div>          
