@@ -53,3 +53,13 @@ export const deleteReminders = (request, response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const addProducts = (request,response) => {
+    const { sku, productName, quantity,
+         supplier,category} = request.body
+    const { fileName } = request.file
+
+    if (!sku || !productName || !quantity || !supplier || !category || !fileName) {
+        return response.status(200).json({success: false, message: "Fill all fields"})
+    }
+}
