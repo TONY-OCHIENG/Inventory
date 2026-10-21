@@ -68,5 +68,6 @@ export interface Products{
 
 export interface ProductDetails{
   product: Products[],
+  setProducts: (user_id: String) => Promise<void>,
   createProducts: (product: FormData, user_id: String) => Promise<Response>
 }
