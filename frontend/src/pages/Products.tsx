@@ -1,5 +1,5 @@
 import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
-import { useState, type ChangeEvent } from "react"
+import { useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import type { Products } from "../types/types"
 import { useProduct } from "../store/productStore"
@@ -10,6 +10,7 @@ function Products() {
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
     const { product, createProducts } = useProduct()
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const [productDetail, setProductdetails] = useState<Products>({
       sku: "",
       productName:"",
@@ -51,9 +52,23 @@ function Products() {
       const { success, message} = await createProducts(formData)
       if (success) {
         toast.success(message)
+        setOpenAddProduct(false)
       } else {
         toast.error("An error occured")
+        setOpenAddProduct(false)
       }
+
+      setProductdetails({
+        sku: "",
+        productName:"",
+        productImage: null,
+        quantity:"",
+        supplier:"",
+        category:""
+      })
+      
+       if (fileInputRef.current) fileInputRef.current.value = "";
+       setImage(null);
 
     }  
   return (
@@ -177,17 +192,17 @@ function Products() {
            <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
            <X onClick={() => setOpenAddProduct(!openAddProduct)} className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-3"/>
            <label htmlFor="" className="text-sm text-gray-600 ">SKU</label>
-           <input type="text" name="sku" onChange={handleOnchange} className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="sku" value={String(productDetail.sku)} onChange={handleOnchange} className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product name</label>
-           <input type="text" name="productName" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="productName" value={String(productDetail.productName)} onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product image</label>
-           <input type="file"  onChange={handleFileChange} name="productImage" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="file"  ref={fileInputRef} onChange={handleFileChange} name="image" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
-           <input type="number" name="quantity" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="number" value={String(productDetail.quantity)} name="quantity" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
-           <input type="text" name="supplier" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="supplier" value={String(productDetail.supplier)} onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product Category</label>
-           <input type="text" name="category" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <input type="text" name="category" value={String(productDetail.category)} onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <button className="py-2 w-full bg-[#244504] font-extrabold text-white mt-2 cursor-pointer rounded-md">Add products</button>
           </form>
         </div>          
