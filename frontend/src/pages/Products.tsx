@@ -1,4 +1,4 @@
-import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Plus } from "lucide-react"
+import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, Package, PackageMinus, PackageX, Plus } from "lucide-react"
 import { useState } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 
@@ -9,7 +9,7 @@ function Products() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
          <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer border-t-2 border-t-white">
             <h1 className="text-center text-sm text-gray-600">Total Products</h1>
-            <div className="flex gap-4">
+            <div className="flex gap-4 ml-4">
               <Box className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
@@ -19,8 +19,8 @@ function Products() {
           </div>
            <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer  border-t-2 border-t-white">
             <h1 className="text-center text-sm text-gray-600">Available Stock</h1>
-            <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
+            <div className="flex gap-4 ml-4">
+              <Package className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
                 <p className="text-xs text-gray-400">units</p>
@@ -29,8 +29,8 @@ function Products() {
           </div>
            <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer  border-t-2 border-t-white">
             <h1 className="text-center text-sm text-gray-600">Out Of Stock</h1>
-            <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
+            <div className="flex gap-4 ml-4">
+              <PackageX className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
                 <p className="text-xs text-gray-400">units</p>
@@ -39,8 +39,8 @@ function Products() {
           </div>
            <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer  border-t-2 border-t-white">
             <h1 className="text-center text-sm text-gray-600">Low Stock</h1>
-            <div className="flex gap-4 ">
-              <Box className="w-10 h-10 text-gray-600"/>
+            <div className="flex gap-4 ml-4">
+              <PackageMinus className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
                 <h1 className="text-xl font-extrabold text-gray-700">20</h1>
                 <p className="text-xs text-gray-400">units</p>
@@ -110,7 +110,6 @@ function Products() {
                 <th>Stock</th>
                 <th>Supplier</th>
                 <th>Category</th>
-                <th>Status</th>
                 <th>Action</th>
             </thead>
             <tbody className="overflow-y-auto"></tbody>
