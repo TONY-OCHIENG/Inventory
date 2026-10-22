@@ -56,17 +56,17 @@ export const deleteReminders = (request, response) => {
 
 export const addProducts = (request,response) => {
     const { sku, productName, quantity,
-         supplier,category} = request.body
+         supplier,category, price} = request.body
     const { filename } = request.file
     const { id } = request.params
 
-    if (!sku || !productName || !quantity || !supplier || !category || !filename) {
+    if (!sku || !productName || !quantity || !supplier || !category || !filename || !price) {
         return response.status(200).json({success: false, message: "Fill all fields"})
     }
 
     try {
-        const isertProducts = "INSERT INTO products(sku,productName,productImage,quantity,supplier,category,user_id) VALUES(?,?,?,?,?,?,?)"
-        databaseconnection.query(isertProducts, [sku,productName,filename,quantity,supplier,category, id ], 
+        const isertProducts = "INSERT INTO products(sku,productName,productImage,quantity,supplier,category,user_id,price) VALUES(?,?,?,?,?,?,?,?)"
+        databaseconnection.query(isertProducts, [sku,productName,filename,quantity,supplier,category, id,price], 
             (error, result) => {
                 if (error) return response.status(500).json({success: false, message: error})
                 return response.status(201).json({success: true, message: "Product added"})
