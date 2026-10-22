@@ -60,6 +60,8 @@ export const addProducts = (request,response) => {
     const { filename } = request.file
     const { id } = request.params
 
+    console.log(price)
+
     if (!sku || !productName || !quantity || !supplier || !category || !filename || !price) {
         return response.status(200).json({success: false, message: "Fill all fields"})
     }

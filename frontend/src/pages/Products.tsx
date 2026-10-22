@@ -67,6 +67,7 @@ function Products() {
       formData.append('productName',productDetail.productName)
       formData.append('image',image)
       formData.append('quantity',productDetail.quantity)
+      formData.append('price',productDetail.price)
       formData.append('supplier',productDetail.supplier)
       formData.append('category',productDetail.category)
 
@@ -77,7 +78,7 @@ function Products() {
         toast.success(message)
         setOpenAddProduct(false)
       } else {
-        toast.error("An error occured")
+        toast.error(message)
         setOpenAddProduct(false)
       }
 
@@ -106,7 +107,7 @@ function Products() {
             <div className="flex gap-4 ml-4">
               <Box className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{product.length}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
