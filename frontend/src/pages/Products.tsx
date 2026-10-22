@@ -22,6 +22,7 @@ function Products() {
       productImage: null,
       stock: '',
       quantity:"",
+      price:"",
       supplier:"",
       category:""
     })
@@ -86,6 +87,7 @@ function Products() {
         productImage: null,
         stock:'',
         quantity:"",
+        price:"",
         supplier:"",
         category:""
       })
@@ -198,6 +200,7 @@ function Products() {
                 <th>Product Name</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
+                <th>Amount</th>
                 <th>Stock</th>
                 <th>Supplier</th>
                 <th>Category</th>
@@ -212,6 +215,7 @@ function Products() {
                     <td>{item.productName}</td>
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
                     <td>{item.quantity}</td>
+                    <td>{item.price}</td>
                     <td>{item.stock}</td>
                     <td>{item.supplier}</td>
                     <td>{item.category}</td>
@@ -249,6 +253,8 @@ function Products() {
            <input type="file"  ref={fileInputRef} onChange={handleFileChange} name="image" accept="image/jpeg,image/png,.jpg,.jpeg,.png" className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Quantity</label>
            <input type="number" value={String(productDetail.quantity)} name="quantity" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
+           <label htmlFor="" className="text-sm text-gray-600 ">Amount</label>
+           <input type="number" value={String(productDetail.price)} name="price" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
            <input type="text" name="supplier" value={String(productDetail.supplier)} onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Product Category</label>

@@ -62,6 +62,7 @@ export interface Products{
   productName: string,
   productImage: File | null,
   quantity: string,
+  price: string,
   stock: string,
   supplier: string,
   category: string
