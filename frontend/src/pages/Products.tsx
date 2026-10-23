@@ -1,4 +1,4 @@
-import { Box, ChevronRight, Download, FileDown, FileSpreadsheet, FolderOpen, Package, PackageMinus, PackageX, Plus, X } from "lucide-react"
+import { Box, ChevronRight, Download, Edit, FileDown, FileSpreadsheet, FolderOpen, Package, PackageMinus, PackageX, Plus, Trash, X } from "lucide-react"
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import type { Products } from "../types/types"
@@ -211,7 +211,7 @@ function Products() {
               {
                 product.length > 0 ?
                 product.map((item) => (
-                  <tr className="w-full text-left even:bg-gray-50 ">
+                  <tr className="w-full text-left even:bg-gray-50">
                     <td className="p-2">{item.sku}</td>
                     <td>{item.productName}</td>
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
@@ -220,7 +220,13 @@ function Products() {
                     <td>{item.stock}</td>
                     <td>{item.supplier}</td>
                     <td>{item.category}</td>
-                    <td>Butto</td>
+                    <td className="">
+                     <div className="flex gap-2 items-center">
+                      <Trash className="text-red-400 h-5 w-5 cursor-pointer">
+                        <title>Delete</title>
+                      </Trash>
+                     </div>
+                    </td>
                   </tr>
                 )) :
                 <tr className="h-[59vh]">
