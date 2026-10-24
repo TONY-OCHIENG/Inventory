@@ -1,11 +1,11 @@
-import { Box, ChevronRight, Download, Edit, FileDown, FileSpreadsheet, FolderOpen, Package, PackageMinus, PackageX, Plus, Trash, X } from "lucide-react"
+import { Box, ChevronRight, Download, FolderOpen, Package, PackageMinus, PackageX, Plus, Trash, X } from "lucide-react"
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
-import { FaFileCsv } from "react-icons/fa6"
 import type { Products } from "../types/types"
 import { useProduct } from "../store/productStore"
 import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
+import { useDownloadExcel } from 'react-export-table-to-excel'
 
 function Products() {
     const [open, setopen] = useState<Boolean>(true)
@@ -109,6 +109,14 @@ function Products() {
       }
       await setProducts(userID)
     }
+
+    //Downloading table data to excel
+    const tableRef = useRef(null)
+    const { onDownload } = useDownloadExcel({
+        currentTableRef:tableRef.current,
+        filename: "expense_Details",
+        sheet:"expense_Details"
+    })
    
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
