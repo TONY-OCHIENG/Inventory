@@ -11,7 +11,7 @@ function Products() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
-    const { product, createProducts, setProducts } = useProduct()
+    const { product, createProducts, setProducts, deleteProduct } = useProduct()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
@@ -97,7 +97,15 @@ function Products() {
        setImage(null);
        setProducts(userID)
     } 
-    
+    //Implementing a function that deletes product
+    const handleDeleteProduct = async (product_id: String) => {
+      const { success, message} = await deleteProduct(product_id)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
+    }
    
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
