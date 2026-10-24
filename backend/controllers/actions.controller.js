@@ -83,8 +83,9 @@ export const getProducts = (request,response) => {
     const {page, limit} = request.query
     try {
         const offset = (page - 1) * limit
-        const getproducts = "SELECT * FROM products WHERE user_id = ? LIMIT ? OFFSET ?"
-        databaseconnection.query(getproducts,[id +offset,+limit],(error, result) => {
+        const getproducts = " SELECT * FROM products WHERE user_id = ? LIMIT ? OFFSET ?"
+        databaseconnection.query(getproducts,[id, +offset, +limit],(error, result) => {
+            console.log(error)
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
                 const countProducts = "SELECT COUNT(*) AS totalProducts FROM products WHERE user_id = ?"

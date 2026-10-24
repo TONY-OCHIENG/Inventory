@@ -16,7 +16,7 @@ function Products() {
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
     const navigate = useNavigate()
-    const [page, setPage] = useState<Number>(0)
+    const [page, setPage] = useState<Number>(1)
     const [total, setTotal] = useState<Number>(0)
     let limit = 10
     const [productDetail, setProductdetails] = useState<Products>({
@@ -120,6 +120,8 @@ function Products() {
         filename: "product_Details",
         sheet:"product_Details"
     })
+
+    console.log(product)
    
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
