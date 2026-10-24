@@ -16,8 +16,8 @@ function Products() {
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
     const navigate = useNavigate()
-    const [page, setPage] = useState<Number>(1)
-    const [total, setTotal] = useState<Number>(0)
+    const [page, setPage] = useState<number>(1)
+    const [total, setTotal] = useState<number>(0)
     let limit = 10
     const [productDetail, setProductdetails] = useState<Products>({
       product_id:"",
@@ -250,7 +250,7 @@ function Products() {
          <div className="relative bottom-0 left-0 w-full">
           <hr className=" text-gray-600 mb-1"/>
          <div className="flex w-full justify-between items-center">
-            <h1 className="text-xs text-gray-400">Showing 1 to 10 out of 50 </h1>
+            <h1 className="text-xs text-gray-400">Showing {page} to {limit} out of {totalProducts} </h1>
          </div>
          </div>
          </div>
