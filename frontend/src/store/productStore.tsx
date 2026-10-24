@@ -13,6 +13,11 @@ export const useProduct = create<ProductDetails>()(
             product: result
           }))
         },
+        deleteProduct: async (product_id: String) => {
+          const response = await apiClient.delete(`/api/v1/deleteProduct/${product_id}`)
+          const {success, message} = await response.data
+          return { success, message}
+        },
         createProducts: async (product: FormData, user_id: String) => {
             const response = await apiClient.post(`/api/v1/addProducts/${user_id}`,product)
             const { success, message} = await response.data

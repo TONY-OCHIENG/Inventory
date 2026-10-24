@@ -222,7 +222,7 @@ function Products() {
                     <td>{item.category}</td>
                     <td className="">
                      <div className="flex gap-2 items-center">
-                      <Trash className="text-red-400 h-5 w-5 cursor-pointer">
+                      <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
                         <title>Delete</title>
                       </Trash>
                      </div>
