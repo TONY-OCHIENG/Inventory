@@ -34,7 +34,7 @@ function Products() {
        useEffect(() => {
         authentication()
         setProducts(userID,page,limit)
-      },[page])
+      },[userID,page])
     
       //user authentication function
     
@@ -128,7 +128,7 @@ function Products() {
             <div className="flex gap-4 ml-4">
               <Box className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">{product.length}</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalProducts}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -164,7 +164,7 @@ function Products() {
             </div>
           </div>
         </div> 
-        <div className="mt-4 w-full flex gap-2 h-[83%]">
+        <div className="mt-4 w-full flex gap-2 h-[84%]">
          <div className={`transition duration-300 border-t-2 border-t-white ${open ? 'w-[180px]' : 'w-[50px]'} bg-white/70 p-2 shadow-md rounded-md h-[25vh]`}>
          <div className="flex justify-between items-center">
             <h1 className={`${open ? 'block' : 'hidden'} text-sm text-gray-600 font-bold`}>Actions</h1>
@@ -194,10 +194,6 @@ function Products() {
             <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">In Stock</button>
             <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Out of Stock</button>
             <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Low Stock</button>
-            </div>
-            <div>
-                <input type="text" placeholder="Search product name..." className="border text-sm rounded-md px-2 bg-white outline-none 
-                text-gray-600 placeholder:text-xs"/>
             </div>
          </div>
          <hr className="text-gray-600 mt-1"/>
@@ -249,7 +245,7 @@ function Products() {
          <div className="relative bottom-0 left-0 w-full">
           <hr className=" text-gray-600 mb-1"/>
          <div className="flex w-full justify-between items-center">
-            <h1 className="text-xs text-gray-400">Showing {page} to {limit} out of {totalProducts} </h1>
+            <h1 className="text-xs text-gray-400"></h1>
             <Pagination page={page} setPage={setPage} total={totalProducts} limit={limit} />
          </div>
          </div>
