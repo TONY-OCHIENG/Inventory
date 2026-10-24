@@ -16,6 +16,9 @@ function Products() {
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
     const navigate = useNavigate()
+    const [page, setPage] = useState<Number>(0)
+    const [total, setTotal] = useState<Number>(0)
+    let limit = 10
     const [productDetail, setProductdetails] = useState<Products>({
       product_id:"",
       sku: "",
@@ -30,7 +33,7 @@ function Products() {
 
        useEffect(() => {
         authentication()
-        setProducts(userID)
+        setProducts(userID,page,limit)
       },[userID])
     
       //user authentication function
@@ -97,7 +100,7 @@ function Products() {
       
        if (fileInputRef.current) fileInputRef.current.value = "";
        setImage(null);
-       setProducts(userID)
+       setProducts(userID,page,limit)
     } 
     //Implementing a function that deletes product
     const handleDeleteProduct = async (product_id: String) => {
@@ -107,7 +110,7 @@ function Products() {
       } else {
         toast.error("An error occured")
       }
-      await setProducts(userID)
+      await setProducts(userID,page,limit)
     }
 
     //Downloading table data to excel
