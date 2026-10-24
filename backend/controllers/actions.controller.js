@@ -102,6 +102,7 @@ export const deleteProduct = (request,response) => {
         const deleteProduct = "DELETE FROM products WHERE product_id = ?"
         databaseconnection.query(deleteProduct,[id], (error, result) => {
             if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Product removed"})
         })
         
     } catch (error) {
