@@ -155,7 +155,7 @@ function Products() {
           </div>
         </div> 
         <div className="mt-4 w-full flex gap-2 h-[83%]">
-         <div className={`transition duration-300 border-t-2 border-t-white ${open ? 'w-[180px]' : 'w-[50px]'} bg-white/70 p-2 shadow-md rounded-md h-[45vh]`}>
+         <div className={`transition duration-300 border-t-2 border-t-white ${open ? 'w-[180px]' : 'w-[50px]'} bg-white/70 p-2 shadow-md rounded-md h-[25vh]`}>
          <div className="flex justify-between items-center">
             <h1 className={`${open ? 'block' : 'hidden'} text-sm text-gray-600 font-bold`}>Actions</h1>
             <ChevronRight onClick={() => setopen(!open)}  className={`transition duration-300 ${open ? 'rotate-180' : ''} h-4 w-4 text-gray-600 cursor-pointer`}/>
@@ -174,22 +174,7 @@ function Products() {
                 </Download>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Export As Excel</h1>
             </div>
-              <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
-                <FileSpreadsheet  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
-                    <title>Import Excel Sheet</title>
-                </FileSpreadsheet>
-                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Import Excel Sheet</h1>
-            </div>
-              <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
-                <FileDown  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
-                    <title>Download As CSV</title>
-                </FileDown>
-                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Download As CSV</h1>
-            </div>
-              <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
-                <FaFileCsv title="Import As CSV" className={`${open ? '' : 'h-5 w-5 ml-1'}  text-gray-600`}/>
-                <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Import As CSV</h1>
-            </div>
+             
          </div>
          </div>
          <div className="overflow-y-auto scrollbar-thin h-full w-full bg-white/70 border-t-2 border-t-white rounded-md shadow-md p-2">
