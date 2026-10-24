@@ -17,6 +17,7 @@ function Products() {
     const { authenticateUser } = useFormDetail()
     const navigate = useNavigate()
     const [productDetail, setProductdetails] = useState<Products>({
+      product_id:"",
       sku: "",
       productName:"",
       productImage: null,
@@ -83,6 +84,7 @@ function Products() {
       }
 
       setProductdetails({
+        product_id:'',
         sku: "",
         productName:"",
         productImage: null,
@@ -105,6 +107,7 @@ function Products() {
       } else {
         toast.error("An error occured")
       }
+      await setProducts(userID)
     }
    
   return (
@@ -230,7 +233,7 @@ function Products() {
                     <td>{item.category}</td>
                     <td className="">
                      <div className="flex gap-2 items-center">
-                      <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
+                      <Trash onClick={() => handleDeleteProduct(item.product_id)}  className="text-red-400 h-5 w-5 cursor-pointer">
                         <title>Delete</title>
                       </Trash>
                      </div>

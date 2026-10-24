@@ -58,6 +58,7 @@ export interface Reminder{
 }
 
 export interface Products{
+  product_id:string,
   sku:string,
   productName: string,
   productImage: File | null,
