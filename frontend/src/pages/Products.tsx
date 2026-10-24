@@ -114,8 +114,8 @@ function Products() {
     const tableRef = useRef(null)
     const { onDownload } = useDownloadExcel({
         currentTableRef:tableRef.current,
-        filename: "expense_Details",
-        sheet:"expense_Details"
+        filename: "product_Details",
+        sheet:"product_Details"
     })
    
   return (
@@ -176,7 +176,7 @@ function Products() {
                 </Plus>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Add Products</h1>
             </div>
-              <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
+              <div onClick={onDownload} className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
                 <Download className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
                     <title>Download As Excel</title>
                 </Download>
@@ -199,7 +199,7 @@ function Products() {
             </div>
          </div>
          <hr className="text-gray-600 mt-1"/>
-         <table className="w-full bg-white">
+         <table ref={tableRef}  className="w-full bg-white">
             <thead className="text-sm text-left text-gray-600 border-b">
                 <th className="p-2">SKU</th>
                 <th>Product Name</th>
