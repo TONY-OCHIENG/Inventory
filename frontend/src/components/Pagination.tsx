@@ -1,4 +1,4 @@
-import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react'
+import { ChevronLeft, ChevronLeftCircle, ChevronRight, ChevronRightCircle } from 'lucide-react'
 
 interface PaginationProps {
   page: number
@@ -37,8 +37,8 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
         <button
           onClick={() => handleClick(i)}
           key={i}
-          className={`w-[35px] h-[35px] rounded-full font-medium flex justify-center items-center
-            ${i === currentPage ? 'bg-red-600 border text-white' : 'text-gray-400 border'}
+          className={`w-[20px] h-[20px] text-xs  font-medium flex justify-center items-center
+            ${i === currentPage ? 'bg-green-600 border text-white' : 'text-gray-400 border'}
           `}
         >
           {i}
@@ -49,17 +49,17 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
   }
 
   return (
-    <div className="flex justify-between items-center md:w-[20%] w-full">
-      <ChevronLeftCircle
+    <div className="flex gap-3 justify-end md:w-[20%] w-full ">
+      <ChevronLeft
         size={25}
         onClick={handlePrev}
-        className={`cursor-pointer ${currentPage === 1 ? 'text-gray-400' : 'text-red-600'}`}
+        className={`cursor-pointer border h-5 w-5 ${currentPage === 1 ? 'text-gray-400' : 'text-green-600'}`}
       />
       {renderPages()}
-      <ChevronRightCircle
+      <ChevronRight
         size={25}
         onClick={handleNext}
-        className={`cursor-pointer ${currentPage === totalPage ? 'text-gray-400' : 'text-red-600'}`}
+        className={`cursor-pointer border h-5 w-5 ${currentPage === totalPage ? 'text-gray-400' : 'text-green-600'}`}
       />
     </div>
   )

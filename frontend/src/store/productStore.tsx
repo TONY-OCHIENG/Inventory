@@ -6,7 +6,7 @@ import { apiClient } from "../components/ClientURL";
 export const useProduct = create<ProductDetails>()(
     devtools((set) => ({
         product: [],
-        totalProducts: "",
+        totalProducts: 0,
         setProducts: async (user_id: String,page: Number, limit: Number) => {
           const response = await apiClient.get(`api/v1/products/${user_id}?page=${page}&limit=${limit}`)
           const { results } = response.data

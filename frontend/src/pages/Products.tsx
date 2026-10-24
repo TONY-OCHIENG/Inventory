@@ -6,6 +6,7 @@ import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import { useDownloadExcel } from 'react-export-table-to-excel'
+import Pagination from "../components/Pagination"
 
 function Products() {
     const [open, setopen] = useState<Boolean>(true)
@@ -17,7 +18,6 @@ function Products() {
     const { authenticateUser } = useFormDetail()
     const navigate = useNavigate()
     const [page, setPage] = useState<number>(1)
-    const [total, setTotal] = useState<number>(0)
     let limit = 10
     const [productDetail, setProductdetails] = useState<Products>({
       product_id:"",
@@ -34,7 +34,7 @@ function Products() {
        useEffect(() => {
         authentication()
         setProducts(userID,page,limit)
-      },[userID])
+      },[page])
     
       //user authentication function
     
@@ -119,8 +119,7 @@ function Products() {
         currentTableRef:tableRef.current,
         filename: "product_Details",
         sheet:"product_Details"
-    })
-   
+    }) 
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -251,6 +250,7 @@ function Products() {
           <hr className=" text-gray-600 mb-1"/>
          <div className="flex w-full justify-between items-center">
             <h1 className="text-xs text-gray-400">Showing {page} to {limit} out of {totalProducts} </h1>
+            <Pagination page={page} setPage={setPage} total={totalProducts} limit={limit} />
          </div>
          </div>
          </div>
