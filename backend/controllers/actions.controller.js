@@ -80,12 +80,22 @@ export const addProducts = (request,response) => {
 
 export const getProducts = (request,response) => {
     const { id } = request.params
+    const {page, limit} = request.query
     try {
-        const getproducts = "SELECT * FROM products WHERE user_id = ?"
-        databaseconnection.query(getproducts,[id],(error, result) => {
+        const offset = (page - 1) * limit
+        const getproducts = "SELECT * FROM products WHERE user_id = ? LIMIT ? OFFSET ?"
+        databaseconnection.query(getproducts,[id +offset,+limit],(error, result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({success: true, result: result})
+                const countProducts = "SELECT COUNT(*) AS totalProducts FROM products WHERE user_id = ?"
+                databaseconnection.query(countProducts,[id],(err,results) => {
+                    if (err) return response.status(500).json({success: false, message: err})
+                    const totalProducts = results[0].totalProducts
+                    return response.status(200).json({success: true, result: {
+                        totalProducts: totalProducts,
+                        result: results
+                    }})
+                })
             } else {
                 return response.status(200).json({success: false, result: result})
             }
