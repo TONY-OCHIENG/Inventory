@@ -11,7 +11,7 @@ function Products() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
-    const { product, createProducts, setProducts, deleteProduct } = useProduct()
+    const { product, createProducts, setProducts, deleteProduct,totalProducts } = useProduct()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
@@ -120,8 +120,6 @@ function Products() {
         filename: "product_Details",
         sheet:"product_Details"
     })
-
-    console.log(product)
    
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
