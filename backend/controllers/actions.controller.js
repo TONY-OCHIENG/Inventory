@@ -93,7 +93,7 @@ export const getProducts = (request,response) => {
                     const totalProducts = results[0].totalProducts
                     return response.status(200).json({success: true, result: {
                         totalProducts: totalProducts,
-                        result: results
+                        result: result
                     }})
                 })
             } else {
