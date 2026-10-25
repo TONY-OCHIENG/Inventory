@@ -120,6 +120,22 @@ function Products() {
         filename: "product_Details",
         sheet:"product_Details"
     }) 
+
+    //implementing a function that handle stock text color based on availability
+
+    const handleStock = (text: String) => {
+      if (text === 'Available') {
+        return <p className="text-green-400 bg-green-100 rounded-full w-[70px]">{text}</p>
+      }
+
+      if (text === 'Low stock') {
+        return <p className="text-amber-400 bg-amber-100 rounded-full w-[70px]">{text}</p>
+      } 
+
+      if (text === 'Depleted') {
+        return <p className="text-red-400 bg-red-100 p-2 rounded-full w-[70px]">{text}</p>
+      }
+    }
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -219,7 +235,7 @@ function Products() {
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
                     <td>{item.quantity}</td>
                     <td>{item.price}</td>
-                    <td>{item.stock}</td>
+                    <td className="text-center">{handleStock(item.stock)}</td>
                     <td>{item.supplier}</td>
                     <td>{item.category}</td>
                     <td className="">
