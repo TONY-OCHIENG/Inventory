@@ -133,7 +133,7 @@ function Products() {
       } 
 
       if (text === 'Depleted') {
-        return <p className="text-red-400 bg-red-100 p-2 rounded-full w-[70px]">{text}</p>
+        return <p className="text-red-400 bg-red-100  rounded-full w-[70px]">{text}</p>
       }
     }
   return (
