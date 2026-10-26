@@ -257,8 +257,8 @@ function Products() {
             </thead>
             <tbody className=" w-full text-sm text-gray-500">
               {
-                product.length > 0 ?
-                product.map((item) => (
+                filteredProducts.length > 0 ?
+                filteredProducts.map((item) => (
                   <tr className="w-full text-left even:bg-gray-50">
                     <td className="p-2">{item.sku}</td>
                     <td>{item.productName}</td>
