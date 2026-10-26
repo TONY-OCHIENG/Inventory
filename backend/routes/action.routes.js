@@ -10,5 +10,5 @@ actionRoutes.post("/addProducts/:id",upload.single('image'), addProducts)
 actionRoutes.get("/products/:id",getProducts)
 actionRoutes.delete("/deleteProduct/:id",deleteProduct)
 actionRoutes.get("/availbleStock/:id",availableStock)
-actionRoutes.get("lowStock/:id",lowStock)
+actionRoutes.get("/lowStock/:id",lowStock)
 export default actionRoutes

@@ -156,3 +156,21 @@ export const lowStock = (request, response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const depletedStock = (request, response) => {
+    const { id } = request.params
+    try {
+        const availableStock = "SELECT COUNT(stock) as Depleted FROM products WHERE stock = 'Depleted' AND user_id = ?"
+        databaseconnection.query(availableStock,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
