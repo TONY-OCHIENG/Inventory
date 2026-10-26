@@ -154,6 +154,10 @@ function Products() {
       { label: 'Low Stock', value: 'Low stock' },
       { label: 'Out of Stock', value: 'Depleted' },
     ]
+    /**
+     * Counting available,depleted and out of stock products by filter method
+     */
+    const availableProducts = product.filter((item) => item.stock === "Available")
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
