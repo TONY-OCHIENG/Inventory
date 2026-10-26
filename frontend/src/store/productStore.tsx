@@ -24,7 +24,13 @@ export const useProduct = create<ProductDetails>()(
             lowStock: result
           }))
         },
-        setdepletedStock: async (user_id: String) => {},
+        setdepletedStock: async (user_id: String) => {
+          const response = await apiClient.get(`/api/v1/${user_id}`)
+          const { result} = await response.data
+          set(() => ({
+            depletedStock: result
+          }))
+        },
         setProducts: async (user_id: String,page: Number, limit: Number) => {
           const response = await apiClient.get(`api/v1/products/${user_id}?page=${page}&limit=${limit}`)
           const { results } = response.data
