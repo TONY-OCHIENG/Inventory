@@ -7,6 +7,12 @@ export const useProduct = create<ProductDetails>()(
     devtools((set) => ({
         product: [],
         totalProducts: 0,
+        availableStock: 0,
+        lowStock: 0,
+        depletedStock: 0,
+        setavailableProducts: async (user_id: String) => {},
+        setlowProducts: async (user_id: String) => {},
+        setdepletedStock: async (user_id: String) => {},
         setProducts: async (user_id: String,page: Number, limit: Number) => {
           const response = await apiClient.get(`api/v1/products/${user_id}?page=${page}&limit=${limit}`)
           const { results } = response.data
