@@ -128,7 +128,7 @@ export const availableStock = (request, response) => {
         databaseconnection.query(availableStock,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({success: true, result: result})
+                return response.status(200).json({success: true, result: result[0].Available})
             } else {
                 return response.status(200).json({success: false, result: result})
             }
@@ -146,7 +146,7 @@ export const lowStock = (request, response) => {
         databaseconnection.query(availableStock,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({success: true, result: result})
+                return response.status(200).json({success: true, result: result[0].lowStock})
             } else {
                 return response.status(200).json({success: false, result: result})
             }
@@ -164,7 +164,7 @@ export const depletedStock = (request, response) => {
         databaseconnection.query(availableStock,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({success: true, result: result})
+                return response.status(200).json({success: true, result: result[0].Depleted})
             } else {
                 return response.status(200).json({success: false, result: result})
             }
