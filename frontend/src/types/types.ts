@@ -69,6 +69,8 @@ export interface Products{
   category: string
 }
 
+export type StockFilter = 'All' | 'Available' | 'Low stock' | 'Depleted'
+
 export interface ProductDetails{
   product: Products[],
   totalProducts: number,

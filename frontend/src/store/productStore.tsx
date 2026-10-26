@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { ProductDetails, Products } from "../types/types";
+import type { ProductDetails } from "../types/types";
 import { devtools } from "zustand/middleware";
 import { apiClient } from "../components/ClientURL";
 

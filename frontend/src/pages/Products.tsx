@@ -1,6 +1,6 @@
 import { Box, ChevronRight, Download, FolderOpen, Package, PackageMinus, PackageX, Plus, Trash, X } from "lucide-react"
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
-import type { Products } from "../types/types"
+import type { Products, StockFilter } from "../types/types"
 import { useProduct } from "../store/productStore"
 import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
@@ -125,17 +125,40 @@ function Products() {
 
     const handleStock = (text: String) => {
       if (text === 'Available') {
-        return <p className="text-green-400 bg-green-100 rounded-full w-[70px]">{text}</p>
+        return <p className="text-green-500 bg-green-100 rounded-full  w-[70px]">{text}</p>
       }
 
       if (text === 'Low stock') {
-        return <p className="text-amber-400 bg-amber-100 rounded-full w-[70px]">{text}</p>
+        return <p className="text-amber-500 bg-amber-100 rounded-full w-[70px]">{text}</p>
       } 
 
       if (text === 'Depleted') {
-        return <p className="text-red-400 bg-red-100  rounded-full w-[70px]">{text}</p>
+        return <p className="text-red-500 bg-red-100  rounded-full w-[70px]">{text}</p>
       }
     }
+
+    /**
+     * A filter function that filters products 
+     * according to stock availability
+     */
+
+    const filterStock = async (item: String) => {
+      const stock = product.filter((items) => items.stock === item)
+            
+    } 
+    
+    const [activeFilter, setActiveFilter] = useState<StockFilter>('All')
+    const filteredProducts =
+      activeFilter === 'All'
+        ? product
+        : product.filter((item) => item.stock === activeFilter)
+
+    const filterButtons: { label: string; value: StockFilter }[] = [
+      { label: 'All', value: 'All' },
+      { label: 'In Stock', value: 'Available' },
+      { label: 'Low Stock', value: 'Low stock' },
+      { label: 'Out of Stock', value: 'Depleted' },
+    ]
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -205,11 +228,18 @@ function Products() {
          </div>
          <div className="overflow-y-auto scrollbar-thin h-full w-full bg-white/70 border-t-2 border-t-white rounded-md shadow-md p-2">
          <div className="flex justify-between items-center">
-            <div className="flex gap-2">
-            <button className="px-4  text-xs rounded-md bg-green-100 py-1 shadow-md cursor-pointer">All</button>
-            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">In Stock</button>
-            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Out of Stock</button>
-            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Low Stock</button>
+          <div className="flex gap-2">
+              {filterButtons.map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setActiveFilter(value)}
+                  className={`px-4 text-xs rounded-md py-1 shadow-md cursor-pointer transition ${
+                    activeFilter === value ? 'bg-green-100 text-green-700 font-semibold' : 'bg-white'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
          </div>
          <hr className="text-gray-600 mt-1"/>
