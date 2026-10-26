@@ -12,7 +12,10 @@ function Products() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
-    const { product, createProducts, setProducts, deleteProduct,totalProducts } = useProduct()
+    const { product, createProducts, setProducts,
+     availableStock, depletedStock, lowStock, setavailableProducts,
+     setdepletedStock, setlowProducts, 
+      deleteProduct,totalProducts } = useProduct()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [userID, setUserID] = useState<String>("")
     const { authenticateUser } = useFormDetail()
@@ -34,6 +37,9 @@ function Products() {
        useEffect(() => {
         authentication()
         setProducts(userID,page,limit)
+        setlowProducts(userID)
+        setavailableProducts(userID)
+        setdepletedStock(userID)
       },[userID,page])
     
       //user authentication function
