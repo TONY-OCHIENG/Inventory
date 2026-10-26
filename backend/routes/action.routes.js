@@ -9,7 +9,7 @@ actionRoutes.delete("/deleteReminder/:id",deleteReminders)
 actionRoutes.post("/addProducts/:id",upload.single('image'), addProducts)
 actionRoutes.get("/products/:id",getProducts)
 actionRoutes.delete("/deleteProduct/:id",deleteProduct)
-actionRoutes.get("/availbleStock/:id",availableStock)
+actionRoutes.get("/availableStock/:id",availableStock)
 actionRoutes.get("/lowStock/:id",lowStock)
 actionRoutes.get("/depletedStock/:id",depletedStock)
 export default actionRoutes
