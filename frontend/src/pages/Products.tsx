@@ -158,6 +158,8 @@ function Products() {
      * Counting available,depleted and out of stock products by filter method
      */
     const availableProducts = product.filter((item) => item.stock === "Available")
+    const depletedProducts = product.filter((item) => item.stock === 'Depleted')
+    const lowstockProducts = product.filter((item) => item.stock === 'Low stock')
   return (
     <div className="relative overflow-x-hidden p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
