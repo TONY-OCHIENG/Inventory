@@ -141,11 +141,6 @@ function Products() {
      * A filter function that filters products 
      * according to stock availability
      */
-
-    const filterStock = async (item: String) => {
-      const stock = product.filter((items) => items.stock === item)
-            
-    } 
     
     const [activeFilter, setActiveFilter] = useState<StockFilter>('All')
     const filteredProducts =
