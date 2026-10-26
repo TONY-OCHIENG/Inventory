@@ -178,7 +178,7 @@ function Products() {
             <div className="flex gap-4 ml-4">
               <Package className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{availableStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -188,7 +188,7 @@ function Products() {
             <div className="flex gap-4 ml-4">
               <PackageX className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{depletedStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -198,7 +198,7 @@ function Products() {
             <div className="flex gap-4 ml-4">
               <PackageMinus className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{lowStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
