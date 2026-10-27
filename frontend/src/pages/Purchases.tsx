@@ -1,5 +1,5 @@
 import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, Gift, Plus, ShoppingBag, Timer, X } from "lucide-react"
-import { useState, type ChangeEvent } from "react"
+import { useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
 import type { Purchase } from "../types/types"
@@ -8,6 +8,8 @@ function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
     const { addPurchase } = usePurchase()
+    const [image, setImage] = useState<File | null>()
+     const fileInputRef = useRef<HTMLInputElement>(null)
     const [purchaseDetail, setpurchaseDetail] = useState<Purchase>({
       productNumber: "",
       productName: "",
