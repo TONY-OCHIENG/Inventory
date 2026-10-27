@@ -83,9 +83,10 @@ function Purchases() {
         supplier: "",
         amount: ""
       })
-      
+
       if (fileInputRef.current) fileInputRef.current.value = "";
       setImage(null);
+      setopenPurchase(false)
     }
 
   return (
@@ -205,7 +206,7 @@ function Purchases() {
           <X onClick={() => setopenPurchase(!openPurchase)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Purchase</h1>
           <label htmlFor="" className="text-sm text-gray-400">Purchase number</label>
-          <input type="text" name="productNumber" value={String(purchaseDetail.productNumber)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="#4859"/>
+          <input type="text" name="productNumber" value={String(purchaseDetail.productNumber)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="eg #4859"/>
           <label htmlFor="" className="text-sm text-gray-400">Product name</label>
           <input type="text" name="productName" value={String(purchaseDetail.productName)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>
           <label htmlFor="" className="text-sm text-gray-400">Product image</label>
