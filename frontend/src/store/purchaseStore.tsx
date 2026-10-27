@@ -10,8 +10,7 @@ export const usePurchase = create<PurchaseDetail>()(
         addPurchase: async (user_id: String,purchase: FormData) => {
             const response = await apiClient.post(`/api/v1/addpurchase/${user_id}`,purchase)
             const { success, message} = await response.data
-            return { success, message}
-            
+            return { success, message}            
         }
     }),{name:"purchase_store"})
 )

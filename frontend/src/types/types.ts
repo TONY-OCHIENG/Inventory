@@ -89,7 +89,7 @@ export interface ProductDetails{
  * Purchase types
  */
 
-interface Purchase{
+export interface Purchase{
   productNumber: String,
   productName: String,
   productImage: File | null,

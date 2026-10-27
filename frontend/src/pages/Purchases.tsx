@@ -1,10 +1,22 @@
 import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, Gift, Plus, ShoppingBag, Timer, X } from "lucide-react"
 import { useState } from "react"
 import { FaFileCsv } from "react-icons/fa6"
+import { usePurchase } from "../store/purchaseStore"
+import type { Purchase } from "../types/types"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
+    const { addPurchase } = usePurchase()
+    const [purchaseDetail, setpurchaseDetail] = useState<Purchase>({
+      productNumber: "",
+      productName: "",
+      productImage: null,
+      quantity: "",
+      date: "",
+      supplier: "",
+      amount: ""
+    })
   return (
    <div className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
