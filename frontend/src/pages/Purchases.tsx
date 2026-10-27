@@ -4,11 +4,16 @@ import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
 import type { Purchase } from "../types/types"
 import toast from "react-hot-toast"
+import { useFormDetail } from "../store/authStore"
+import { useNavigate } from "react-router-dom"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
     const { addPurchase } = usePurchase()
+    const { authenticateUser} = useFormDetail()
+    const [userID, setUserID] = useState<String>("")
+    const navigate = useNavigate()
     const [image, setImage] = useState<File | null>()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [purchaseDetail, setpurchaseDetail] = useState<Purchase>({
@@ -20,6 +25,17 @@ function Purchases() {
       supplier: "",
       amount: ""
     })
+
+     //user authentication function
+    
+      const authentication = async () => {
+        const { success, user_id} = await authenticateUser()
+        if (success) {
+          setUserID(user_id)
+        } else {
+          navigate('/login')      
+        }
+      }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
