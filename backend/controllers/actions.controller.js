@@ -181,6 +181,7 @@ export const addPurchase = (request, response) => {
     const { id } = request.params
     const { filename } = request.file
     const {productName, productNumber,quantity, date, supplier,amount} = request.body
+    console.log(productName,productNumber,quantity,date,supplier,amount)
 
     if (!productName || !productNumber || !quantity || !date || !supplier
         || !amount || !filename

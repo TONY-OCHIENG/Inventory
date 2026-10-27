@@ -65,6 +65,7 @@ function Purchases() {
       formData.append('quantity',purchaseDetail.quantity)
       formData.append('date',purchaseDetail.date)
       formData.append('supplier',purchaseDetail.supplier)
+      formData.append('amount',purchaseDetail.amount)
 
       const { success, message} = await addPurchase(userID,formData)
       if (success) {
