@@ -9,7 +9,7 @@ function Purchases() {
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
     const { addPurchase } = usePurchase()
     const [image, setImage] = useState<File | null>()
-     const fileInputRef = useRef<HTMLInputElement>(null)
+    const fileInputRef = useRef<HTMLInputElement>(null)
     const [purchaseDetail, setpurchaseDetail] = useState<Purchase>({
       productNumber: "",
       productName: "",
@@ -32,6 +32,18 @@ function Purchases() {
         ...prev,
         [name] : value
       }))
+    }
+
+    const handleSubmit = (event: ChangeEvent): void => {
+      event.preventDefault()
+      if (!image) return //Checking if the image file exists
+      const formData = new FormData()
+      formData.append('productNumber',purchaseDetail.productNumber)
+      formData.append('productName',purchaseDetail.productName)
+      formData.append('productImage',image)
+      formData.append('quantity',purchaseDetail.quantity)
+      formData.append('date',purchaseDetail.date)
+      formData.append('supplier',purchaseDetail.supplier)
     }
 
   return (

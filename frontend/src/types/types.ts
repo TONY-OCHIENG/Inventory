@@ -90,13 +90,13 @@ export interface ProductDetails{
  */
 
 export interface Purchase{
-  productNumber: String,
-  productName: String,
+  productNumber: string,
+  productName: string,
   productImage: File | null,
-  quantity: String,
-  date: String,
-  supplier: String,
-  amount: String
+  quantity: string,
+  date: string,
+  supplier: string,
+  amount: string
 }
 
 export interface PurchaseDetail{
