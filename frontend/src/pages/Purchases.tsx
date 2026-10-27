@@ -4,6 +4,7 @@ import { FaFileCsv } from "react-icons/fa6"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
+    const [openPurchase,setopenPurchase] = useState<Boolean>(false)
   return (
    <div className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -56,9 +57,9 @@ function Purchases() {
          </div>
          <hr className="mt-2"/>
          <div className="mt-4 flex flex-col gap-5">
-            <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
+            <div onClick={() => setopenPurchase(!openPurchase)} className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
                 <Plus  className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
-                    <title>Add Products</title>
+                    <title>Add Purchase</title>
                 </Plus>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Add Purchases</h1>
             </div>
@@ -116,9 +117,9 @@ function Purchases() {
          </div>
          </div>
         </div>  
-        <div className={`absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+        <div className={`absolute ${openPurchase ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
          <form className="relative bg-white p-4 rounded-md max-w-md">
-          <X className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
+          <X onClick={() => setopenPurchase(!openPurchase)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Purchase</h1>
           <label htmlFor="" className="text-sm text-gray-400">Purchase number</label>
           <input type="text" name="productNumber" className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="#4859"/>
