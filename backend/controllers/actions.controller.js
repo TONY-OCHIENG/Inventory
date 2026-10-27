@@ -174,3 +174,17 @@ export const depletedStock = (request, response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+//controllers that handle purchase
+
+export const addPurchase = (request, response) => {
+    const { id } = request.params
+    const { filename } = request.file
+    const {productName, productNumber,quantity, date, supplier,amount} = request.body
+
+    if (!productName || !productNumber || !quantity || !date || !supplier
+        || !amount || !filename
+    ) {
+        return response.status(200).json({success: false, message: "Fill all fields"})
+    }
+}
