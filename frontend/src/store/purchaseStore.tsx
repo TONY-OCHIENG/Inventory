@@ -8,7 +8,11 @@ export const usePurchase = create<PurchaseDetail>()(
     devtools((set) => ({
         purchase: [],
         setPurchases: async (user_id: String) => {
-           
+           const response = await apiClient.get(`/api/v1/getPurchase/${user_id}`)
+           const { result } = await response.data
+           set(() => ({
+            purchase: result
+           }))
         },
         addPurchase: async (user_id: String,purchase: FormData) => {
             const response = await apiClient.post(`/api/v1/addpurchase/${user_id}`,purchase)
