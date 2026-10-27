@@ -3,6 +3,7 @@ import { useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
 import type { Purchase } from "../types/types"
+import toast from "react-hot-toast"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
@@ -34,7 +35,7 @@ function Purchases() {
       }))
     }
 
-    const handleSubmit = (event: ChangeEvent): void => {
+    const handleSubmit = async (event: ChangeEvent): Promise<void> => {
       event.preventDefault()
       if (!image) return //Checking if the image file exists
       const formData = new FormData()
@@ -44,6 +45,13 @@ function Purchases() {
       formData.append('quantity',purchaseDetail.quantity)
       formData.append('date',purchaseDetail.date)
       formData.append('supplier',purchaseDetail.supplier)
+
+      const { success, message} = await addPurchase("1",formData)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error(message)
+      }
     }
 
   return (
@@ -159,7 +167,7 @@ function Purchases() {
          </div>
         </div>  
         <div className={`absolute ${openPurchase ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
-         <form className="relative bg-white p-4 rounded-md max-w-md">
+         <form onSubmit={handleSubmit} className="relative bg-white p-4 rounded-md max-w-md">
           <X onClick={() => setopenPurchase(!openPurchase)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Purchase</h1>
           <label htmlFor="" className="text-sm text-gray-400">Purchase number</label>
