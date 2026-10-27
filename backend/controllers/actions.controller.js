@@ -187,4 +187,17 @@ export const addPurchase = (request, response) => {
     ) {
         return response.status(200).json({success: false, message: "Fill all fields"})
     }
+
+    try {
+        const addPurchases = "INSERT INTO purchases(productNumber,productName,productImage,quantity,date,supplier,amount,user_id) VALUES(?,?,?,?,?,?,?,?)"
+        databaseconnection.query(addPurchases,[productNumber,productName,filename,quantity,date,supplier,
+            amount, id
+        ], (error, result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(201).json({success: true, message: "Purchase added successfully"})
+        })        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
 }
