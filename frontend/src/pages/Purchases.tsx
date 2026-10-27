@@ -1,5 +1,5 @@
 import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, Gift, Plus, ShoppingBag, Timer, X } from "lucide-react"
-import { useRef, useState, type ChangeEvent } from "react"
+import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
 import type { Purchase } from "../types/types"
@@ -25,6 +25,10 @@ function Purchases() {
       supplier: "",
       amount: ""
     })
+
+    useEffect(() => {
+      authentication()
+    },[userID])
 
      //user authentication function
     
@@ -62,7 +66,7 @@ function Purchases() {
       formData.append('date',purchaseDetail.date)
       formData.append('supplier',purchaseDetail.supplier)
 
-      const { success, message} = await addPurchase("1",formData)
+      const { success, message} = await addPurchase(userID,formData)
       if (success) {
         toast.success(message)
       } else {
