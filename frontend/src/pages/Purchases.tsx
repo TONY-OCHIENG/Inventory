@@ -1,5 +1,5 @@
 import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, Gift, Plus, ShoppingBag, Timer, X } from "lucide-react"
-import { useState } from "react"
+import { useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
 import type { Purchase } from "../types/types"
@@ -17,6 +17,14 @@ function Purchases() {
       supplier: "",
       amount: ""
     })
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+      const { name, value} = event.target
+      setpurchaseDetail((prev) => ({
+        ...prev,
+        [name] : value
+      }))
+    }
   return (
    <div className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
