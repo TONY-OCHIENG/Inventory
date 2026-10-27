@@ -73,6 +73,19 @@ function Purchases() {
       } else {
         toast.error(message)
       }
+
+      setpurchaseDetail({
+        productNumber: "",
+        productName: "",
+        productImage: null,
+        quantity: "",
+        date: "",
+        supplier: "",
+        amount: ""
+      })
+      
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      setImage(null);
     }
 
   return (
