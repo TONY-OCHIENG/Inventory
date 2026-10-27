@@ -2,7 +2,7 @@ import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, Gift, Plus, Sho
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
-import type { Purchase } from "../types/types"
+import type { Purchase, PurchaseFilter } from "../types/types"
 import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
@@ -23,6 +23,7 @@ function Purchases() {
       quantity: "",
       date: "",
       supplier: "",
+      status:"",
       amount: ""
     })
 
@@ -82,6 +83,7 @@ function Purchases() {
         quantity: "",
         date: "",
         supplier: "",
+        status:"",
         amount: ""
       })
 
@@ -89,6 +91,24 @@ function Purchases() {
       setImage(null);
       setopenPurchase(false)
     }
+
+      /**
+         * A filter function that filters purchases
+         * according to purchases recieved, pending and canceled
+         */
+        
+        const [activeFilter, setActiveFilter] = useState<PurchaseFilter>('All')
+        const filteredProducts =
+          activeFilter === 'All'
+            ? purchase
+            : purchase.filter((item) => item.status === activeFilter)
+    
+        const filterButtons: { label: string; value: PurchaseFilter }[] = [
+          { label: 'All', value: 'All' },
+          { label: 'Pending', value: 'Pending' },
+          { label: 'Recieved', value: 'Recieved' },
+          { label: 'Canceled', value: 'Canceled' },
+        ]
 
   return (
    <div className="relative p-4 w-full h-full">

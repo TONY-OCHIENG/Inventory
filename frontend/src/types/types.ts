@@ -96,6 +96,7 @@ export interface Purchase{
   quantity: string,
   date: string,
   supplier: string,
+  status: string,
   amount: string
 }
 
@@ -104,3 +105,5 @@ export interface PurchaseDetail{
   setPurchases: (user_id: String) => Promise<void>,
   addPurchase: (user_id: String,purchase: FormData) => Promise<Response>
 }
+
+export type PurchaseFilter = 'All' | 'Pending' | 'Recieved' | 'Canceled'
