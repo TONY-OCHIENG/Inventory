@@ -5,7 +5,7 @@ import { FaFileCsv } from "react-icons/fa6"
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
   return (
-   <div className="p-4 w-full h-full">
+   <div className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
          <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer border-t-2 border-t-white">
             <h1 className="text-center text-sm text-gray-600">All Purchases</h1>
@@ -115,7 +115,10 @@ function Purchases() {
             <h1 className="text-xs text-gray-400">Showing 1 to 10 out of 50 </h1>
          </div>
          </div>
-        </div>             
+        </div>  
+        <div className={`absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+         
+        </div>           
     </div>
   )
 }
