@@ -195,10 +195,17 @@ function Purchases() {
          <div className="overflow-y-auto h-full w-full bg-white/70 border-t-2 border-t-white rounded-md shadow-md p-2">
          <div className="flex justify-between items-center">
             <div className="flex gap-2">
-            <button className="px-4  text-xs rounded-md bg-green-100 py-1 shadow-md cursor-pointer">All</button>
-            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Pending</button>
-            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Recieved</button>
-            <button className="px-4  text-xs rounded-md bg-white py-1 shadow-md cursor-pointer">Canceled</button>
+             {filterButtons.map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setActiveFilter(value)}
+                  className={`px-4 text-xs rounded-md py-1 shadow-md cursor-pointer transition ${
+                    activeFilter === value ? 'bg-green-100 text-green-700 font-semibold' : 'bg-white'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
          </div>
          <hr className="text-gray-600 mt-1"/>
