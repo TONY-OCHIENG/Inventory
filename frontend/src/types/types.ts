@@ -84,3 +84,22 @@ export interface ProductDetails{
   deleteProduct: (product_id: String) => Promise<Response> ,
   createProducts: (product: FormData, user_id: String) => Promise<Response>
 }
+
+/**
+ * Purchase types
+ */
+
+interface Purchase{
+  productNumber: String,
+  productName: String,
+  productImage: File | null,
+  quantity: String,
+  date: String,
+  supplier: String,
+  amount: String
+}
+
+export interface PurchaseDetail{
+  purchase: Purchase[],
+  addPurchase: (user_id: String,purchase: FormData) => Promise<Response>
+}
