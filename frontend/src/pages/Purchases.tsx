@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
-    const { addPurchase } = usePurchase()
+    const { addPurchase, setPurchases,purchase } = usePurchase()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
@@ -28,6 +28,7 @@ function Purchases() {
 
     useEffect(() => {
       authentication()
+      setPurchases(userID)
     },[userID])
 
      //user authentication function
