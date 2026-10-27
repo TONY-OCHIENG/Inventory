@@ -18,6 +18,12 @@ function Purchases() {
       amount: ""
     })
 
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        if (!file) return    
+        setImage(file)
+    }
+
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
       const { name, value} = event.target
       setpurchaseDetail((prev) => ({
@@ -147,7 +153,7 @@ function Purchases() {
           <label htmlFor="" className="text-sm text-gray-400">Product name</label>
           <input type="text" name="productName" value={String(purchaseDetail.productName)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>
           <label htmlFor="" className="text-sm text-gray-400">Product image</label>
-          <input type="file" name="productImage" className="w-full p-2 mb-2 border rounded-md outline-none"/>
+          <input type="file" ref={fileInputRef} onChange={handleFileChange} accept="image/jpeg,image/png,.jpg,.jpeg,.png" name="productImage" className="w-full p-2 mb-2 border rounded-md outline-none"/>
           <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
           <input type="number" name="quantity" value={String(purchaseDetail.quantity)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>
           <label htmlFor="" className="text-sm text-gray-400">Amount</label>
