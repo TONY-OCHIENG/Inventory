@@ -113,6 +113,8 @@ function Purchases() {
           { label: 'Canceled', value: 'Canceled' },
         ]
 
+        console.log(purchase)
+
   return (
    <div className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">

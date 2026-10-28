@@ -10,10 +10,11 @@ export const usePurchase = create<PurchaseDetail>()(
         totalPurchase: 0,
         setPurchases: async (user_id: String,page: Number, limit: Number) => {
            const response = await apiClient.get(`/api/v1/getPurchase/${user_id}?page=${page}&limit=${limit}`)
-           const { results } = await response.data
-           const { totalPurchase, result} = results
+           const { result } = await response.data
+           console.log(response)
+           const { totalPurchase, results} = result
            set(() => ({
-            purchase: result,
+            purchase: results,
             totalPurchase: totalPurchase
            }))
         },
