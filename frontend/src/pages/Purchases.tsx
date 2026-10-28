@@ -1,4 +1,4 @@
-import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, FolderOpen, Gift, Plus, ShoppingBag, Timer, Trash, X } from "lucide-react"
+import { Ban, ChevronRight, Download, Edit, FileDown, FileSpreadsheet, FolderOpen, Gift, NotebookPenIcon, Plus, ShoppingBag, Timer, Trash, X } from "lucide-react"
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
@@ -258,8 +258,17 @@ function Purchases() {
                     <td>{item.supplier}</td>                  
                     <td className="text-center">{handleStatusColor(item.status)}</td>
                     <td>
-                     <div className="flex gap-2 items-center">
-                      <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
+                     <div className="flex gap-1 items-center">
+                      <NotebookPenIcon  className="text-green-400 h-5 w-5 cursor-pointer">
+                        <title>Recieve</title>
+                      </NotebookPenIcon>
+                      <Ban  className="text-gray-800 h-5 w-5 cursor-pointer">
+                        <title>Cancel</title>
+                      </Ban>
+                        <Edit  className="text-blue-400 h-5 w-5 cursor-pointer">
+                        <title>Edit</title>
+                      </Edit>
+                        <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
                         <title>Delete</title>
                       </Trash>
                      </div>
