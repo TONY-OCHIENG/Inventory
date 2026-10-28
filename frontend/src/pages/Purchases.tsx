@@ -16,6 +16,8 @@ function Purchases() {
     const navigate = useNavigate()
     const [image, setImage] = useState<File | null>()
     const fileInputRef = useRef<HTMLInputElement>(null)
+    const [page, setPage] = useState<number>(1)
+    let limit = 10
     const [purchaseDetail, setpurchaseDetail] = useState<Purchase>({
       productNumber: "",
       productName: "",
@@ -29,7 +31,7 @@ function Purchases() {
 
     useEffect(() => {
       authentication()
-      setPurchases(userID)
+      setPurchases(userID,page,limit)
     },[userID])
 
      //user authentication function

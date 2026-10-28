@@ -8,8 +8,8 @@ export const usePurchase = create<PurchaseDetail>()(
     devtools((set) => ({
         purchase: [],
         totalPurchase: 0,
-        setPurchases: async (user_id: String) => {
-           const response = await apiClient.get(`/api/v1/getPurchase/${user_id}`)
+        setPurchases: async (user_id: String,page: Number, limit: Number) => {
+           const response = await apiClient.get(`/api/v1/getPurchase/${user_id}?page=${page}&limit=${limit}`)
            const { results } = await response.data
            const { totalPurchase, result} = results
            set(() => ({

@@ -103,7 +103,7 @@ export interface Purchase{
 export interface PurchaseDetail{
   purchase: Purchase[],
   totalPurchase: number,
-  setPurchases: (user_id: String) => Promise<void>,
+  setPurchases: (user_id: String, page: Number, limit: Number) => Promise<void>,
   addPurchase: (user_id: String,purchase: FormData) => Promise<Response>
 }
 
