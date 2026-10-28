@@ -12,7 +12,7 @@ import { formatDate } from "../components/dateFormat"
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
-    const { addPurchase, setPurchases,purchase,totalPurchase } = usePurchase()
+    const { addPurchase, setPurchases,purchase,totalPurchase,cancelPurchase } = usePurchase()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
@@ -134,6 +134,17 @@ function Purchases() {
           return <p className="text-sm bg-red-200  w-[70px] rounded-full text-red-600">{status}</p>
         }
       }
+    /**
+     * Implementing a function that cancel purchase
+     */
+    const handleCancelPurchase = async (purchase_id: String) => {
+      const { success, message} = await cancelPurchase(purchase_id)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
+    }
 
   return (
    <div className="relative p-4 w-full h-full">
