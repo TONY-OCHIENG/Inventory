@@ -156,6 +156,7 @@ function Purchases() {
       } else {
         toast.error("An error occured")
       }
+      await setPurchases(userID,page,limit)
     }
 
   return (
@@ -284,15 +285,12 @@ function Purchases() {
                     <td className="text-center">{handleStatusColor(item.status)}</td>
                     <td>
                      <div className="flex gap-1 items-center">
-                      <NotebookPenIcon  className="text-green-400 h-5 w-5 cursor-pointer">
+                      <NotebookPenIcon onClick={() => handleRecievePurchase(item.purchase_id)} className="text-green-400 h-5 w-5 cursor-pointer">
                         <title>Recieve</title>
                       </NotebookPenIcon>
                       <Ban onClick={() => handleCancelPurchase(item.purchase_id)}  className="text-gray-800 h-5 w-5 cursor-pointer">
                         <title>Cancel</title>
-                      </Ban>
-                        <Edit  className="text-blue-400 h-5 w-5 cursor-pointer">
-                        <title>Edit</title>
-                      </Edit>
+                      </Ban>                      
                         <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
                         <title>Delete</title>
                       </Trash>
