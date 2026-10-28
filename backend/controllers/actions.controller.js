@@ -217,7 +217,7 @@ export const getPurchase = (request,response) => {
                     const totalPurchase = results[0].totalPurchase
                     return response.status(200).json({success: true, result: {
                         totalPurchase: totalPurchase,
-                        result: result
+                        results: result
                     }})
                 })
             } else {

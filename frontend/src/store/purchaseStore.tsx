@@ -7,11 +7,14 @@ import { apiClient } from "../components/ClientURL";
 export const usePurchase = create<PurchaseDetail>()(
     devtools((set) => ({
         purchase: [],
+        totalPurchase: 0,
         setPurchases: async (user_id: String) => {
            const response = await apiClient.get(`/api/v1/getPurchase/${user_id}`)
-           const { result } = await response.data
+           const { results } = await response.data
+           const { totalPurchase, result} = results
            set(() => ({
-            purchase: result
+            purchase: result,
+            totalPurchase: totalPurchase
            }))
         },
         addPurchase: async (user_id: String,purchase: FormData) => {
