@@ -211,7 +211,15 @@ export const getPurchase = (request,response) => {
         databaseconnection.query(getPurchase,[id,+limit, +offset],(error, result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({success: true, result: result})
+                const totalPurchases = "SELECT COUNT(*) as totalPurchase FROM purchases WHERE user_id = ?"
+                databaseconnection.query(totalPurchases,[id], (err, results) => {
+                    if (err) return response.status(500).json({success: false, message: err})
+                    const totalPurchase = results[0].totalPurchase
+                    return response.status(200).json({success: true, result: {
+                        totalPurchase: totalPurchase,
+                        result: result
+                    }})
+                })
             } else {
                 return response.status(200).json({success: false, result: result})
             }
