@@ -115,7 +115,23 @@ function Purchases() {
           { label: 'Canceled', value: 'Canceled' },
         ]
 
-        console.log(purchase)
+      /**
+       * A function that handles background color change of status
+       */
+
+      const handleStatusColor = (status: string) => {
+        if (status === 'Pending') {
+          return <p className="text-sm bg-amber-200  w-[70px] rounded-full text-amber-600">{status}</p>
+        }
+
+        if (status === 'Recieved') {
+          return <p className="text-sm bg-green-200  w-[70px] rounded-full text-green-600">{status}</p>
+        }
+
+        if (status === 'Canceled') {
+          return <p className="text-sm bg-red-200  w-[70px] rounded-full text-red-600">{status}</p>
+        }
+      }
 
   return (
    <div className="relative p-4 w-full h-full">
@@ -125,7 +141,7 @@ function Purchases() {
             <div className="flex gap-4 ml-4">
               <ShoppingBag className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalPurchase}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -222,9 +238,9 @@ function Purchases() {
                 <th>Product Name</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
-                <th>Date</th>
-                <th>Supplier</th>
                 <th>Amount</th>
+                <th>Date</th>
+                <th>Supplier</th>                
                 <th>Status</th>
                 <th>Action</th>
             </thead>
@@ -237,11 +253,11 @@ function Purchases() {
                     <td>{item.productName}</td>
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
                     <td>{item.quantity}</td>
+                      <td>{item.amount}</td>
                     <td>{formatDate(item.date)}</td>
-                    <td>{item.supplier}</td>
-                    <td>{item.amount}</td>
-                    <td>{item.status}</td>
-                    <td className="">
+                    <td>{item.supplier}</td>                  
+                    <td className="text-center">{handleStatusColor(item.status)}</td>
+                    <td>
                      <div className="flex gap-2 items-center">
                       <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
                         <title>Delete</title>
