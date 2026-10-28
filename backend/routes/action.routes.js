@@ -15,5 +15,5 @@ actionRoutes.get("/depletedStock/:id",depletedStock)
 actionRoutes.post("/addPurchase/:id",upload.single('productImage'),addPurchase)
 actionRoutes.get("/getPurchase/:id",getPurchase)
 actionRoutes.put("/cancelPurchase/:id",cancelPurchase)
-actionRoutes.put("/recievepurchase/:id",recievePurchase)
+actionRoutes.put("/recievePurchase/:id",recievePurchase)
 export default actionRoutes
