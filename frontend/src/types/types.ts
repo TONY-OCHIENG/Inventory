@@ -90,6 +90,7 @@ export interface ProductDetails{
  */
 
 export interface Purchase{
+  purchase_id: string,
   productNumber: string,
   productName: string,
   productImage: File | null,
@@ -104,7 +105,8 @@ export interface PurchaseDetail{
   purchase: Purchase[],
   totalPurchase: number,
   setPurchases: (user_id: String, page: Number, limit: Number) => Promise<void>,
-  addPurchase: (user_id: String,purchase: FormData) => Promise<Response>
+  addPurchase: (user_id: String,purchase: FormData) => Promise<Response>,
+  cancelPurchase: (purchase_id: String) => Promise<Response>
 }
 
 export type PurchaseFilter = 'All' | 'Pending' | 'Recieved' | 'Canceled'

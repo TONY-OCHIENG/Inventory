@@ -21,6 +21,7 @@ function Purchases() {
     const [page, setPage] = useState<number>(1)
     let limit = 10
     const [purchaseDetail, setpurchaseDetail] = useState<Purchase>({
+      purchase_id:"",
       productNumber: "",
       productName: "",
       productImage: null,
@@ -81,6 +82,7 @@ function Purchases() {
       }
 
       setpurchaseDetail({
+        purchase_id:"",
         productNumber: "",
         productName: "",
         productImage: null,
