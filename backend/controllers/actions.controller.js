@@ -262,6 +262,11 @@ export const recievePurchase = (request,response) => {
 export const deletePurchase = (request,response) => {
     const { id } = request.params
     try {
+        const deletePurchase = "DELETE  FROM purchases WHERE purchase_id = ?"
+        databaseconnection.query(deletePurchase,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Purchase deleted"})
+        })
         
     } catch (error) {
         console.log(error)
