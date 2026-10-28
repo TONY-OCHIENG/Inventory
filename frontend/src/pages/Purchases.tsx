@@ -1,4 +1,4 @@
-import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, Gift, Plus, ShoppingBag, Timer, X } from "lucide-react"
+import { Ban, ChevronRight, Download, FileDown, FileSpreadsheet, FolderOpen, Gift, Plus, ShoppingBag, Timer, Trash, X } from "lucide-react"
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
@@ -6,11 +6,12 @@ import type { Purchase, PurchaseFilter } from "../types/types"
 import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
+import Pagination from "../components/Pagination"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
-    const { addPurchase, setPurchases,purchase } = usePurchase()
+    const { addPurchase, setPurchases,purchase,totalPurchase } = usePurchase()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
@@ -32,7 +33,7 @@ function Purchases() {
     useEffect(() => {
       authentication()
       setPurchases(userID,page,limit)
-    },[userID])
+    },[userID,page])
 
      //user authentication function
     
@@ -100,7 +101,7 @@ function Purchases() {
          */
         
         const [activeFilter, setActiveFilter] = useState<PurchaseFilter>('All')
-        const filteredProducts =
+        const filteredPurchases =
           activeFilter === 'All'
             ? purchase
             : purchase.filter((item) => item.status === activeFilter)
@@ -156,7 +157,7 @@ function Purchases() {
             </div>
           </div>
         </div> 
-        <div className="mt-4 w-full flex gap-2 h-[83%]">
+        <div className="mt-4 w-full flex gap-2 h-[84%]">
          <div className={`transition duration-300 border-t-2 border-t-white ${open ? 'w-[180px]' : 'w-[50px]'} bg-white/70 p-2 shadow-md rounded-md h-[45vh]`}>
          <div className="flex justify-between items-center">
             <h1 className={`${open ? 'block' : 'hidden'} text-sm text-gray-600 font-bold`}>Actions</h1>
@@ -194,7 +195,7 @@ function Purchases() {
             </div>
          </div>
          </div>
-         <div className="overflow-y-auto h-full w-full bg-white/70 border-t-2 border-t-white rounded-md shadow-md p-2">
+         <div className="overflow-y-auto scrollbar-thin h-full w-full bg-white/70 border-t-2 border-t-white rounded-md shadow-md p-2">
          <div className="flex justify-between items-center">
             <div className="flex gap-2">
              {filterButtons.map(({ label, value }) => (
@@ -211,7 +212,7 @@ function Purchases() {
             </div>
          </div>
          <hr className="text-gray-600 mt-1"/>
-         <table className="w-full overflow-y-auto bg-white h-[90%]">
+         <table className="w-full overflow-y-auto bg-white">
             <thead className="text-sm text-left text-gray-600 border-b">
                 <th className="p-2">Purchase No</th>
                 <th>Product Name</th>
@@ -223,11 +224,44 @@ function Purchases() {
                 <th>Status</th>
                 <th>Action</th>
             </thead>
-            <tbody className="overflow-y-auto"></tbody>
+            <tbody className="overflow-y-auto">
+              {
+                filteredPurchases.length > 0 ?
+                filteredPurchases.map((item) => (
+                  <tr className="w-full text-left even:bg-gray-50">
+                    <td className="p-2">{item.productNumber}</td>
+                    <td>{item.productName}</td>
+                    <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
+                    <td>{item.quantity}</td>
+                    <td>{item.date}</td>
+                    <td className="text-center">{item.supplier}</td>
+                    <td>{item.amount}</td>
+                    <td>{item.status}</td>
+                    <td className="">
+                     <div className="flex gap-2 items-center">
+                      <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
+                        <title>Delete</title>
+                      </Trash>
+                     </div>
+                    </td>
+                  </tr>
+                ))
+                :
+                <tr className="h-[59vh]">
+                  <td colSpan={8} className="text-center ">
+                    <div className="flex flex-col justify-center items-center">
+                        <FolderOpen className="h-8 w-8"/>
+                       <h1 className="text-sm text-gray-600 font-extrabold">Purchases not made</h1>
+                    </div>                  
+                  </td>
+                </tr>
+              }
+            </tbody>
          </table>
          <hr className="text-gray-600 mb-1"/>
          <div className="flex w-full justify-between items-center">
-            <h1 className="text-xs text-gray-400">Showing 1 to 10 out of 50 </h1>
+            <h1 className="text-xs text-gray-400"></h1>
+             <Pagination page={page} setPage={setPage} total={totalPurchase} limit={limit} />
          </div>
          </div>
         </div>  
