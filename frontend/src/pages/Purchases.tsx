@@ -12,7 +12,7 @@ import { formatDate } from "../components/dateFormat"
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
-    const { addPurchase, setPurchases,purchase,totalPurchase,cancelPurchase } = usePurchase()
+    const { addPurchase, setPurchases,purchase,totalPurchase,cancelPurchase,recievePurchase } = usePurchase()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
@@ -145,6 +145,17 @@ function Purchases() {
         toast.error("An error occured")
       }
       await setPurchases(userID,page,limit)
+    }
+
+    //A function that updates purchases made to recieved
+
+    const handleRecievePurchase = async (purchase_id: String) => {
+      const { success, message} = await recievePurchase(purchase_id)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
     }
 
   return (
