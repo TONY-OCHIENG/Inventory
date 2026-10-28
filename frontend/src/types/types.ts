@@ -108,6 +108,7 @@ export interface PurchaseDetail{
   addPurchase: (user_id: String,purchase: FormData) => Promise<Response>,
   cancelPurchase: (purchase_id: String) => Promise<Response>,
   recievePurchase: (purchase_id: String) => Promise<Response>
+  deletePurchase: (purchase_id: String) => Promise<Response>
 }
 
 export type PurchaseFilter = 'All' | 'Pending' | 'Recieved' | 'Canceled'

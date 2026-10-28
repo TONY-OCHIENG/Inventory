@@ -32,6 +32,11 @@ export const usePurchase = create<PurchaseDetail>()(
             const response = await apiClient.put(`/api/v1/recievePurchase/${purchase_id}`)
             const { success, message} = await response.data
             return { success, message}
+        },
+        deletePurchase: async (purchase_id: String) => {
+            const response = await apiClient.delete(`/api/v1/deletepurchase/${purchase_id}`)
+            const { success, message} = await response.data
+            return {success, message}
         }
     }),{name:"purchase_store"})
 )
