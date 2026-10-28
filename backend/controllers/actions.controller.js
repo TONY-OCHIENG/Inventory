@@ -247,6 +247,11 @@ export const cancelPurchase = (request, response) => {
 export const recievePurchase = (request,response) => {
     const { id } = request.params
     try {
+        const recievePurchase = "UPDATE purchases SET status = 'Recieved' WHERE purchase_id = ?"
+        databaseconnection.query(recievePurchase,[id],(err, result) => {
+            if (err) return response.status(500).json({success: false, message: err})
+            return response.status(200).json({success: true, message: "Purchase recieved"})
+        })
         
     } catch (error) {
         console.log(error)
