@@ -233,7 +233,11 @@ export const getPurchase = (request,response) => {
 export const cancelPurchase = (request, response) => {
     const { id } = request.params
     try {
-        
+        const cancelPurchase = "UPDATE purchases SET status = 'Canceled' WHERE purchase_id = ?"
+        databaseconnection.query(cancelPurchase,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Purchase canceled"})
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
