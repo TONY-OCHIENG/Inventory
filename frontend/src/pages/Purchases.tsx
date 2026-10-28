@@ -12,7 +12,9 @@ import { formatDate } from "../components/dateFormat"
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
-    const { addPurchase, setPurchases,purchase,totalPurchase,cancelPurchase,recievePurchase } = usePurchase()
+    const { addPurchase, setPurchases,purchase,totalPurchase,cancelPurchase,recievePurchase,
+      deletePurchase
+     } = usePurchase()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
@@ -158,6 +160,18 @@ function Purchases() {
       }
       await setPurchases(userID,page,limit)
     }
+
+  // A function that deletes purchases
+
+  const handleDeletepurchase = async (purchase_id: String) => {
+    const { success, message} = await deletePurchase(purchase_id)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error("An error occured")
+    }
+     await setPurchases(userID,page,limit)
+  }
 
   return (
    <div className="relative p-4 w-full h-full">
