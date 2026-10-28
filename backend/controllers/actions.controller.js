@@ -204,9 +204,11 @@ export const addPurchase = (request, response) => {
 
 export const getPurchase = (request,response) => {
     const { id } = request.params
+    const { page, limit } = request.query
     try {
-        const getPurchase = "SELECT * FROM purchases WHERE user_id = ?"
-        databaseconnection.query(getPurchase,[id],(error, result) => {
+        const offset = (page - 1) * limit
+        const getPurchase = "SELECT * FROM purchases WHERE user_id = ? LIMIT ? OFFSET ?"
+        databaseconnection.query(getPurchase,[id,+limit, +offset],(error, result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
                 return response.status(200).json({success: true, result: result})
