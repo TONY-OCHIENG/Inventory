@@ -7,6 +7,7 @@ import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import Pagination from "../components/Pagination"
+import { formatDate } from "../components/dateFormat"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
@@ -93,6 +94,7 @@ function Purchases() {
       if (fileInputRef.current) fileInputRef.current.value = "";
       setImage(null);
       setopenPurchase(false)
+      setPurchases(userID,page,limit)
     }
 
       /**
@@ -230,13 +232,13 @@ function Purchases() {
               {
                 filteredPurchases.length > 0 ?
                 filteredPurchases.map((item) => (
-                  <tr className="w-full text-left even:bg-gray-50">
+                  <tr className="w-full text-left even:bg-gray-50 text-sm text-gray-600">
                     <td className="p-2">{item.productNumber}</td>
                     <td>{item.productName}</td>
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
                     <td>{item.quantity}</td>
-                    <td>{item.date}</td>
-                    <td className="text-center">{item.supplier}</td>
+                    <td>{formatDate(item.date)}</td>
+                    <td>{item.supplier}</td>
                     <td>{item.amount}</td>
                     <td>{item.status}</td>
                     <td className="">
