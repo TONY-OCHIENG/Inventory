@@ -144,6 +144,7 @@ function Purchases() {
       } else {
         toast.error("An error occured")
       }
+      await setPurchases(userID,page,limit)
     }
 
   return (
@@ -275,7 +276,7 @@ function Purchases() {
                       <NotebookPenIcon  className="text-green-400 h-5 w-5 cursor-pointer">
                         <title>Recieve</title>
                       </NotebookPenIcon>
-                      <Ban  className="text-gray-800 h-5 w-5 cursor-pointer">
+                      <Ban onClick={() => handleCancelPurchase(item.purchase_id)}  className="text-gray-800 h-5 w-5 cursor-pointer">
                         <title>Cancel</title>
                       </Ban>
                         <Edit  className="text-blue-400 h-5 w-5 cursor-pointer">
