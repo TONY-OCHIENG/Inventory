@@ -314,7 +314,7 @@ export const recievedPurchase = (request, response) => {
 export const canceledPurchase = (request, response) => {
     const { id } = request.params
     try {
-        const recievedPurchase = "SELECT COUNT(*) as canceledPurchase FROM purchases WHERE user_id = ? AND status = 'Recieved'"
+        const recievedPurchase = "SELECT COUNT(*) as canceledPurchase FROM purchases WHERE user_id = ? AND status = 'Canceled'"
         databaseconnection.query(recievedPurchase,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
