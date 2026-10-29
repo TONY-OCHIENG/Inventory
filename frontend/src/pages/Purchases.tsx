@@ -305,7 +305,7 @@ function Purchases() {
                       <Ban onClick={() => handleCancelPurchase(item.purchase_id)}  className="text-gray-800 h-5 w-5 cursor-pointer">
                         <title>Cancel</title>
                       </Ban>                      
-                        <Trash  className="text-red-400 h-5 w-5 cursor-pointer">
+                        <Trash onClick={() => handleDeletepurchase(item.purchase_id)} className="text-red-400 h-5 w-5 cursor-pointer">
                         <title>Delete</title>
                       </Trash>
                      </div>
