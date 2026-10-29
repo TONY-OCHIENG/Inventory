@@ -277,7 +277,15 @@ export const deletePurchase = (request,response) => {
 export const pendingPurchase = (request, response) => {
     const { id } = request.params
     try {
-        
+        const pendingPurchase = "SELECT COUNT(*) as pendingPurchase FROM purchases WHERE user_id = ? AND status = 'Pending'"
+        databaseconnection.query(pendingPurchase,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result[0].pendingPurchase})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
