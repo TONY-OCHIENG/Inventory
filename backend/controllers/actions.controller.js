@@ -311,7 +311,7 @@ export const recievedPurchase = (request, response) => {
     }
 }
 
-export const canceleddPurchase = (request, response) => {
+export const canceledPurchase = (request, response) => {
     const { id } = request.params
     try {
         const recievedPurchase = "SELECT COUNT(*) as canceledPurchase FROM purchases WHERE user_id = ? AND status = 'Recieved'"
