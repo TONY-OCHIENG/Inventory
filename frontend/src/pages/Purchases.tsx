@@ -13,7 +13,7 @@ function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
     const [openPurchase,setopenPurchase] = useState<Boolean>(false)
     const { addPurchase, setPurchases,purchase,totalPurchase,cancelPurchase,recievePurchase,
-      deletePurchase
+      deletePurchase, pendingPurchase, setPendingPurchase
      } = usePurchase()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
@@ -37,6 +37,7 @@ function Purchases() {
     useEffect(() => {
       authentication()
       setPurchases(userID,page,limit)
+      setPendingPurchase(userID)
     },[userID,page])
 
      //user authentication function
@@ -99,6 +100,7 @@ function Purchases() {
       setImage(null);
       setopenPurchase(false)
       setPurchases(userID,page,limit)
+      setPendingPurchase(userID)
     }
 
       /**
@@ -147,6 +149,7 @@ function Purchases() {
         toast.error("An error occured")
       }
       await setPurchases(userID,page,limit)
+      await  setPendingPurchase(userID)
     }
 
     //A function that updates purchases made to recieved
@@ -159,6 +162,7 @@ function Purchases() {
         toast.error("An error occured")
       }
       await setPurchases(userID,page,limit)
+      await  setPendingPurchase(userID)
     }
 
   // A function that deletes purchases
@@ -171,6 +175,7 @@ function Purchases() {
       toast.error("An error occured")
     }
      await setPurchases(userID,page,limit)
+     await  setPendingPurchase(userID)
   }
 
   return (
@@ -191,7 +196,7 @@ function Purchases() {
             <div className="flex gap-4 ml-4">
               <Timer className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{pendingPurchase}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>

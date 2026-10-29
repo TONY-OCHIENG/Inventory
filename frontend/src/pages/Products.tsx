@@ -107,6 +107,9 @@ function Products() {
        if (fileInputRef.current) fileInputRef.current.value = "";
        setImage(null);
        setProducts(userID,page,limit)
+        setlowProducts(userID)
+        setavailableProducts(userID)
+        setdepletedStock(userID)
     } 
     //Implementing a function that deletes product
     const handleDeleteProduct = async (product_id: String) => {
@@ -117,6 +120,9 @@ function Products() {
         toast.error("An error occured")
       }
       await setProducts(userID,page,limit)
+      await setlowProducts(userID)
+      await setavailableProducts(userID)
+      await setdepletedStock(userID)
     }
 
     //Downloading table data to excel
