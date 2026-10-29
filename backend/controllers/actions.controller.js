@@ -310,3 +310,21 @@ export const recievedPurchase = (request, response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const canceleddPurchase = (request, response) => {
+    const { id } = request.params
+    try {
+        const recievedPurchase = "SELECT COUNT(*) as canceledPurchase FROM purchases WHERE user_id = ? AND status = 'Recieved'"
+        databaseconnection.query(recievedPurchase,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result[0].canceledPurchase})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
