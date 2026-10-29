@@ -104,6 +104,8 @@ export interface Purchase{
 export interface PurchaseDetail{
   purchase: Purchase[],
   totalPurchase: number,
+  pendingPurchase: number,
+  setPendingPurchase: (user_id: String) => Promise<void>,
   setPurchases: (user_id: String, page: Number, limit: Number) => Promise<void>,
   addPurchase: (user_id: String,purchase: FormData) => Promise<Response>,
   cancelPurchase: (purchase_id: String) => Promise<Response>,
