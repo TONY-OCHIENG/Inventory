@@ -300,7 +300,7 @@ export const recievedPurchase = (request, response) => {
         databaseconnection.query(recievedPurchase,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if (result.length > 0) {
-                return response.status(200).json({success: true, result: result[0].recievePurchase})
+                return response.status(200).json({success: true, result: result[0].recievedPurchase})
             } else {
                 return response.status(200).json({success: false, result: result})
             }
