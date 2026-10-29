@@ -18,4 +18,5 @@ actionRoutes.put("/cancelPurchase/:id",cancelPurchase)
 actionRoutes.put("/recievePurchase/:id",recievePurchase)
 actionRoutes.delete("/deletepurchase/:id",deletePurchase)
 actionRoutes.get("/pendingPurchase/:id",pendingPurchase)
+actionRoutes.get("/recievedPurchase/:id",recievePurchase)
 export default actionRoutes
