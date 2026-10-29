@@ -8,6 +8,14 @@ export const usePurchase = create<PurchaseDetail>()(
     devtools((set) => ({
         purchase: [],
         totalPurchase: 0,
+        pendingPurchase: 0,
+        setPendingPurchase: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/pendingPurchase/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                pendingPurchase: result
+            }))
+        },
         setPurchases: async (user_id: String,page: Number, limit: Number) => {
            const response = await apiClient.get(`/api/v1/getPurchase/${user_id}?page=${page}&limit=${limit}`)
            const { result } = await response.data
