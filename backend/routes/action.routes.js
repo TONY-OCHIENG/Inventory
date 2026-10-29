@@ -1,5 +1,5 @@
 import express from 'express'
-import { addProducts, addPurchase, addReminders, availableStock, cancelPurchase, deleteProduct, deletePurchase, deleteReminders, depletedStock, getProducts, getPurchase, getReminders, lowStock, recievePurchase } from '../controllers/actions.controller.js'
+import { addProducts, addPurchase, addReminders, availableStock, cancelPurchase, deleteProduct, deletePurchase, deleteReminders, depletedStock, getProducts, getPurchase, getReminders, lowStock, pendingPurchase, recievePurchase } from '../controllers/actions.controller.js'
 import { upload } from '../configs/upload.js'
 
 const actionRoutes = express.Router()
@@ -17,4 +17,5 @@ actionRoutes.get("/getPurchase/:id",getPurchase)
 actionRoutes.put("/cancelPurchase/:id",cancelPurchase)
 actionRoutes.put("/recievePurchase/:id",recievePurchase)
 actionRoutes.delete("/deletepurchase/:id",deletePurchase)
+actionRoutes.get("/pendingPurchase/:id",pendingPurchase)
 export default actionRoutes
