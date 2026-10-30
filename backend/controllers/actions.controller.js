@@ -328,3 +328,11 @@ export const canceledPurchase = (request, response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const addSuppliers = (request, response) => {
+    const { id } = request.params
+    const { supplierNumber,supplierName,date} = request.body
+    if (!supplierName || !supplierNumber || !date) {
+        return response.status(200).json({success: false, message: "Fill all fields"})
+    }
+}
