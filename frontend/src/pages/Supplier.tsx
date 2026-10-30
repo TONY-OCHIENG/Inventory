@@ -68,6 +68,16 @@ function Supplier() {
                 </button>
               ))}
          </div>
+         <table className="mt-2 w-full bg-white">
+            <thead className="text-sm text-gray-600 text-left border-b">
+                <th className="p-2">Supplier No</th>
+                <th>Supplier Name</th>
+                <th>Date</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+         </table>
         </div>                         
     </div>
   )
