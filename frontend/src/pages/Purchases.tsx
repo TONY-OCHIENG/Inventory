@@ -1,12 +1,12 @@
-import { Ban, ChevronRight, Download, Edit, FileDown, FileSpreadsheet, FolderOpen, Gift, NotebookPenIcon, Plus, ShoppingBag, Timer, Trash, X } from "lucide-react"
+import { Ban, ChevronRight, Download, FolderOpen, Gift, NotebookPenIcon, Plus, ShoppingBag, Timer, Trash, X } from "lucide-react"
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
-import { FaFileCsv } from "react-icons/fa6"
 import { usePurchase } from "../store/purchaseStore"
 import type { Purchase, PurchaseFilter } from "../types/types"
 import toast from "react-hot-toast"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import Pagination from "../components/Pagination"
+import { useDownloadExcel } from 'react-export-table-to-excel'
 import { formatDate } from "../components/dateFormat"
 
 function Purchases() {
@@ -189,6 +189,14 @@ function Purchases() {
      await setCanceledPurchase(userID)
   }
 
+    //Downloading table data to excel
+    const tableRef = useRef(null)
+    const { onDownload } = useDownloadExcel({
+        currentTableRef:tableRef.current,
+        filename: "purchase_Details",
+        sheet:"purchase_Details"
+    }) 
+
   return (
    <div className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -247,7 +255,7 @@ function Purchases() {
                 </Plus>
                 <h1 className={`${open ? 'block' : 'hidden'} text-xs text-gray-400`}>Add Purchases</h1>
             </div>
-              <div className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
+              <div onClick={onDownload} className="flex gap-2 items-center cursor-pointer hover:bg-white p-2 rounded-md">
                 <Download className={`${open ? 'h-4 w-4' : ''}  text-gray-600`}>
                     <title>Download As Excel</title>
                 </Download>
