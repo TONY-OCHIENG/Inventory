@@ -35,7 +35,6 @@ export const usePurchase = create<PurchaseDetail>()(
         setPurchases: async (user_id: String,page: Number, limit: Number) => {
            const response = await apiClient.get(`/api/v1/getPurchase/${user_id}?page=${page}&limit=${limit}`)
            const { result } = await response.data
-           console.log(response)
            const { totalPurchase, results} = result
            set(() => ({
             purchase: results,

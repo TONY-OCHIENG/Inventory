@@ -294,7 +294,7 @@ function Purchases() {
             </thead>
             <tbody className="overflow-y-auto">
               {
-                filteredPurchases.length > 0 ?
+                filteredPurchases && filteredPurchases.length > 0 ?
                 filteredPurchases.map((item) => (
                   <tr className="w-full text-left even:bg-gray-50 text-sm text-gray-600">
                     <td className="p-2">{item.productNumber}</td>

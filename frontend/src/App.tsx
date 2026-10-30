@@ -5,8 +5,9 @@ import NotFound from "./pages/NotFound"
 import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Dashboard from "./pages/Dashboard"
-import Products from "./pages/Products"
+import Product from "./pages/Products"
 import Purchases from "./pages/Purchases"
+import Supplier from "./pages/Supplier"
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <Route path="/verificationCode" element={<VerificationCode/>}/>
       <Route path="/dashboard" element={<Home/>}>
        <Route path="" element={<Dashboard/>}/>
-       <Route path="/dashboard/products" element={<Products/>}/>
+       <Route path="/dashboard/products" element={<Product/>}/>
        <Route path="/dashboard/purchases" element={<Purchases/>}/>
+       <Route path="/dashboard/supplier" element={<Supplier/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="*" element={<NotFound/>}/>

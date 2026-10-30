@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { useDownloadExcel } from 'react-export-table-to-excel'
 import Pagination from "../components/Pagination"
 
-function Products() {
+function Product() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
@@ -264,7 +264,7 @@ function Products() {
             </thead>
             <tbody className=" w-full text-sm text-gray-500">
               {
-                filteredProducts.length > 0 ?
+                filteredProducts && filteredProducts.length > 0 ?
                 filteredProducts.map((item) => (
                   <tr className="w-full text-left even:bg-gray-50">
                     <td className="p-2">{item.sku}</td>
@@ -329,4 +329,4 @@ function Products() {
   )
 }
 
-export default Products
+export default Product
