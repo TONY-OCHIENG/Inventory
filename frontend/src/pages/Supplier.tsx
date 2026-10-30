@@ -1,8 +1,10 @@
 import { Activity, BanIcon, Truck, Wallet, X } from "lucide-react"
 import type {SupplierDetails, SupplierFilter } from "../types/types";
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { useSupplier } from "../store/supplierStore";
 import toast from "react-hot-toast";
+import { useFormDetail } from "../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
@@ -11,6 +13,9 @@ function Supplier() {
         supplierNumber:'',
         date:''
     })
+    const navigate = useNavigate()
+    const { authenticateUser} = useFormDetail()
+    const [userID, setUserID] = useState<String>("")
     const { addSupplier } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
@@ -24,6 +29,21 @@ function Supplier() {
             ...prev,
             [name] : value
         }))
+    }
+
+    useEffect(() => {
+        authentication()
+    },[userID])
+
+      //user authentication function
+    
+    const authentication = async () => {
+        const { success, user_id} = await authenticateUser()
+        if (success) {
+          setUserID(user_id)
+        } else {
+          navigate('/login')      
+        }
     }
 
     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
