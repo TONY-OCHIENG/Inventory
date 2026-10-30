@@ -126,6 +126,16 @@ export interface SupplierDetails{
   date: string
 }
 
+export interface SupplierInfo{
+  supplierName: String,
+  supplierNumber: String,
+  balance: String,
+  status: String,
+  date: String
+}
+
 export interface Suppliers{
+  supplier: SupplierInfo[],
+  setSupplier: (user_id: String) => Promise<void>,
   addSupplier: (user_id: String, supplier: SupplierDetails) => Promise<Response>
 }
