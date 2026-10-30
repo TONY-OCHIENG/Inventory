@@ -1,15 +1,21 @@
 import { Activity, BanIcon, Truck, Wallet, X } from "lucide-react"
-import type { SupplierFilter } from "../types/types";
+import type {SupplierDetails, SupplierFilter } from "../types/types";
 import { useState } from "react";
 
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
-     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
-     const filterButtons: { label: string; value: SupplierFilter }[] = [
+    const [supplierDetails, setSupplierdetails] = useState<SupplierDetails>({
+        supplierName: "",
+        supplierNumber:'',
+        date:''
+    })
+    const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
+    const filterButtons: { label: string; value: SupplierFilter }[] = [
               { label: 'All', value: 'All' },
               { label: 'Active', value: 'Active' },
               { label: 'On hold', value: 'On hold' }              
-            ]
+        ]
+    
   return (
     <div className="relative p-4 w-full h-full">  
      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">

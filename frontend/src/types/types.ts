@@ -126,6 +126,6 @@ export interface SupplierDetails{
   date: string
 }
 
-export interface Supplier{
+export interface Suppliers{
   addSupplier: (user_id: String, supplier: SupplierDetails) => Promise<Response>
 }
