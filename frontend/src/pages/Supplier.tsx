@@ -1,6 +1,14 @@
 import { Activity, BanIcon, Truck, Wallet } from "lucide-react"
+import type { SupplierFilter } from "../types/types";
+import { useState } from "react";
 
 function Supplier() {
+     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
+     const filterButtons: { label: string; value: SupplierFilter }[] = [
+              { label: 'All', value: 'All' },
+              { label: 'Active', value: 'Active' },
+              { label: 'On hold', value: 'On hold' }              
+            ]
   return (
     <div className="p-4 w-full h-full">  
      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -44,7 +52,23 @@ function Supplier() {
               </div>
             </div>
           </div> 
-        </div>                           
+        </div>  
+        <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
+         <button className="text-xs mb-2 bg-white font-extrabold text-gray-600 p-2 border-gray-400 border rounded-md cursor-pointer">Add supplier</button>
+         <div className="flex gap-2 ">
+             {filterButtons.map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setActiveFilter(value)}
+                  className={`px-4 text-xs rounded-md py-1 shadow-md cursor-pointer transition ${
+                    activeFilter === value ? 'bg-green-100 text-green-700 font-semibold' : 'bg-white'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+         </div>
+        </div>                         
     </div>
   )
 }

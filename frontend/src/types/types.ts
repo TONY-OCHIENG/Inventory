@@ -118,3 +118,4 @@ export interface PurchaseDetail{
 }
 
 export type PurchaseFilter = 'All' | 'Pending' | 'Recieved' | 'Canceled'
+export type SupplierFilter = 'All' | 'Active' | 'On hold'
