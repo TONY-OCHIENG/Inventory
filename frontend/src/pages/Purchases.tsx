@@ -280,7 +280,7 @@ function Purchases() {
             </div>
          </div>
          <hr className="text-gray-600 mt-1"/>
-         <table className="w-full overflow-y-auto bg-white">
+         <table ref={tableRef}  className="w-full overflow-y-auto bg-white">
             <thead className="text-sm text-left text-gray-600 border-b">
                 <th className="p-2">Purchase No</th>
                 <th>Product Name</th>
