@@ -16,7 +16,7 @@ function Supplier() {
     const navigate = useNavigate()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
-    const { addSupplier } = useSupplier()
+    const { addSupplier, supplier, setSupplier } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
               { label: 'All', value: 'All' },
@@ -33,6 +33,7 @@ function Supplier() {
 
     useEffect(() => {
         authentication()
+        setSupplier(userID)
     },[userID])
 
       //user authentication function
@@ -62,7 +63,9 @@ function Supplier() {
         })
 
         setOpen(!open)
+        await setSupplier(userID)
     } 
+    
   return (
     <div className="relative p-4 w-full h-full">  
      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
