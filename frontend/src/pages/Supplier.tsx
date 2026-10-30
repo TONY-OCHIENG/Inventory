@@ -84,18 +84,13 @@ function Supplier() {
          <form className="relative bg-white p-4 rounded-md max-w-md">
           <X onClick={() => setOpen(!open)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Supplier</h1>
-          <label htmlFor="" className="text-sm text-gray-400">Purchase number</label>
-          <input type="text" name="productNumber"  className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="eg #4859"/>
-          <label htmlFor="" className="text-sm text-gray-400">Product name</label>
-          <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>        
-          <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
-          <input type="number" name="quantity"  className="w-full p-2 mb-2 border rounded-md outline-none"/>
-          <label htmlFor="" className="text-sm text-gray-400">Amount</label>
-          <input type="number" name="amount" className="w-full p-2 mb-2 border rounded-md outline-none"/>
+          <label htmlFor="" className="text-sm text-gray-400">Supplier number</label>
+          <input type="text" name="productNumber"  className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="eg 0710203040"/>
+          <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
+          <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>           
           <label htmlFor="" className="text-sm text-gray-400">Date</label>
           <input type="date" name="date" className="w-full p-2 mb-2 border rounded-md outline-none"/>
-          <label htmlFor="" className="text-sm text-gray-400">Supplier</label>
-          <input type="text" name="supplier"  className="w-full p-2 mb-2 border rounded-md outline-none"/>
+          
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">Add supplier</button>
          </form>
         </div>                       
