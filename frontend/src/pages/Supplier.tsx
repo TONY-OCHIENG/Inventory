@@ -1,6 +1,6 @@
 import { Activity, BanIcon, Truck, Wallet, X } from "lucide-react"
 import type {SupplierDetails, SupplierFilter } from "../types/types";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
@@ -15,7 +15,13 @@ function Supplier() {
               { label: 'Active', value: 'Active' },
               { label: 'On hold', value: 'On hold' }              
         ]
-    
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = event.target
+        setSupplierdetails((prev) => ({
+            ...prev,
+            [name] : value
+        }))
+    }
   return (
     <div className="relative p-4 w-full h-full">  
      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
