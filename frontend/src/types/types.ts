@@ -119,3 +119,13 @@ export interface PurchaseDetail{
 
 export type PurchaseFilter = 'All' | 'Pending' | 'Recieved' | 'Canceled'
 export type SupplierFilter = 'All' | 'Active' | 'On hold'
+
+export interface SupplierDetails{
+  supplierName: string,
+  supplierNumber: string,
+  date: string
+}
+
+export interface Supplier{
+  addSupplier: (user_id: String, supplier: SupplierDetails) => Promise<Response>
+}

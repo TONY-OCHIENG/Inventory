@@ -89,8 +89,7 @@ function Supplier() {
           <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
           <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>           
           <label htmlFor="" className="text-sm text-gray-400">Date</label>
-          <input type="date" name="date" className="w-full p-2 mb-2 border rounded-md outline-none"/>
-          
+          <input type="date" name="date" className="w-full p-2 mb-2 border rounded-md outline-none"/>          
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">Add supplier</button>
          </form>
         </div>                       
