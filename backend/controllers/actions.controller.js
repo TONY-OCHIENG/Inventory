@@ -335,4 +335,15 @@ export const addSuppliers = (request, response) => {
     if (!supplierName || !supplierNumber || !date) {
         return response.status(200).json({success: false, message: "Fill all fields"})
     }
+
+    try {
+        const addSupplier = "INSERT INTO suppliers(supplierNumber,supplierName,date,user_id) VALUES(?,?,?,?)"
+        databaseconnection.query(addSupplier,[supplierNumber,supplierName,date,id], (err, result) => {
+            if (err) return response.status(500).json({success: false, message: err})
+            return response.status(201).json({success: true, message: "Supplier added"})
+        })
+    } catch (error) {
+        console.error(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
 }
