@@ -48,12 +48,20 @@ function Supplier() {
 
     const handleSubmit = async (event: ChangeEvent): Promise<void> => {
         event.preventDefault()
-        const { success, message} = await addSupplier("1", supplierDetails)
+        const { success, message} = await addSupplier(userID, supplierDetails)
         if (success) {
             toast.success(message)
         } else {
             toast.error("An error occured")
         }
+
+        setSupplierdetails({
+            supplierName:"",
+            supplierNumber:"",
+            date:""
+        })
+
+        setOpen(!open)
     } 
   return (
     <div className="relative p-4 w-full h-full">  
