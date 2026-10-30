@@ -1,3 +1,4 @@
+import { response } from "express"
 import databaseconnection from "../database/db.js"
 
 export const addReminders = (request,response) => {
@@ -344,6 +345,24 @@ export const addSuppliers = (request, response) => {
         })
     } catch (error) {
         console.error(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
+
+export const getSuppliers = (request,response) => {
+    const { id } = request.params
+    try {
+        const getSuppliers = "SELECT * FROM suppliers WHERE user_id = ?"
+        databaseconnection.query(getSuppliers,[id], (error, result) => {
+            if (error) return response.status(500).json({success: false, message: result})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })
+    } catch (error) {
+        console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
