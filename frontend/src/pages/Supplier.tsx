@@ -1,6 +1,8 @@
 import { Activity, BanIcon, Truck, Wallet, X } from "lucide-react"
 import type {SupplierDetails, SupplierFilter } from "../types/types";
 import { useState, type ChangeEvent } from "react";
+import { useSupplier } from "../store/supplierStore";
+import toast from "react-hot-toast";
 
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
@@ -9,6 +11,7 @@ function Supplier() {
         supplierNumber:'',
         date:''
     })
+    const { addSupplier } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
               { label: 'All', value: 'All' },
@@ -22,6 +25,16 @@ function Supplier() {
             [name] : value
         }))
     }
+
+    const handleSubmit = async (event: ChangeEvent): Promise<void> => {
+        event.preventDefault()
+        const { success, message} = await addSupplier("1", supplierDetails)
+        if (success) {
+            toast.success(message)
+        } else {
+            toast.error("An error occured")
+        }
+    } 
   return (
     <div className="relative p-4 w-full h-full">  
      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -93,15 +106,15 @@ function Supplier() {
          </table>
         </div>  
         <div  className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
-         <form className="relative bg-white p-4 rounded-md max-w-md">
+         <form onSubmit={handleSubmit} className="relative bg-white p-4 rounded-md max-w-md">
           <X onClick={() => setOpen(!open)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Supplier</h1>
           <label htmlFor="" className="text-sm text-gray-400">Supplier number</label>
-          <input type="text" name="productNumber"  className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="eg 0710203040"/>
+          <input type="text" name="supplierNumber"value={String(supplierDetails.supplierNumber)}  onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="eg 0710203040"/>
           <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
-          <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>           
+          <input type="text" name="supplierName" value={String(supplierDetails.supplierName)}  onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>           
           <label htmlFor="" className="text-sm text-gray-400">Date</label>
-          <input type="date" name="date" className="w-full p-2 mb-2 border rounded-md outline-none"/>          
+          <input type="date" name="date" value={String(supplierDetails.date)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>          
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">Add supplier</button>
          </form>
         </div>                       
