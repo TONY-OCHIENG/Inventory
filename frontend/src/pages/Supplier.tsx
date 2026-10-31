@@ -65,6 +65,13 @@ function Supplier() {
         setOpen(!open)
         await setSupplier(userID)
     } 
+
+    //filter supplier based on active and on hold
+
+    const filterSupplier = 
+          activeFilter === 'All'
+            ? supplier
+            : supplier.filter((item) => item.status === activeFilter)
     
   return (
     <div className="relative p-4 w-full h-full">  
