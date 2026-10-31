@@ -5,6 +5,7 @@ import { useSupplier } from "../store/supplierStore";
 import toast from "react-hot-toast";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../components/dateFormat";
 
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
@@ -141,6 +142,21 @@ function Supplier() {
                 <th>Status</th>
                 <th>Action</th>
             </thead>
+            <tbody>
+              {
+                filterSupplier && filterSupplier.length > 0 ?
+                 filterSupplier.map((item) => (
+                  <tr className="even:bg-gray-200 text-sm text-gray-600">
+                    <td className="p-2">{item.supplierNumber}</td>
+                    <td>{item.supplierName}</td>
+                    <td>{formatDate(item.date)}</td>
+                    <td>{item.balance === null ? '0.00' : item.balance}</td>
+                    <td>{item.status}</td>
+                  </tr>
+                 ))
+                : <tr></tr>
+              }
+            </tbody>
          </table>
         </div>  
         <div  className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>

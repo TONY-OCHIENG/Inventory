@@ -127,11 +127,11 @@ export interface SupplierDetails{
 }
 
 export interface SupplierInfo{
-  supplierName: String,
-  supplierNumber: String,
-  balance: String,
-  status: String,
-  date: String
+  supplierName: string,
+  supplierNumber: string,
+  balance: string,
+  status: string,
+  date: string
 }
 
 export interface Suppliers{
