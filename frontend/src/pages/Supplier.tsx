@@ -76,11 +76,11 @@ function Supplier() {
     //A function that handles color change depending on supplier's status
     const handleColorChange = (status: String) => {
       if (status === 'Active') {
-        return <p className="bg-green-200 text-green-600 font-bold rounded-full p-2">{status}</p>
+        return <p className="bg-green-200 text-green-600 font-bold rounded-full text-center w-[70px]">{status}</p>
       }
 
       if (status === 'On hold') {
-         return <p className="bg-red-200 text-red-600 font-bold rounded-full p-2">{status}</p>
+         return <p className="bg-red-200 text-red-600 font-bold rounded-full text-center w-[70px]">{status}</p>
       }
     }
     
@@ -156,12 +156,12 @@ function Supplier() {
               {
                 filterSupplier && filterSupplier.length > 0 ?
                  filterSupplier.map((item) => (
-                  <tr className="even:bg-gray-200 text-sm text-gray-600">
+                  <tr className="even:bg-gray-50 text-sm text-gray-600">
                     <td className="p-2">{item.supplierNumber}</td>
                     <td>{item.supplierName}</td>
                     <td>{formatDate(item.date)}</td>
                     <td>{item.balance === null ? '0.00' : item.balance}</td>
-                    <td>{item.status}</td>
+                    <td>{handleColorChange(item.status)}</td>
                   </tr>
                  ))
                 : <tr></tr>
