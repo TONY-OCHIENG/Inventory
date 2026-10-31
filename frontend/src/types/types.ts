@@ -127,6 +127,7 @@ export interface SupplierDetails{
 }
 
 export interface SupplierInfo{
+  supplier_id: string,
   supplierName: string,
   supplierNumber: string,
   balance: string,

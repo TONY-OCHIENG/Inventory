@@ -92,6 +92,8 @@ function Supplier() {
       } else {
         toast.error("An error occured")
       }
+      
+      await setSupplier(userID)
     }
     
   return (
@@ -174,7 +176,7 @@ function Supplier() {
                     <td>{handleColorChange(item.status)}</td>
                     <td> 
                       <div className="flex gap-2 w-full  items-center ">
-                        <Activity className="h-5 w-5 cursor-pointer text-green-600">
+                        <Activity onClick={() => activateSupp(item.supplier_id)} className="h-5 w-5 cursor-pointer text-green-600">
                             <title>Acivate</title>
                           </Activity>
                           <Ban className="cursor-pointer text-amber-600">
