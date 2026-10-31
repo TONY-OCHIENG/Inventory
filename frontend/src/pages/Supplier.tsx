@@ -1,4 +1,4 @@
-import { Activity, BanIcon, Truck, Wallet, X } from "lucide-react"
+import { Activity, Ban, BanIcon, FolderOpen, Trash, Truck, Wallet, X } from "lucide-react"
 import type {SupplierDetails, SupplierFilter } from "../types/types";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { useSupplier } from "../store/supplierStore";
@@ -80,7 +80,7 @@ function Supplier() {
       }
 
       if (status === 'On hold') {
-         return <p className="bg-red-200 text-red-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+         return <p className="bg-amber-200 text-amber-600 font-bold rounded-full text-center w-[70px]">{status}</p>
       }
     }
     
@@ -156,15 +156,39 @@ function Supplier() {
               {
                 filterSupplier && filterSupplier.length > 0 ?
                  filterSupplier.map((item) => (
-                  <tr className="even:bg-gray-50 text-sm text-gray-600">
+                  <tr className="even:bg-gray-50 text-sm text-gray-600 text-left">
                     <td className="p-2">{item.supplierNumber}</td>
                     <td>{item.supplierName}</td>
                     <td>{formatDate(item.date)}</td>
                     <td>{item.balance === null ? '0.00' : item.balance}</td>
                     <td>{handleColorChange(item.status)}</td>
+                    <td> 
+                      <div className="flex gap-2 w-full  items-center ">
+                        <Activity className="h-5 w-5 cursor-pointer text-green-600">
+                            <title>Acivate</title>
+                          </Activity>
+                          <Ban className="cursor-pointer text-amber-600">
+                            <title>On hold</title>
+                          </Ban>
+                          <Wallet className="cursor-pointer text-blue-600">
+                            <title>Balance</title>
+                          </Wallet>
+                          <Trash className="cursor-pointer text-red-500">
+                            <title>Delete</title>
+                          </Trash>
+                      </div>                     
+                    </td>
                   </tr>
                  ))
-                : <tr></tr>
+                : 
+                 <tr className="h-[50vh]">
+                  <td colSpan={8} className="text-center ">
+                    <div className="flex flex-col justify-center items-center">
+                        <Truck className="h-8 w-8"/>
+                       <h1 className="text-sm text-gray-600 font-extrabold">No Suppliers </h1>
+                    </div>                  
+                  </td>
+                </tr>
               }
             </tbody>
          </table>
