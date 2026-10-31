@@ -17,7 +17,7 @@ function Supplier() {
     const navigate = useNavigate()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
-    const { addSupplier, supplier, setSupplier } = useSupplier()
+    const { addSupplier, supplier, setSupplier, activateSupplier } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
               { label: 'All', value: 'All' },
@@ -81,6 +81,16 @@ function Supplier() {
 
       if (status === 'On hold') {
          return <p className="bg-amber-200 text-amber-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+      }
+    }
+
+    // Activate supplier
+    const activateSupp = async (supplier_id: String) => {
+      const { success, message} = await activateSupplier(supplier_id)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
       }
     }
     
