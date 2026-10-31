@@ -380,3 +380,17 @@ export const activateSupplier = (request, response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const deactivateSupplier = (request, response) => {
+    const { id } = request.params
+    try {
+        const deactivateSupplier = "UPDATE suppliers SET status = 'On hold' WHERE supplier_id = ?"
+        databaseconnection.query(deactivateSupplier,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Supplier On hold"})
+        })        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
