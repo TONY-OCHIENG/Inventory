@@ -104,6 +104,7 @@ function Supplier() {
       } else {
         toast.error("An error occured")
       }
+      await setSupplier(userID)
     }
     
   return (
@@ -189,7 +190,7 @@ function Supplier() {
                         <Activity onClick={() => activateSupp(item.supplier_id)} className="h-5 w-5 cursor-pointer text-green-600">
                             <title>Acivate</title>
                           </Activity>
-                          <Ban className="cursor-pointer text-amber-600">
+                          <Ban onClick={() => deactivateSupp(item.supplier_id)} className="cursor-pointer text-amber-600">
                             <title>On hold</title>
                           </Ban>
                           <Wallet className="cursor-pointer text-blue-600">
