@@ -138,6 +138,7 @@ export interface SupplierInfo{
 export interface Suppliers{
   supplier: SupplierInfo[],
   activateSupplier: (supplier_id: String) => Promise<Response>,
+  deactivateSupplier: (supplier_id: String) => Promise<Response>,  
   setSupplier: (user_id: String) => Promise<void>,
   addSupplier: (user_id: String, supplier: SupplierDetails) => Promise<Response>
 }
