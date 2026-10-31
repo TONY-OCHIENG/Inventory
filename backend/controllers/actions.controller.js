@@ -370,7 +370,11 @@ export const getSuppliers = (request,response) => {
 export const activateSupplier = (request, response) => {
     const { id } = request.params
     try {
-        
+        const activateSupplier = "UPDATE suppliers SET status = 'Active' WHERE supplier_id = ?"
+        databaseconnection.query(activateSupplier,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Supplier Activated"})
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
