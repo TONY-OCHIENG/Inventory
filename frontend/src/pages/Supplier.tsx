@@ -73,6 +73,16 @@ function Supplier() {
           activeFilter === 'All'
             ? supplier
             : supplier.filter((item) => item.status === activeFilter)
+    //A function that handles color change depending on supplier's status
+    const handleColorChange = (status: String) => {
+      if (status === 'Active') {
+        return <p className="bg-green-200 text-green-600 font-bold rounded-full p-2">{status}</p>
+      }
+
+      if (status === 'On hold') {
+         return <p className="bg-red-200 text-red-600 font-bold rounded-full p-2">{status}</p>
+      }
+    }
     
   return (
     <div className="relative p-4 w-full h-full">  
