@@ -144,7 +144,7 @@ export interface Suppliers{
   suppliers: number,
   activeSuppliers: number,
   inActiveSupplier: number,
-  balance: number,
+  total: number,
   totalBalance: (user_id: String) => Promise<void>,
   getinActiveSupplier: (user_id: String) => Promise<void>,
   getActiveSuppliers: (user_id: String) => Promise<void>,

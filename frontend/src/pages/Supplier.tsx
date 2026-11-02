@@ -24,7 +24,7 @@ function Supplier() {
     const [userID, setUserID] = useState<String>("")
     const { addSupplier, supplier, setSupplier, activateSupplier, deactivateSupplier,deleteSupplier,
       updateBalance, suppliers, getAllSuppliers, activeSuppliers, getActiveSuppliers,
-      inActiveSupplier, getinActiveSupplier
+      inActiveSupplier, getinActiveSupplier, total, totalBalance
      } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
@@ -46,6 +46,7 @@ function Supplier() {
         getAllSuppliers(userID)
         getActiveSuppliers(userID)
         getinActiveSupplier(userID)
+        totalBalance(userID)
     },[userID])
 
       //user authentication function
@@ -79,6 +80,7 @@ function Supplier() {
         await getAllSuppliers(userID)
         await getActiveSuppliers(userID)
         await getinActiveSupplier(userID)
+        await totalBalance(userID)
     } 
 
     //filter supplier based on active and on hold
@@ -111,6 +113,7 @@ function Supplier() {
       await getAllSuppliers(userID)
       await getActiveSuppliers(userID)
       await getinActiveSupplier(userID)
+      await totalBalance(userID)
     }
 
     //Deactivate supplier
@@ -125,6 +128,7 @@ function Supplier() {
       await getAllSuppliers(userID)
       await getActiveSuppliers(userID)
       await getinActiveSupplier(userID)
+      await totalBalance(userID)
     }
 
     //Removing supplier details from 
@@ -140,6 +144,7 @@ function Supplier() {
        await getAllSuppliers(userID)
        await getActiveSuppliers(userID)
        await getinActiveSupplier(userID)
+       await totalBalance(userID)
     } 
     //A function that gets suppliers id
     const handlesupplierID = (supplier_id: String) => {
@@ -163,6 +168,7 @@ function Supplier() {
       await getAllSuppliers(userID)
       await getActiveSuppliers(userID)
       await getinActiveSupplier(userID)
+      await totalBalance(userID)
       setopenBalance(!openBalance)
     }
 
@@ -202,7 +208,7 @@ function Supplier() {
             <div className="flex gap-4 ml-4">
               <Wallet className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">85</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{total}</h1>
                 <p className="text-xs text-gray-400">KES</p>
               </div>
             </div>
