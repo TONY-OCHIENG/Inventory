@@ -7,6 +7,14 @@ export const useSupplier = create<Suppliers>()(
     devtools((set) => ({
         supplier:[],
         suppliers:0,
+        activeSuppliers:0,
+        getActiveSuppliers: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/getActivesuppliers/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                activeSuppliers: result
+            }))
+        },
         getAllSuppliers: async (user_id: String) => {
             const response = await apiClient.get(`/api/v1/getAllsuppliers/${user_id}`)
             const { result } = await response.data
