@@ -1,5 +1,5 @@
-import { Activity, Ban, BanIcon, FolderOpen, Trash, Truck, Wallet, X } from "lucide-react"
-import type {SupplierDetails, SupplierFilter } from "../types/types";
+import { Activity, Ban, BanIcon, Trash, Truck, Wallet, X } from "lucide-react"
+import {type BalanceDetails, type SupplierDetails, type SupplierFilter } from "../types/types";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { useSupplier } from "../store/supplierStore";
 import toast from "react-hot-toast";
@@ -10,6 +10,10 @@ import { formatDate } from "../components/dateFormat";
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
     const [openBalance, setopenBalance] = useState<Boolean>(false)
+    const [supplierID, setSupplierID] = useState<String>("")
+    const [balance, setBalance] = useState<BalanceDetails>({
+      balance: ''
+    })
     const [supplierDetails, setSupplierdetails] = useState<SupplierDetails>({
         supplierName: "",
         supplierNumber:'',
@@ -119,7 +123,23 @@ function Supplier() {
       }
        await setSupplier(userID)
     } 
-    
+    //A function that gets suppliers id
+    const handlesupplierID = (supplier_id: String) => {
+      setSupplierID(supplier_id)
+    }
+
+    const handleBalanceSubmit = (event:ChangeEvent) => {
+      event.preventDefault()
+    }
+
+    //handling balance change
+    const handleBalanceInput = (event: ChangeEvent<HTMLInputElement>): void => {
+      const { name, value } = event.target
+      setBalance((prev) => ({
+        ...prev,
+        [name] : value
+      }))
+    }
   return (
     <div className="relative p-4 w-full h-full">  
      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -206,7 +226,7 @@ function Supplier() {
                           <Ban onClick={() => deactivateSupp(item.supplier_id)} className="cursor-pointer text-amber-600">
                             <title>On hold</title>
                           </Ban>
-                          <Wallet onClick={() => setopenBalance(!openBalance)} className="cursor-pointer text-blue-600">
+                          <Wallet onClick={() =>{ setopenBalance(!openBalance), handlesupplierID(item.supplier_id)}} className="cursor-pointer text-blue-600">
                             <title>Balance</title>
                           </Wallet>
                           <Trash onClick={() => handleDeleteSupplier(item.supplier_id)} className="cursor-pointer text-red-500">
@@ -247,7 +267,7 @@ function Supplier() {
           <X onClick={() => setopenBalance(!openBalance)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="text-center text-sm text-gray-600 font-extrabold">update balance</h1>
           <label className="text-sm text-gray-600" htmlFor="">Balance</label>
-          <input type="number" placeholder="0.00" className="w-full p-2 border border-gray-400 rounded-md"/>
+          <input type="number" name="balance" value={String(balance.balance)} onChange={handleBalanceInput} placeholder="0.00" className="w-full p-2 border border-gray-400 rounded-md"/>
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-3">update balance</button>
          </form>
         </div>                     
