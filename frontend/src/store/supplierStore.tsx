@@ -9,6 +9,14 @@ export const useSupplier = create<Suppliers>()(
         suppliers:0,
         activeSuppliers:0,
         inActiveSupplier: 0,
+        balance: 0,
+        totalBalance: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/getTotalBalance/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                balance: result
+            })) 
+        },
         getinActiveSupplier: async (user_id: String) => {
             const response = await apiClient.get(`/api/v1/getinActivesuppliers/${user_id}`)
             const { result } = await response.data
