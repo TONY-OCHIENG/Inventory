@@ -17,7 +17,7 @@ function Supplier() {
     const navigate = useNavigate()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
-    const { addSupplier, supplier, setSupplier, activateSupplier, deactivateSupplier } = useSupplier()
+    const { addSupplier, supplier, setSupplier, activateSupplier, deactivateSupplier,deleteSupplier } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
               { label: 'All', value: 'All' },
@@ -106,6 +106,17 @@ function Supplier() {
       }
       await setSupplier(userID)
     }
+
+    //Removing supplier details from 
+
+    const handleDeleteSupplier = async (supplier_id: String) => {
+      const { success, message} = await deleteSupplier(supplier_id)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
+    } 
     
   return (
     <div className="relative p-4 w-full h-full">  
@@ -196,7 +207,7 @@ function Supplier() {
                           <Wallet className="cursor-pointer text-blue-600">
                             <title>Balance</title>
                           </Wallet>
-                          <Trash className="cursor-pointer text-red-500">
+                          <Trash onClick={() => handleDeleteSupplier(item.supplier_id)} className="cursor-pointer text-red-500">
                             <title>Delete</title>
                           </Trash>
                       </div>                     
