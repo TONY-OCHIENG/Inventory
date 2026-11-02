@@ -9,6 +9,7 @@ import { formatDate } from "../components/dateFormat";
 
 function Supplier() {
     const [open, setOpen] = useState<Boolean>(false)
+    const [openBalance, setopenBalance] = useState<Boolean>(false)
     const [supplierDetails, setSupplierdetails] = useState<SupplierDetails>({
         supplierName: "",
         supplierNumber:'',
@@ -205,7 +206,7 @@ function Supplier() {
                           <Ban onClick={() => deactivateSupp(item.supplier_id)} className="cursor-pointer text-amber-600">
                             <title>On hold</title>
                           </Ban>
-                          <Wallet className="cursor-pointer text-blue-600">
+                          <Wallet onClick={() => setopenBalance(!openBalance)} className="cursor-pointer text-blue-600">
                             <title>Balance</title>
                           </Wallet>
                           <Trash onClick={() => handleDeleteSupplier(item.supplier_id)} className="cursor-pointer text-red-500">
@@ -240,7 +241,16 @@ function Supplier() {
           <input type="date" name="date" value={String(supplierDetails.date)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>          
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">Add supplier</button>
          </form>
-        </div>                       
+        </div>  
+        <div className={`absolute ${openBalance ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+         <form  action=""  className="relative bg-white p-4 rounded-md max-w-md">
+          <X onClick={() => setopenBalance(!openBalance)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
+          <h1 className="text-center text-sm text-gray-600 font-extrabold">update balance</h1>
+          <label className="text-sm text-gray-600" htmlFor="">Balance</label>
+          <input type="number" placeholder="0.00" className="w-full p-2 border border-gray-400 rounded-md"/>
+          <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-3">update balance</button>
+         </form>
+        </div>                     
     </div>
   )
 }
