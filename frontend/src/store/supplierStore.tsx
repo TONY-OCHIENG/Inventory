@@ -1,11 +1,16 @@
 import { create } from "zustand";
-import type { Suppliers, SupplierDetails } from "../types/types";
+import type { Suppliers, SupplierDetails, BalanceDetails } from "../types/types";
 import { devtools } from "zustand/middleware";
 import { apiClient } from "../components/ClientURL";
 
 export const useSupplier = create<Suppliers>()(
     devtools((set) => ({
         supplier:[],
+        updateBalance: async (supplier_id: String, balance: BalanceDetails) => {
+            const response = await apiClient.put(`/api/v1/updateBalance/${supplier_id}`, balance)
+            const { success, message} = await response.data
+            return { success, message}
+        },
         deleteSupplier: async (supplier_id: String) => {
             const response = await apiClient.delete(`/api/v1/deleteSupplier/${supplier_id}`)
             const { success, message} = await response.data

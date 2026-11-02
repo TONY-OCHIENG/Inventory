@@ -136,12 +136,12 @@ export interface SupplierInfo{
 }
 
 export interface BalanceDetails{
-  supplierId: string,
   balance: string
 }
 
 export interface Suppliers{
   supplier: SupplierInfo[],
+  updateBalance: (supplier_id: String, balance: BalanceDetails) => Promise<Response>,
   deleteSupplier: (supplier_id: String) => Promise<Response>,
   activateSupplier: (supplier_id: String) => Promise<Response>,
   deactivateSupplier: (supplier_id: String) => Promise<Response>,  
