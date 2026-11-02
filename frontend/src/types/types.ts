@@ -135,6 +135,11 @@ export interface SupplierInfo{
   date: string
 }
 
+export interface BalanceDetails{
+  supplierId: string,
+  balance: string
+}
+
 export interface Suppliers{
   supplier: SupplierInfo[],
   deleteSupplier: (supplier_id: String) => Promise<Response>,
