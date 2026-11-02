@@ -8,6 +8,14 @@ export const useSupplier = create<Suppliers>()(
         supplier:[],
         suppliers:0,
         activeSuppliers:0,
+        inActiveSupplier: 0,
+        getinActiveSupplier: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/getinActivesuppliers/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                inActiveSupplier: result
+            }))
+        },
         getActiveSuppliers: async (user_id: String) => {
             const response = await apiClient.get(`/api/v1/getActivesuppliers/${user_id}`)
             const { result } = await response.data
