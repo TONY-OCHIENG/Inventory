@@ -1,5 +1,5 @@
 import express from 'express'
-import { activateSupplier, addProducts, addPurchase, addReminders, addSuppliers, availableStock, canceledPurchase, cancelPurchase, deactivateSupplier, deleteProduct, deletePurchase, deleteReminders, deleteSupplier, depletedStock, getProducts, getPurchase, getReminders, getSuppliers, lowStock, pendingPurchase, recievedPurchase, recievePurchase } from '../controllers/actions.controller.js'
+import { activateSupplier, addProducts, addPurchase, addReminders, addSuppliers, availableStock, canceledPurchase, cancelPurchase, deactivateSupplier, deleteProduct, deletePurchase, deleteReminders, deleteSupplier, depletedStock, getProducts, getPurchase, getReminders, getSuppliers, lowStock, pendingPurchase, recievedPurchase, recievePurchase, updateBalance } from '../controllers/actions.controller.js'
 import { upload } from '../configs/upload.js'
 
 const actionRoutes = express.Router()
@@ -25,4 +25,5 @@ actionRoutes.get("/getSuppliers/:id",getSuppliers)
 actionRoutes.put("/activateSupplier/:id",activateSupplier)
 actionRoutes.put("/deactivateSupplier/:id",deactivateSupplier)
 actionRoutes.delete("/deleteSupplier/:id",deleteSupplier)
+actionRoutes.put("/updateBalance/:id",updateBalance)
 export default actionRoutes
