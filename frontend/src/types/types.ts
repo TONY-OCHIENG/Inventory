@@ -141,6 +141,8 @@ export interface BalanceDetails{
 
 export interface Suppliers{
   supplier: SupplierInfo[],
+  suppliers: number,
+  getAllSuppliers: (user_id: String) => Promise<void>,
   updateBalance: (supplier_id: String, balance: BalanceDetails) => Promise<Response>,
   deleteSupplier: (supplier_id: String) => Promise<Response>,
   activateSupplier: (supplier_id: String) => Promise<Response>,

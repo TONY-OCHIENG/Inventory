@@ -6,6 +6,14 @@ import { apiClient } from "../components/ClientURL";
 export const useSupplier = create<Suppliers>()(
     devtools((set) => ({
         supplier:[],
+        suppliers:0,
+        getAllSuppliers: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/getAllsuppliers/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                suppliers: result
+            }))
+        },
         updateBalance: async (supplier_id: String, balance: BalanceDetails) => {
             const response = await apiClient.put(`/api/v1/updateBalance/${supplier_id}`, balance)
             const { success, message} = await response.data
