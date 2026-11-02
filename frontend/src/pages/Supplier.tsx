@@ -144,6 +144,7 @@ function Supplier() {
       })
 
       await setSupplier(userID)
+      setopenBalance(!openBalance)
     }
 
     //handling balance change
