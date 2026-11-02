@@ -481,3 +481,21 @@ export const getinActivesuppliers = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const getTotalBalance = (request,response) => {
+    const { id } = request.params
+    try {
+        const totalBalance = "SELECT SUM(balance) as totalBalance FROM suppliers WHERE user_id = ?"
+        databaseconnection.query(totalBalance,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result[0].totalBalance})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }                
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
