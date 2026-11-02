@@ -22,7 +22,9 @@ function Supplier() {
     const navigate = useNavigate()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
-    const { addSupplier, supplier, setSupplier, activateSupplier, deactivateSupplier,deleteSupplier } = useSupplier()
+    const { addSupplier, supplier, setSupplier, activateSupplier, deactivateSupplier,deleteSupplier,
+      updateBalance
+     } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
               { label: 'All', value: 'All' },
@@ -128,8 +130,14 @@ function Supplier() {
       setSupplierID(supplier_id)
     }
 
-    const handleBalanceSubmit = (event:ChangeEvent) => {
+    const handleBalanceSubmit = async (event:ChangeEvent) => {
       event.preventDefault()
+      const { success, message} = await updateBalance(supplierID, balance)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
     }
 
     //handling balance change
