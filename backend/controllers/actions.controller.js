@@ -398,7 +398,11 @@ export const deactivateSupplier = (request, response) => {
 export const deleteSupplier = (request,response) => {
     const { id } = request.params
     try {
-        
+      const deleteSupplier = "DELETE FROM suppliers WHERE supplier_id = ?"
+      databaseconnection.query(deleteSupplier, [id], (error,result) => {
+        if (error) return response.status(500).json({success: false, message: error})
+        return response.status(200).json({success: true, message: "Supplier removed"})
+      })  
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
