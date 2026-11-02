@@ -137,6 +137,7 @@ export interface SupplierInfo{
 
 export interface Suppliers{
   supplier: SupplierInfo[],
+  deleteSupplier: (supplier_id: String) => Promise<Response>,
   activateSupplier: (supplier_id: String) => Promise<Response>,
   deactivateSupplier: (supplier_id: String) => Promise<Response>,  
   setSupplier: (user_id: String) => Promise<void>,

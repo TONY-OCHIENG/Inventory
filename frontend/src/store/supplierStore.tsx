@@ -6,6 +6,11 @@ import { apiClient } from "../components/ClientURL";
 export const useSupplier = create<Suppliers>()(
     devtools((set) => ({
         supplier:[],
+        deleteSupplier: async (supplier_id: String) => {
+            const response = await apiClient.delete(`/api/v1/deleteSupplier/${supplier_id}`)
+            const { success, message} = await response.data
+            return {success, message}
+        },
         activateSupplier: async (supplier_id: String) => {
             const response = await apiClient.put(`/api/v1/activateSupplier/${supplier_id}`)
             const { success, message} = await response.data
