@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard"
 import Product from "./pages/Products"
 import Purchases from "./pages/Purchases"
 import Supplier from "./pages/Supplier"
+import Returns from "./pages/Returns"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
        <Route path="/dashboard/products" element={<Product/>}/>
        <Route path="/dashboard/purchases" element={<Purchases/>}/>
        <Route path="/dashboard/supplier" element={<Supplier/>}/>
+       <Route path="/dashboard/returns" element={<Returns/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="*" element={<NotFound/>}/>
