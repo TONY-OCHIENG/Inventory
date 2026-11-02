@@ -415,9 +415,13 @@ export const updateBalance = (request, response) => {
     if (!balance) {
         return response.status(200).json({success: false, message: "Fill required field"})
     }
-    
-    try {
 
+    try {
+        const updateBalance = "UPDATE suppliers SET balance = ? WHERE supplier_id = ?"
+        databaseconnection.query(updateBalance,[balance,id], (error, result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Balance updated"})
+        })
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
