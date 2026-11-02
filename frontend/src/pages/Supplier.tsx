@@ -116,6 +116,7 @@ function Supplier() {
       } else {
         toast.error("An error occured")
       }
+       await setSupplier(userID)
     } 
     
   return (
