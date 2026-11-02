@@ -23,7 +23,8 @@ function Supplier() {
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const { addSupplier, supplier, setSupplier, activateSupplier, deactivateSupplier,deleteSupplier,
-      updateBalance, suppliers, getAllSuppliers, activeSuppliers, getActiveSuppliers
+      updateBalance, suppliers, getAllSuppliers, activeSuppliers, getActiveSuppliers,
+      inActiveSupplier, getinActiveSupplier
      } = useSupplier()
     const [activeFilter, setActiveFilter] = useState<SupplierFilter>('All')
     const filterButtons: { label: string; value: SupplierFilter }[] = [
@@ -44,6 +45,7 @@ function Supplier() {
         setSupplier(userID)
         getAllSuppliers(userID)
         getActiveSuppliers(userID)
+        getinActiveSupplier(userID)
     },[userID])
 
       //user authentication function
@@ -76,6 +78,7 @@ function Supplier() {
         await setSupplier(userID)
         await getAllSuppliers(userID)
         await getActiveSuppliers(userID)
+        await getinActiveSupplier(userID)
     } 
 
     //filter supplier based on active and on hold
@@ -107,6 +110,7 @@ function Supplier() {
       await setSupplier(userID)
       await getAllSuppliers(userID)
       await getActiveSuppliers(userID)
+      await getinActiveSupplier(userID)
     }
 
     //Deactivate supplier
@@ -120,6 +124,7 @@ function Supplier() {
       await setSupplier(userID)
       await getAllSuppliers(userID)
       await getActiveSuppliers(userID)
+      await getinActiveSupplier(userID)
     }
 
     //Removing supplier details from 
@@ -134,6 +139,7 @@ function Supplier() {
        await setSupplier(userID)
        await getAllSuppliers(userID)
        await getActiveSuppliers(userID)
+       await getinActiveSupplier(userID)
     } 
     //A function that gets suppliers id
     const handlesupplierID = (supplier_id: String) => {
@@ -156,6 +162,7 @@ function Supplier() {
       await setSupplier(userID)
       await getAllSuppliers(userID)
       await getActiveSuppliers(userID)
+      await getinActiveSupplier(userID)
       setopenBalance(!openBalance)
     }
 
@@ -205,7 +212,7 @@ function Supplier() {
             <div className="flex gap-4 ml-4">
               <BanIcon className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">12</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{inActiveSupplier}</h1>
                 <p className="text-xs text-gray-400">suppliers</p>
               </div>
             </div>
