@@ -445,3 +445,21 @@ export const getAllsuppliers = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const getActivesuppliers = (request,response) => {
+    const { id } = request.params
+    try {
+        const getActivesuppliers = "SELECT COUNT(*) as activeSuppliers FROM suppliers WHERE status = 'Active' AND user_id = ?"
+        databaseconnection.query(getActivesuppliers,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result[0].activeSuppliers})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }                
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
