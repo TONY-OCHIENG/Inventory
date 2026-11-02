@@ -138,6 +138,12 @@ function Supplier() {
       } else {
         toast.error("An error occured")
       }
+
+      setBalance({
+        balance: ''
+      })
+
+      await setSupplier(userID)
     }
 
     //handling balance change
@@ -271,7 +277,7 @@ function Supplier() {
          </form>
         </div>  
         <div className={`absolute ${openBalance ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
-         <form  action=""  className="relative bg-white p-4 rounded-md max-w-md">
+         <form onSubmit={handleBalanceSubmit}  action=""  className="relative bg-white p-4 rounded-md max-w-md">
           <X onClick={() => setopenBalance(!openBalance)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="text-center text-sm text-gray-600 font-extrabold">update balance</h1>
           <label className="text-sm text-gray-600" htmlFor="">Balance</label>
