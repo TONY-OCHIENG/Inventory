@@ -56,8 +56,21 @@ function Returns() {
         </div> 
         <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
         <button className="text-sm text-gray-500 px-8 bg-white py-2 rounded-md cursor-pointer border border-gray-400 font-extrabold">Add Return</button>
+           <div className="flex gap-2 mt-3">
+           {filterButtons.map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setActiveFilter(value)}
+                  className={`px-4 text-xs rounded-md py-1 shadow-md cursor-pointer transition ${
+                    activeFilter === value ? 'bg-green-100 text-green-700 font-semibold' : 'bg-white'
+                  }`}
+                >
+                  {label}
+                </button>
+            ))}
+         </div>
         </div>
-        <div className="flex gap-2 mt-2"></div>
+     
     </div>
   )
 }
