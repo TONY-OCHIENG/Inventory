@@ -56,7 +56,7 @@ function Returns() {
         </div> 
         <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
         <button className="text-sm text-gray-500 px-8 bg-white py-2 rounded-md cursor-pointer border border-gray-400 font-extrabold">Add Return</button>
-           <div className="flex gap-2 mt-3">
+          <div className="flex gap-2 mt-3">
            {filterButtons.map(({ label, value }) => (
                 <button
                   key={value}
@@ -69,6 +69,17 @@ function Returns() {
                 </button>
             ))}
          </div>
+         <table className="w-full bg-white mt-3">
+          <thead className="text-sm text-gray-600 font-extrabold text-left border-b border-gray-400">
+            <th className="p-2">Return Number</th>
+            <th>Supplier Name</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Refund Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </thead>
+         </table>
         </div>
      
     </div>
