@@ -1,4 +1,4 @@
-import { response } from "express"
+import { request, response } from "express"
 import databaseconnection from "../database/db.js"
 
 export const addReminders = (request,response) => {
@@ -497,5 +497,13 @@ export const getTotalBalance = (request,response) => {
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
+
+export const addReturns = (request, response) => {
+    const { id } = request.params
+    const { returnNumber, supplierName, productName, quantity, amount} = request.body
+    if (!returnNumber || !supplierName || !productName || !quantity || !amount) {
+        return response.status(200).json({success: false, message: "Fill all fields"})
     }
 }
