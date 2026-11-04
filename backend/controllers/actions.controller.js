@@ -522,6 +522,15 @@ export const addReturns = (request, response) => {
 export const getReturns = (request, response) => {
     const { id } = request.params
     try {
+        const getReturn = "SELECT * FROM returns where user_id = ?"
+        databaseconnection.query(getReturn,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })
         
     } catch (error) {
         console.log(error)
