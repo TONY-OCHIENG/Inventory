@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
-  const { addReturns,returns , setReturn } = useReturn()
+  const { addReturns,returns , setReturn, canceleReturn } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -91,6 +91,16 @@ function Returns() {
 
     if (status === 'Completed') {
       return <p className="bg-green-200 text-green-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+    }
+  }
+
+  //A function that canceles return
+  const handleCanceleReturn = async (return_id: string) => {
+    const { success, message} = await canceleReturn(return_id)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error("An error occured")
     }
   }
   return (
