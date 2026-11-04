@@ -11,6 +11,11 @@ export const useReturn = create<ReturnDetails>()(
             const { success, message} = await response.data
             return { success, message}
         },
+        deleteReturn: async (return_id: String) => {
+            const response = await apiClient.delete(`/api/v1/deleteReturn/${return_id}`)
+            const { success, message} = await response.data
+            return { success, message}
+        },
         completeReturn: async (return_id: String) => {
             const response = await apiClient.put(`/api/v1/completeReturn/${return_id}`)
             const { success, message} = await response.data
