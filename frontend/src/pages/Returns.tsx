@@ -27,6 +27,11 @@ function Returns() {
                 { label: 'Completed', value: 'Completed'},      
                 { label: 'Canceled', value: 'Canceled' }           
           ]
+  
+  const filterReturn = 
+          activeFilter === 'All'
+            ? returns
+            : returns.filter((item) => item.status === activeFilter)
   const { supplier, setSupplier } = useSupplier()
   const { authenticateUser } =  useFormDetail()
 
@@ -68,7 +73,8 @@ function Returns() {
         productName: "",
         quantity:"",
         amount:""
-      })
+    })
+
     setOpen(!open)
     setReturn(userID)
   }
@@ -141,6 +147,7 @@ function Returns() {
             <th>Status</th>
             <th>Action</th>
           </thead>
+          <tbody></tbody>
          </table>
         </div> 
         <div className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>

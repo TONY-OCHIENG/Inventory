@@ -172,6 +172,7 @@ export interface ReturnDetail{
   supplierName: string,
   productName: string,
   quantity: string,
+  status: string,
   amout: string,
 }
 export interface ReturnDetails{
