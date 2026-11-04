@@ -49,7 +49,7 @@ function Returns() {
       [name] : value
     }))
   }
-   
+  console.log(returnDetails)   
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -133,9 +133,12 @@ function Returns() {
               setReturnDetails((prev) => ({ ...prev, supplierName: event.target.value }))
             }
             className="w-full text-sm  mb-2 border rounded-md outline-none p-2" id="">
+              <option value="" disabled>
+                Select a supplier
+              </option>
            {
             supplier.map((item) => (
-              <option value={item.supplierName}>{item.supplierName}</option>
+              <option value={item.supplierName} selected>{item.supplierName}</option>
             ))
            }  
           </select>  
