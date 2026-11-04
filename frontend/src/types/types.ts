@@ -158,6 +158,13 @@ export interface Suppliers{
   addSupplier: (user_id: String, supplier: SupplierDetails) => Promise<Response>
 }
 
+export interface Return{
+  returnNumber: string,
+  supplierName: string,
+  productName: string,
+  quantity: string,
+  amount: string
+}
 export interface ReturnDetails{
-  addReturns: (user_id: String) => Promise<Response>
+  addReturns: (user_id: String, detail: Return) => Promise<Response>
 }
