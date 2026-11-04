@@ -11,7 +11,9 @@ import toast from "react-hot-toast";
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
-  const { addReturns,returns , setReturn, canceleReturn, completeReturn, deleteReturn } = useReturn()
+  const { addReturns,returns , setReturn, canceleReturn, completeReturn, 
+    deleteReturn, totalReturn, settotalReturn
+   } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -39,6 +41,7 @@ function Returns() {
     authentication()
     setSupplier(userID)
     setReturn(userID)
+    settotalReturn(userID)
   },[userID])
   
   const authentication = async () => {
@@ -78,6 +81,7 @@ function Returns() {
     setOpen(!open)
     setReturn(userID)
     setSupplier(userID)
+    settotalReturn(userID)
   }
 
   //handle color change based on status
@@ -105,6 +109,7 @@ function Returns() {
     }
     await setReturn(userID)
     await setSupplier(userID)
+    await settotalReturn(userID)
   
   }
   // A function that completes return
@@ -118,6 +123,7 @@ function Returns() {
     }
     await setReturn(userID)
     await setSupplier(userID)  
+    await settotalReturn(userID)
   }
 
   // A function that deletes return
@@ -132,6 +138,7 @@ function Returns() {
 
     await setReturn(userID)
     await setSupplier(userID)  
+    await settotalReturn(userID)
   } 
   return (
     <div  className="relative p-4 w-full h-full">
