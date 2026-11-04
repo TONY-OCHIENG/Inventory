@@ -1,4 +1,4 @@
-import { Ban, CircleCheck, Timer, Undo2 } from "lucide-react"
+import { Ban, CircleCheck, Timer, Undo2, X } from "lucide-react"
 import type { ReturnFilter } from "../types/types";
 import { useState } from "react";
 
@@ -82,7 +82,23 @@ function Returns() {
           </thead>
          </table>
         </div> 
-        <div className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}></div>    
+        <div className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+         <form  className="relative bg-white p-4 rounded-md max-w-md">
+          <X onClick={() => setOpen(!open)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
+          <h1 className="font-bold text-center text-sm text-gray-600">Add Return</h1>
+          <label htmlFor="" className="text-sm text-gray-400">Return number</label>
+          <input type="text" name="returnNumber"className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="7467"/>
+          <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
+          <input type="text" name="supplierName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
+          <label htmlFor="" className="text-sm text-gray-400">Product name</label>
+          <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
+          <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
+          <input type="number" name="quantity"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
+          <label htmlFor="" className="text-sm text-gray-400">Amount</label>
+          <input type="text" name="amount"  className="w-full p-2 mb-2 border rounded-md outline-none"/>                             
+          <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">New Return</button>
+         </form>
+        </div>    
     </div>
   )
 }
