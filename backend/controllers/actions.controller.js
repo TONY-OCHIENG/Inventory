@@ -571,7 +571,11 @@ export const completeReturn = (request, response) => {
 export const deleteReturn = (request,response) => {
     const { id } = request.params
     try {
-        
+        const deleteReturn = "DELETE FROM returns WHERE return_id = ?"
+        databaseconnection.query(deleteReturn,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: "internal server error"})
+            return response.status(200).json({success: true, message: "Return deleted"})
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "internal server error"})
