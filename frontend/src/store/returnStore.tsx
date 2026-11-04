@@ -9,6 +9,14 @@ export const useReturn = create<ReturnDetails>()(
         totalReturn: 0,
         pendingReturn: 0,
         completedReturn: 0,
+        canceledReturn: 0,
+        setcanceledReturn: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/canceledReturn/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                canceledReturn: result
+            }))
+        },
         setcompletedReturn: async (user_id: String) => {
             const response = await apiClient.get(`/api/v1/completedReturn/${user_id}`)
             const { result } = await response.data

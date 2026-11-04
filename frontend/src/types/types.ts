@@ -180,6 +180,8 @@ export interface ReturnDetails{
   totalReturn: number,
   pendingReturn: number,
   completedReturn: number,
+  canceledReturn: number,
+  setcanceledReturn: (user_id: String) => Promise<void>,
   setcompletedReturn: (user_id: String) => Promise<void>,
   setpendingReturn: (user_id: String) => Promise<void>,
   settotalReturn: (user_id: String) => Promise<void>,
