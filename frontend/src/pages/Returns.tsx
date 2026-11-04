@@ -4,12 +4,14 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import { useSupplier } from "../store/supplierStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
+import { useReturn } from "../store/returnStore";
+import toast from "react-hot-toast";
 
 
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
- 
+  const { addReturns } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -49,7 +51,16 @@ function Returns() {
       [name] : value
     }))
   }
-  console.log(returnDetails)   
+  
+  const handleSubmit = async (event: ChangeEvent) => {
+    event.preventDefault()
+    const { success, message} = await addReturns(userID, returnDetails)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error("An error occured")
+    }
+  }
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -122,7 +133,7 @@ function Returns() {
          </table>
         </div> 
         <div className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
-         <form  className="relative bg-white p-4 rounded-md max-w-md">
+         <form onSubmit={handleSubmit} className="relative bg-white p-4 rounded-md max-w-md">
           <X onClick={() => setOpen(!open)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Return</h1>
           <label htmlFor="" className="text-sm text-gray-400">Return number</label>
@@ -138,7 +149,7 @@ function Returns() {
               </option>
            {
             supplier.map((item) => (
-              <option value={item.supplierName} selected>{item.supplierName}</option>
+              <option value={item.supplierName}>{item.supplierName}</option>
             ))
            }  
           </select>  
