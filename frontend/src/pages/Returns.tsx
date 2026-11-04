@@ -1,4 +1,4 @@
-import { Ban, CircleCheck, Timer, Undo2, X } from "lucide-react"
+import { Ban, CircleCheck, Timer, Trash, Undo2, X } from "lucide-react"
 import type { Return, ReturnFilter } from "../types/types";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { useSupplier } from "../store/supplierStore";
@@ -78,7 +78,21 @@ function Returns() {
     setOpen(!open)
     setReturn(userID)
   }
-  console.log(returns)
+
+  //handle color change based on status
+
+  const handleColor = (status: String) => {
+    if (status === 'Pending') {
+      return <p className="bg-red-200 text-red-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+    }
+    if (status === 'Canceled') {
+      return <p className="bg-amber-200 text-amber-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+    }
+
+    if (status === 'Completed') {
+      return <p className="bg-green-200 text-green-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+    }
+  }
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -159,14 +173,27 @@ function Returns() {
                     <td>{item.quantity}</td>
                     <td>{item.amount}</td>
                     <td>{item.status}</td>
+                    <td>
+                      <div className="flex gap-2 items-center">
+                        <CircleCheck className="h-4 w-4 text-green-400 cursor-pointer">
+                          <title>Complete</title>
+                        </CircleCheck>
+                        <Ban className="h-4 w-4 text-amber-400 cursor-pointer">
+                          <title>Cancele</title>
+                        </Ban>
+                        <Trash className="h-4 w-4 text-red-400 cursor-pointer">
+                          <title>Delete</title>
+                        </Trash>
+                      </div>
+                    </td>
                   </tr>
                  ))
                 : 
-                 <tr className="h-[50vh]">
+                 <tr className="h-[48vh]">
                   <td colSpan={8} className="text-center ">
                     <div className="flex flex-col justify-center items-center">
                         <Undo2 className="h-8 w-8"/>
-                       <h1 className="text-sm text-gray-600 font-extrabold">No Suppliers </h1>
+                       <h1 className="text-sm text-gray-600 font-extrabold">No Returns </h1>
                     </div>                  
                   </td>
                 </tr>
