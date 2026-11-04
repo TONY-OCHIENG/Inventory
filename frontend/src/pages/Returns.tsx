@@ -60,6 +60,15 @@ function Returns() {
     } else {
       toast.error("An error occured")
     }
+
+    setReturnDetails({
+        returnNumber: "",
+        supplierName:"",
+        productName: "",
+        quantity:"",
+        amount:""
+      })
+    setOpen(!open)
   }
   return (
     <div  className="relative p-4 w-full h-full">
