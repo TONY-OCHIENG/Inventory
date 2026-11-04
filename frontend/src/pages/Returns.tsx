@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
-  const { addReturns,returns , setReturn, canceleReturn, completeReturn } = useReturn()
+  const { addReturns,returns , setReturn, canceleReturn, completeReturn, deleteReturn } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -119,6 +119,20 @@ function Returns() {
     await setReturn(userID)
     await setSupplier(userID)  
   }
+
+  // A function that deletes return
+
+  const handleDeleteReturn = async (return_id: String) => {
+    const { success, message} = await deleteReturn(return_id)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error("An erro occured")
+    }
+
+    await setReturn(userID)
+    await setSupplier(userID)  
+  } 
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -207,7 +221,7 @@ function Returns() {
                         <Ban onClick={() => handleCanceleReturn(item.return_id)} className="h-4 w-4 text-amber-400 cursor-pointer">
                           <title>Cancele</title>
                         </Ban>
-                        <Trash className="h-4 w-4 text-red-400 cursor-pointer">
+                        <Trash onClick={() => handleDeleteReturn(item.return_id)} className="h-4 w-4 text-red-400 cursor-pointer">
                           <title>Delete</title>
                         </Trash>
                       </div>
