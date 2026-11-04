@@ -541,6 +541,11 @@ export const getReturns = (request, response) => {
 export const cancelReturn = (request, response) => {
     const { id } = request.params
     try {
+        const canceleReturn = "UPDATE returns SET status = 'Canceled' WHERE return_id = ?"
+        databaseconnection.query(canceleReturn,[id], (error,result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            return response.status(200).json({success: true, message: "Return canceled"})
+        })
         
     } catch (error) {
         console.log(error)
