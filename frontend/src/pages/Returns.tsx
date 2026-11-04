@@ -12,7 +12,7 @@ function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
   const { addReturns,returns , setReturn, canceleReturn, completeReturn, 
-    deleteReturn, totalReturn, settotalReturn
+    deleteReturn, totalReturn, settotalReturn, pendingReturn, setpendingReturn
    } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
@@ -42,6 +42,7 @@ function Returns() {
     setSupplier(userID)
     setReturn(userID)
     settotalReturn(userID)
+    setpendingReturn(userID)
   },[userID])
   
   const authentication = async () => {
@@ -82,6 +83,7 @@ function Returns() {
     setReturn(userID)
     setSupplier(userID)
     settotalReturn(userID)
+    setpendingReturn(userID)
   }
 
   //handle color change based on status
@@ -110,6 +112,7 @@ function Returns() {
     await setReturn(userID)
     await setSupplier(userID)
     await settotalReturn(userID)
+    await setpendingReturn(userID)
   
   }
   // A function that completes return
@@ -124,6 +127,7 @@ function Returns() {
     await setReturn(userID)
     await setSupplier(userID)  
     await settotalReturn(userID)
+    await setpendingReturn(userID)
   }
 
   // A function that deletes return
@@ -139,6 +143,7 @@ function Returns() {
     await setReturn(userID)
     await setSupplier(userID)  
     await settotalReturn(userID)
+    await setpendingReturn(userID)
   } 
   return (
     <div  className="relative p-4 w-full h-full">
@@ -158,7 +163,7 @@ function Returns() {
             <div className="flex gap-4 ml-4">
               <Timer className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">23</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{pendingReturn}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
