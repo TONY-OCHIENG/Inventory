@@ -3,10 +3,13 @@ import type { ReturnFilter } from "../types/types";
 import { useState } from "react";
 import { useSupplier } from "../store/supplierStore";
 import { useFormDetail } from "../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
    const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
+   const [userID, setUserID] = useState<String>("")
+   const navigate = useNavigate()
    const filterButtons: { label: string; value: ReturnFilter}[] = [
                 { label: 'All', value: 'All' },
                 { label: 'Pending', value: 'Pending' },
@@ -15,6 +18,15 @@ function Returns() {
           ]
   const { getAllSuppliers } = useSupplier()
   const { authenticateUser } =  useFormDetail()
+  
+  const authentication = async () => {
+        const { success, user_id} = await authenticateUser()
+        if (success) {
+          setUserID(user_id)
+        } else {
+          navigate('/login')      
+        }
+    }
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
