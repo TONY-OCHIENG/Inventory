@@ -16,11 +16,12 @@ function Returns() {
                 { label: 'Completed', value: 'Completed'},      
                 { label: 'Canceled', value: 'Canceled' }           
           ]
-  const { getAllSuppliers } = useSupplier()
+  const { supplier, setSupplier } = useSupplier()
   const { authenticateUser } =  useFormDetail()
 
   useEffect(() => {
     authentication()
+    setSupplier(userID)
   },[userID])
   
   const authentication = async () => {
@@ -30,7 +31,10 @@ function Returns() {
         } else {
           navigate('/login')      
         }
-    }
+  }
+
+  console.log(supplier)
+   
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -109,7 +113,13 @@ function Returns() {
           <label htmlFor="" className="text-sm text-gray-400">Return number</label>
           <input type="text" name="returnNumber"className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="7467"/>
           <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
-          <input type="text" name="supplierName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
+          <select name="" className="w-full p-2 mb-2 border rounded-md outline-none p-2" id="">
+           {
+            supplier.map((item) => (
+              <option value={item.supplierName}>{item.supplierName}</option>
+            ))
+           }  
+          </select>  
           <label htmlFor="" className="text-sm text-gray-400">Product name</label>
           <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
           <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
