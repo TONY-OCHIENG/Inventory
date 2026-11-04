@@ -148,7 +148,7 @@ function Returns() {
             <div className="flex gap-4 ml-4">
               <Undo2 className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">10</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalReturn}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
