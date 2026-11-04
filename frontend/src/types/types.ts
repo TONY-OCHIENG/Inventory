@@ -175,7 +175,7 @@ export interface ReturnDetail{
   amout: string,
 }
 export interface ReturnDetails{
-  return: ReturnDetail[],
+  returns: ReturnDetail[],
   setReturn: (user_id: String) => Promise<void>,
   addReturns: (user_id: String, detail: Return) => Promise<Response>
 }

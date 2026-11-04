@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
-  const { addReturns } = useReturn()
+  const { addReturns,returns , setReturn } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -33,6 +33,7 @@ function Returns() {
   useEffect(() => {
     authentication()
     setSupplier(userID)
+    setReturn(userID)
   },[userID])
   
   const authentication = async () => {
@@ -69,6 +70,7 @@ function Returns() {
         amount:""
       })
     setOpen(!open)
+    setReturn(userID)
   }
   return (
     <div  className="relative p-4 w-full h-full">

@@ -5,12 +5,13 @@ import { apiClient } from "../components/ClientURL";
 
 export const useReturn = create<ReturnDetails>()(
     devtools((set) => ({
-        return: [],
+        returns: [],
         setReturn: async (user_id: String) => {
-            const response = await apiClient.get(`/api/v1/getReturn/:${user_id}`)
+            const response = await apiClient.get(`/api/v1/getReturn/${user_id}`)
+            console.log(response)
             const { result } = await response.data
             set(() => ({
-                return: result
+                returns: result
             }))
         },
         addReturns: async (user_id: String, detail: Return) => {
