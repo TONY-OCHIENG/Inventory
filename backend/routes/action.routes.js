@@ -30,5 +30,5 @@ actionRoutes.get("/getAllsuppliers/:id",getAllsuppliers)
 actionRoutes.get("/getActivesuppliers/:id",getActivesuppliers)
 actionRoutes.get("/getinActivesuppliers/:id",getinActivesuppliers)
 actionRoutes.get("/getTotalBalance/:id",getTotalBalance)
-actionRoutes.get("/addReturn/:id",addReturns)
+actionRoutes.post("/addReturn/:id",addReturns)
 export default actionRoutes

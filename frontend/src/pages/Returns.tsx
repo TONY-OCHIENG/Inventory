@@ -52,7 +52,7 @@ function Returns() {
     }))
   }
   
-  const handleSubmit = async (event: ChangeEvent) => {
+  const handleSubmit = async (event: ChangeEvent): Promise<void> => {
     event.preventDefault()
     const { success, message} = await addReturns(userID, returnDetails)
     if (success) {
