@@ -173,7 +173,7 @@ export interface ReturnDetail{
   productName: string,
   quantity: string,
   status: string,
-  amout: string,
+  amount: string,
 }
 export interface ReturnDetails{
   returns: ReturnDetail[],

@@ -78,6 +78,7 @@ function Returns() {
     setOpen(!open)
     setReturn(userID)
   }
+  console.log(returns)
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -147,7 +148,30 @@ function Returns() {
             <th>Status</th>
             <th>Action</th>
           </thead>
-          <tbody></tbody>
+          <tbody>
+              {
+                filterReturn && filterReturn.length > 0 ?
+                 filterReturn.map((item) => (
+                  <tr className="even:bg-gray-50 text-sm text-gray-600 text-left">
+                    <td className="p-2">{item.returnNumber}</td>
+                    <td>{item.supplierName}</td>
+                    <td>{item.productName}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.amount}</td>
+                    <td>{item.status}</td>
+                  </tr>
+                 ))
+                : 
+                 <tr className="h-[50vh]">
+                  <td colSpan={8} className="text-center ">
+                    <div className="flex flex-col justify-center items-center">
+                        <Undo2 className="h-8 w-8"/>
+                       <h1 className="text-sm text-gray-600 font-extrabold">No Suppliers </h1>
+                    </div>                  
+                  </td>
+                </tr>
+              }
+          </tbody>
          </table>
         </div> 
         <div className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
