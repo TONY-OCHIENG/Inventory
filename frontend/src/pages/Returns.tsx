@@ -1,6 +1,6 @@
 import { Ban, CircleCheck, Timer, Undo2, X } from "lucide-react"
 import type { ReturnFilter } from "../types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSupplier } from "../store/supplierStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,10 @@ function Returns() {
           ]
   const { getAllSuppliers } = useSupplier()
   const { authenticateUser } =  useFormDetail()
+
+  useEffect(() => {
+    authentication()
+  },[userID])
   
   const authentication = async () => {
         const { success, user_id} = await authenticateUser()
