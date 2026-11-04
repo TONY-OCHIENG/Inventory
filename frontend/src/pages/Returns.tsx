@@ -13,7 +13,7 @@ function Returns() {
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
   const { addReturns,returns , setReturn, canceleReturn, completeReturn, 
     deleteReturn, totalReturn, settotalReturn, pendingReturn, setpendingReturn
-    , completedReturn, setcompletedReturn
+    , completedReturn, setcompletedReturn, canceledReturn, setcanceledReturn
    } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
@@ -45,6 +45,7 @@ function Returns() {
     settotalReturn(userID)
     setpendingReturn(userID)
     setcompletedReturn(userID)
+    setcanceledReturn(userID)
   },[userID])
   
   const authentication = async () => {
@@ -87,6 +88,7 @@ function Returns() {
     settotalReturn(userID)
     setpendingReturn(userID)
     setcompletedReturn(userID)
+    setcanceledReturn(userID)
   }
 
   //handle color change based on status
@@ -117,6 +119,7 @@ function Returns() {
     await settotalReturn(userID)
     await setpendingReturn(userID)
     await setcompletedReturn(userID)
+    await setcanceledReturn(userID)
   
   }
   // A function that completes return
@@ -133,6 +136,7 @@ function Returns() {
     await settotalReturn(userID)
     await setpendingReturn(userID)
     await setcompletedReturn(userID)
+    await setcanceledReturn(userID)
   }
 
   // A function that deletes return
@@ -150,6 +154,7 @@ function Returns() {
     await settotalReturn(userID)
     await setpendingReturn(userID)
     await setcompletedReturn(userID)
+    await setcanceledReturn(userID)
   } 
   return (
     <div  className="relative p-4 w-full h-full">
@@ -189,7 +194,7 @@ function Returns() {
             <div className="flex gap-4 ml-4">
               <Ban className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">5</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{canceledReturn}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
