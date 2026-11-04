@@ -1,5 +1,5 @@
 import { Ban, CircleCheck, Timer, Undo2, X } from "lucide-react"
-import type { ReturnFilter } from "../types/types";
+import type { Return, ReturnFilter } from "../types/types";
 import { useEffect, useState } from "react";
 import { useSupplier } from "../store/supplierStore";
 import { useFormDetail } from "../store/authStore";
@@ -7,7 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
-   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
+  const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
+  const [returnDetails, setReturnDetails] = useState<Return>({
+    returnNumber: "",
+    supplierName:"",
+    productName: "",
+    quantity:"",
+    amount:""
+  })
    const [userID, setUserID] = useState<String>("")
    const navigate = useNavigate()
    const filterButtons: { label: string; value: ReturnFilter}[] = [
