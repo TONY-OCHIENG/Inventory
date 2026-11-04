@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
-  const { addReturns,returns , setReturn, canceleReturn } = useReturn()
+  const { addReturns,returns , setReturn, canceleReturn, completeReturn } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -107,6 +107,16 @@ function Returns() {
     await setSupplier(userID)
   
   }
+  // A function that completes return
+
+  const handleCompleteReturn = async (return_id: String) => {
+    const { success, message} = await completeReturn(return_id)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error("An error occured")
+    }
+  }
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -189,7 +199,7 @@ function Returns() {
                     <td>{handleColor(item.status)}</td>
                     <td>
                       <div className="flex gap-2 items-center">
-                        <CircleCheck className="h-4 w-4 text-green-400 cursor-pointer">
+                        <CircleCheck onClick={() => handleCompleteReturn(item.return_id)} className="h-4 w-4 text-green-400 cursor-pointer">
                           <title>Complete</title>
                         </CircleCheck>
                         <Ban onClick={() => handleCanceleReturn(item.return_id)} className="h-4 w-4 text-amber-400 cursor-pointer">
