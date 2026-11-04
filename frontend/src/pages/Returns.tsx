@@ -32,8 +32,6 @@ function Returns() {
           navigate('/login')      
         }
   }
-
-  console.log(supplier)
    
   return (
     <div  className="relative p-4 w-full h-full">
@@ -113,7 +111,7 @@ function Returns() {
           <label htmlFor="" className="text-sm text-gray-400">Return number</label>
           <input type="text" name="returnNumber"className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="7467"/>
           <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
-          <select name="" className="w-full p-2 mb-2 border rounded-md outline-none p-2" id="">
+          <select name="" className="w-full text-sm  mb-2 border rounded-md outline-none p-2" id="">
            {
             supplier.map((item) => (
               <option value={item.supplierName}>{item.supplierName}</option>
@@ -124,7 +122,7 @@ function Returns() {
           <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
           <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
           <input type="number" name="quantity"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
-          <label htmlFor="" className="text-sm text-gray-400">Amount</label>
+          <label htmlFor="" className="text-sm text-gray-400">Refund Amount</label>
           <input type="number" name="amount"  className="w-full p-2 mb-2 border rounded-md outline-none"/>                             
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">New Return</button>
          </form>
