@@ -3,6 +3,7 @@ import type { ReturnFilter } from "../types/types";
 import { useState } from "react";
 
 function Returns() {
+  const [open, setOpen] = useState<Boolean>(false)
    const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
    const filterButtons: { label: string; value: ReturnFilter}[] = [
                 { label: 'All', value: 'All' },
@@ -55,7 +56,7 @@ function Returns() {
           </div>
         </div> 
         <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
-        <button className="text-sm text-gray-500 px-8 bg-white py-2 rounded-md cursor-pointer border border-gray-400 font-extrabold">Add Return</button>
+        <button onClick={() => setOpen(!open)} className="text-sm text-gray-500 px-8 bg-white py-2 rounded-md cursor-pointer border border-gray-400 font-extrabold">Add Return</button>
           <div className="flex gap-2 mt-3">
            {filterButtons.map(({ label, value }) => (
                 <button
@@ -80,8 +81,8 @@ function Returns() {
             <th>Action</th>
           </thead>
          </table>
-        </div>
-     
+        </div> 
+        <div className={`absolute ${open ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}></div>    
     </div>
   )
 }
