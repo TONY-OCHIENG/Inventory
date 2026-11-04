@@ -172,7 +172,7 @@ function Returns() {
                     <td>{item.productName}</td>
                     <td>{item.quantity}</td>
                     <td>{item.amount}</td>
-                    <td>{item.status}</td>
+                    <td>{handleColor(item.status)}</td>
                     <td>
                       <div className="flex gap-2 items-center">
                         <CircleCheck className="h-4 w-4 text-green-400 cursor-pointer">
