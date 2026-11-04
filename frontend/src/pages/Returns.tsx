@@ -5,9 +5,11 @@ import { useSupplier } from "../store/supplierStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 
+
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
+ 
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
     supplierName:"",
@@ -124,9 +126,13 @@ function Returns() {
           <X onClick={() => setOpen(!open)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Return</h1>
           <label htmlFor="" className="text-sm text-gray-400">Return number</label>
-          <input type="text" name="returnNumber"className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="7467"/>
+          <input type="text"  name="returnNumber" value={String(returnDetails.returnNumber)} onChange={handleValueChange} className="w-full p-2 mb-2 border rounded-md outline-none" placeholder="7467"/>
           <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
-          <select name="" className="w-full text-sm  mb-2 border rounded-md outline-none p-2" id="">
+          <select name="suppliername" value={String(returnDetails.supplierName)} 
+              onChange={(event) =>
+              setReturnDetails((prev) => ({ ...prev, supplierName: event.target.value }))
+            }
+            className="w-full text-sm  mb-2 border rounded-md outline-none p-2" id="">
            {
             supplier.map((item) => (
               <option value={item.supplierName}>{item.supplierName}</option>
@@ -134,11 +140,11 @@ function Returns() {
            }  
           </select>  
           <label htmlFor="" className="text-sm text-gray-400">Product name</label>
-          <input type="text" name="productName"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
+          <input type="text" name="productName" value={String(returnDetails.productName)} onChange={handleValueChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>  
           <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
-          <input type="number" name="quantity"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
+          <input type="number" value={String(returnDetails.quantity)} onChange={handleValueChange} name="quantity"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
           <label htmlFor="" className="text-sm text-gray-400">Refund Amount</label>
-          <input type="number" name="amount"  className="w-full p-2 mb-2 border rounded-md outline-none"/>                             
+          <input type="number" name="amount" value={String(returnDetails.amount)} onChange={handleValueChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>                             
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">New Return</button>
          </form>
         </div>    
