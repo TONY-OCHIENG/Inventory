@@ -507,7 +507,13 @@ export const addReturns = (request, response) => {
         return response.status(200).json({success: false, message: "Fill all fields"})
     }
     try {
-        
+        const addReturns = "INSERT INTO returns(returnNumber,supplierName,productName,quantity,amount,user_id) VALUES(?,?,?,?,?,?)"
+        databaseconnection.query(addReturns,[returnNumber,supplierName,productName,quantity,amount,id], 
+            (error,result) => {
+                if (error) return response.status(500).json({success: false, message: error})
+                return response.status(201).json({success: true, message: "Return added"})
+            } 
+        )
     } catch (error) {
         console.log(error)
     }
