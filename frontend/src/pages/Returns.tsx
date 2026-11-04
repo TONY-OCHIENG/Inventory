@@ -13,6 +13,7 @@ function Returns() {
   const [activeFilter, setActiveFilter] = useState<ReturnFilter>('All')
   const { addReturns,returns , setReturn, canceleReturn, completeReturn, 
     deleteReturn, totalReturn, settotalReturn, pendingReturn, setpendingReturn
+    , completedReturn, setcompletedReturn
    } = useReturn()
   const [returnDetails, setReturnDetails] = useState<Return>({
     returnNumber: "",
@@ -43,6 +44,7 @@ function Returns() {
     setReturn(userID)
     settotalReturn(userID)
     setpendingReturn(userID)
+    setcompletedReturn(userID)
   },[userID])
   
   const authentication = async () => {
@@ -84,6 +86,7 @@ function Returns() {
     setSupplier(userID)
     settotalReturn(userID)
     setpendingReturn(userID)
+    setcompletedReturn(userID)
   }
 
   //handle color change based on status
@@ -113,6 +116,7 @@ function Returns() {
     await setSupplier(userID)
     await settotalReturn(userID)
     await setpendingReturn(userID)
+    await setcompletedReturn(userID)
   
   }
   // A function that completes return
@@ -128,6 +132,7 @@ function Returns() {
     await setSupplier(userID)  
     await settotalReturn(userID)
     await setpendingReturn(userID)
+    await setcompletedReturn(userID)
   }
 
   // A function that deletes return
@@ -144,6 +149,7 @@ function Returns() {
     await setSupplier(userID)  
     await settotalReturn(userID)
     await setpendingReturn(userID)
+    await setcompletedReturn(userID)
   } 
   return (
     <div  className="relative p-4 w-full h-full">
@@ -173,7 +179,7 @@ function Returns() {
             <div className="flex gap-4 ml-4">
               <CircleCheck className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">9</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{completedReturn}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
