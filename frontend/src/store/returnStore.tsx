@@ -6,6 +6,14 @@ import { apiClient } from "../components/ClientURL";
 export const useReturn = create<ReturnDetails>()(
     devtools((set) => ({
         returns: [],
+        totalReturn: 0,
+        settotalReturn: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/totalReturn/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                totalReturn: result
+            }))
+        },
         canceleReturn: async (user_id: String) => {
             const response = await apiClient.put(`/api/v1/canceleReturn/${user_id}`)
             const { success, message} = await response.data
