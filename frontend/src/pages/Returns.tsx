@@ -1,6 +1,8 @@
 import { Ban, CircleCheck, Timer, Undo2, X } from "lucide-react"
 import type { ReturnFilter } from "../types/types";
 import { useState } from "react";
+import { useSupplier } from "../store/supplierStore";
+import { useFormDetail } from "../store/authStore";
 
 function Returns() {
   const [open, setOpen] = useState<Boolean>(false)
@@ -11,6 +13,8 @@ function Returns() {
                 { label: 'Completed', value: 'Completed'},      
                 { label: 'Canceled', value: 'Canceled' }           
           ]
+  const { getAllSuppliers } = useSupplier()
+  const { authenticateUser } =  useFormDetail()
   return (
     <div  className="relative p-4 w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
@@ -95,7 +99,7 @@ function Returns() {
           <label htmlFor="" className="text-sm text-gray-400">Quantity</label>
           <input type="number" name="quantity"  className="w-full p-2 mb-2 border rounded-md outline-none"/>  
           <label htmlFor="" className="text-sm text-gray-400">Amount</label>
-          <input type="text" name="amount"  className="w-full p-2 mb-2 border rounded-md outline-none"/>                             
+          <input type="number" name="amount"  className="w-full p-2 mb-2 border rounded-md outline-none"/>                             
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">New Return</button>
          </form>
         </div>    
