@@ -7,6 +7,14 @@ export const useReturn = create<ReturnDetails>()(
     devtools((set) => ({
         returns: [],
         totalReturn: 0,
+        pendingReturn: 0,
+        setpendingReturn: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/pendingReturn/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                pendingReturn: result
+            })) 
+        },
         settotalReturn: async (user_id: String) => {
             const response = await apiClient.get(`/api/v1/totalReturn/${user_id}`)
             const { result } = await response.data
