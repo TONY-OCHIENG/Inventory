@@ -1,5 +1,5 @@
 import express from 'express'
-import { activateSupplier, addProducts, addPurchase, addReminders, addReturns, addSuppliers, availableStock, canceledPurchase, cancelPurchase, deactivateSupplier, deleteProduct, deletePurchase, deleteReminders, deleteSupplier, depletedStock, getActivesuppliers, getAllsuppliers, getinActivesuppliers, getProducts, getPurchase, getReminders, getReturns, getSuppliers, getTotalBalance, lowStock, pendingPurchase, recievedPurchase, recievePurchase, updateBalance } from '../controllers/actions.controller.js'
+import { activateSupplier, addProducts, addPurchase, addReminders, addReturns, addSuppliers, availableStock, canceledPurchase, cancelPurchase, cancelReturn, deactivateSupplier, deleteProduct, deletePurchase, deleteReminders, deleteSupplier, depletedStock, getActivesuppliers, getAllsuppliers, getinActivesuppliers, getProducts, getPurchase, getReminders, getReturns, getSuppliers, getTotalBalance, lowStock, pendingPurchase, recievedPurchase, recievePurchase, updateBalance } from '../controllers/actions.controller.js'
 import { upload } from '../configs/upload.js'
 
 const actionRoutes = express.Router()
@@ -32,4 +32,5 @@ actionRoutes.get("/getinActivesuppliers/:id",getinActivesuppliers)
 actionRoutes.get("/getTotalBalance/:id",getTotalBalance)
 actionRoutes.post("/addReturn/:id",addReturns)
 actionRoutes.get("/getReturn/:id",getReturns)
+actionRoutes.put("/canceleReturn/:id",cancelReturn)
 export default actionRoutes
