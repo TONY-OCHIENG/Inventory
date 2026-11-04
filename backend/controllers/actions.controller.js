@@ -635,3 +635,21 @@ export const pendingReturns = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const canceledReturns = (request,response) => {
+    const { id } = request.params
+    try {
+        const canceledReturns = "SELECT COUNT(status) as canceledReturns FROM returns WHERE user_id = ? AND status = 'Canceled'"
+        databaseconnection.query(canceledReturns,[id],(err, result) => {
+            if (err) return response.status(500).json({success: false, message: err})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result[0].canceledReturns})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
