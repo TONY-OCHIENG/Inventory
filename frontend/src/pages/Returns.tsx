@@ -91,7 +91,7 @@ function Returns() {
     }
 
     if (status === 'Completed') {
-      return <p className="bg-green-200 text-green-600 font-bold rounded-full text-center w-[70px]">{status}</p>
+      return <p className="bg-green-200 text-green-600 font-bold rounded-full text-center w-[84px]">{status}</p>
     }
   }
 
