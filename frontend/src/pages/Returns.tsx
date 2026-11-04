@@ -1,6 +1,6 @@
 import { Ban, CircleCheck, Timer, Undo2, X } from "lucide-react"
 import type { Return, ReturnFilter } from "../types/types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { useSupplier } from "../store/supplierStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
@@ -15,9 +15,9 @@ function Returns() {
     quantity:"",
     amount:""
   })
-   const [userID, setUserID] = useState<String>("")
-   const navigate = useNavigate()
-   const filterButtons: { label: string; value: ReturnFilter}[] = [
+  const [userID, setUserID] = useState<String>("")
+  const navigate = useNavigate()
+  const filterButtons: { label: string; value: ReturnFilter}[] = [
                 { label: 'All', value: 'All' },
                 { label: 'Pending', value: 'Pending' },
                 { label: 'Completed', value: 'Completed'},      
@@ -38,6 +38,14 @@ function Returns() {
         } else {
           navigate('/login')      
         }
+  }
+  
+  const handleValueChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value} = event.target
+    setReturnDetails((prev) => ({
+      ...prev,
+      [name] : value
+    }))
   }
    
   return (
