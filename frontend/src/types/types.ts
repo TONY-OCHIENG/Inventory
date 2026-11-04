@@ -165,6 +165,17 @@ export interface Return{
   quantity: string,
   amount: string
 }
+
+export interface ReturnDetail{
+  return_id: string,
+  returnNumber: string,
+  supplierName: string,
+  productName: string,
+  quantity: string,
+  amout: string,
+}
 export interface ReturnDetails{
+  return: ReturnDetail[],
+  setReturn: (user_id: String) => Promise<void>,
   addReturns: (user_id: String, detail: Return) => Promise<Response>
 }
