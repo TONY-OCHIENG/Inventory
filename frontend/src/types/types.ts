@@ -177,6 +177,7 @@ export interface ReturnDetail{
 }
 export interface ReturnDetails{
   returns: ReturnDetail[],
+  canceleReturn: (user_id: String) => Promise<Response>,
   setReturn: (user_id: String) => Promise<void>,
   addReturns: (user_id: String, detail: Return) => Promise<Response>
 }
