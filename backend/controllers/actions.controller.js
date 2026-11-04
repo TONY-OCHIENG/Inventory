@@ -506,4 +506,9 @@ export const addReturns = (request, response) => {
     if (!returnNumber || !supplierName || !productName || !quantity || !amount) {
         return response.status(200).json({success: false, message: "Fill all fields"})
     }
+    try {
+        
+    } catch (error) {
+        console.log(error)
+    }
 }
