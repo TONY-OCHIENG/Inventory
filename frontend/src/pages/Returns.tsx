@@ -116,6 +116,8 @@ function Returns() {
     } else {
       toast.error("An error occured")
     }
+    await setReturn(userID)
+    await setSupplier(userID)  
   }
   return (
     <div  className="relative p-4 w-full h-full">
