@@ -77,6 +77,7 @@ function Returns() {
 
     setOpen(!open)
     setReturn(userID)
+    setSupplier(userID)
   }
 
   //handle color change based on status
@@ -102,6 +103,9 @@ function Returns() {
     } else {
       toast.error("An error occured")
     }
+    await setReturn(userID)
+    await setSupplier(userID)
+  
   }
   return (
     <div  className="relative p-4 w-full h-full">
@@ -188,7 +192,7 @@ function Returns() {
                         <CircleCheck className="h-4 w-4 text-green-400 cursor-pointer">
                           <title>Complete</title>
                         </CircleCheck>
-                        <Ban className="h-4 w-4 text-amber-400 cursor-pointer">
+                        <Ban onClick={() => handleCanceleReturn(item.return_id)} className="h-4 w-4 text-amber-400 cursor-pointer">
                           <title>Cancele</title>
                         </Ban>
                         <Trash className="h-4 w-4 text-red-400 cursor-pointer">
