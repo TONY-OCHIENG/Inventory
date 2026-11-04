@@ -617,3 +617,21 @@ export const completedReturns = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const pendingReturns = (request,response) => {
+    const { id } = request.params
+    try {
+        const pendingReturns = "SELECT COUNT(status) as pendingReturns FROM returns WHERE user_id = ? AND status = 'Pending'"
+        databaseconnection.query(pendingReturns,[id],(err, result) => {
+            if (err) return response.status(500).json({success: false, message: err})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result[0].pendingReturns})
+            } else {
+                return response.status(200).json({success: false, result: result})
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
