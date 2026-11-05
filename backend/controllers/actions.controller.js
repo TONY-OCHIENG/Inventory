@@ -674,7 +674,21 @@ export const singleProduct = (request, response) => {
 
 export const deductProduct = (request,response) => {
     const { id } = request.params
+    const { quantity } = request.body
+    
+    if (!quantity) {
+        return response.status(200).json({success: false, message: "Fill required field"})
+    }
+
     try {
+        const deductProduct = "UPDATE products SET quantity = quantity - ? WHERE product_id = ?"
+        databaseconnection.query(deductProduct,[quantity,id], (error, result) => {
+            if (error) return response.status(500).json({success: false, message: error})
+            if(result[0].affectedRows === 0) {
+                return response.status(200).json({success: false, message: "Not enough stock"})
+            }
+            return response.status(200).json({success: true, message: "Stock deducted"})
+        })
         
     } catch (error) {
         console.log(error)
