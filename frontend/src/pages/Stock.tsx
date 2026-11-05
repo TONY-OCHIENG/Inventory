@@ -188,7 +188,7 @@ function Stock() {
                        <Minus onClick={() => handleOpenDeduction(item.product_id)} className="rounded-md text-red-600 bg-red-200 cursor-pointer p-1">
                         <title>Move stock</title>
                        </Minus>
-                       <Plus className=" rounded-md cursor-pointer bg-green-200 text-green-600 p-1">
+                       <Plus onClick={() => handleopenAddStock(item.product_id)} className=" rounded-md cursor-pointer bg-green-200 text-green-600 p-1">
                         <title>Add stock</title>
                        </Plus>
                      </div>
@@ -227,7 +227,7 @@ function Stock() {
         </div>    
         <div className={`${openAddStock ? 'block' : 'hidden'} absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
           <form action="" onSubmit={handleSubmit} className="relative bg-white p-4 rounded-md max-w-md">
-            <X onClick={() => setopenAddStock(!openDeduction)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
+            <X onClick={() => setopenAddStock(!openAddStock)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
             <h1 className="text-center text-sm text-gray-600 font-extrabold">Add stock</h1>
             <label className="text-sm text-gray-600" htmlFor="">Product name</label>
             <input type="text" name="productName" disabled value={productSingle.map((item) => item.productName)} placeholder="" className="text-sm text-gray-500 w-full p-2 border border-gray-400 rounded-md"/>
