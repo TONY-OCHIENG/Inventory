@@ -679,7 +679,8 @@ export const deductQuantity = (request,response) => {
         return response.status(200).json({success: false, message: "Fill required field"})
     }
 
-    if (!Number.isInteger(quantity) || quantity <= 0) {
+
+    if ( quantity <= 0) {
         return response
             .status(200)
             .json({ success: false, message: "Deduction must be a positive whole number" });
