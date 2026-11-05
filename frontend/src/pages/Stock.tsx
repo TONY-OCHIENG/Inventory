@@ -69,6 +69,18 @@ function Stock() {
                 </button>
             ))}
          </div>
+         <table className="w-full bg-white mt-3">
+            <thead className="text-gray-600 text-sm text-left border-b border-gray-400">
+                <th className="p-2">SKU</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+         </table>
         </div>      
     </div>
   )
