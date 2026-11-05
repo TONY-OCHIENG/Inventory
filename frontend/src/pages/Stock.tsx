@@ -1,4 +1,4 @@
-import { Box, FolderOpen, PackageMinus, TrendingDown, TrendingUp } from "lucide-react"
+import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp } from "lucide-react"
 import { useEffect, useState } from "react";
 import type { StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
@@ -136,10 +136,15 @@ function Stock() {
                     <td>{item.quantity}</td>
                     <td>{item.category}</td>  
                     <td>{item.supplier}</td>                  
-                    <td className="text-center">{item.stock}</td>                 
+                    <td className="text-center">{handleStock(item.stock)}</td>                 
                     <td className="">
                      <div className="flex gap-2 items-center">
-                     
+                       <Minus className="rounded-md text-red-600 bg-red-200 cursor-pointer p-1">
+                        <title>Move stock</title>
+                       </Minus>
+                       <Plus className=" rounded-md cursor-pointer bg-green-200 text-green-600 p-1">
+                        <title>Add stock</title>
+                       </Plus>
                      </div>
                     </td>
                   </tr>
