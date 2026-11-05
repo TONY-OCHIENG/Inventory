@@ -4,10 +4,13 @@ import type { StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
+import Pagination from "../components/Pagination";
 
 function Stock() {
-    const { product, setProducts } = useProduct()
+    const { product, setProducts,totalProducts } = useProduct()
     const [userID, setUserID] = useState<String>("")
+    const [page, setPage] = useState<number>(1)
+    let limit = 10
     const navigate = useNavigate()
     const { authenticateUser } = useFormDetail()
     const [activeFilter, setActiveFilter] = useState<StFilter>('All')
@@ -19,7 +22,8 @@ function Stock() {
             ]
     useEffect(() => {
         handleAuthentication()
-    },[userID])
+        setProducts(userID,page,limit)
+    },[userID,page])
     const handleAuthentication = async () => {
         const { success, user_id} = await authenticateUser()
         if (success) {
@@ -28,6 +32,7 @@ function Stock() {
           navigate('/login')      
         }
     }
+
     
   return (
    
@@ -101,6 +106,10 @@ function Stock() {
                 <th>Action</th>
             </thead>
          </table>
+         </div>
+         <div className="flex w-full justify-between items-center">
+            <h1 className="text-xs text-gray-400"></h1>
+            <Pagination page={page} setPage={setPage} total={totalProducts} limit={limit} />
          </div>
         </div>      
     </div>
