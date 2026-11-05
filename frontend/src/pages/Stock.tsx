@@ -1,4 +1,4 @@
-import { Box, PackageMinus, TrendingDown, TrendingUp } from "lucide-react"
+import { Box, FolderOpen, PackageMinus, TrendingDown, TrendingUp } from "lucide-react"
 import { useEffect, useState } from "react";
 import type { StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
@@ -20,9 +20,9 @@ function Stock() {
         : product.filter((item) => item.stock === activeFilter)
     const filterButtons: { label: string; value: StFilter }[] = [
                   { label: 'All', value: 'All'},
-                  { label: 'In stock', value: 'In stock'},
+                  { label: 'In stock', value: 'Available'},
                   { label: 'Low stock', value: 'Low stock'},
-                  { label: 'Out of stock', value: 'Out of stock'}               
+                  { label: 'Out of stock', value: 'Depleted'}               
             ]
     useEffect(() => {
         handleAuthentication()
@@ -109,6 +109,36 @@ function Stock() {
                 <th>Status</th>
                 <th>Action</th>
             </thead>
+              <tbody className=" w-full text-sm text-gray-500">
+              {
+                filteredProducts && filteredProducts.length > 0 ?
+                filteredProducts.map((item) => (
+                  <tr className="w-full text-left even:bg-gray-50">
+                    <td className="p-2">{item.sku}</td>
+                    <td>{item.productName}</td>
+                    <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
+                    <td>{item.quantity}</td>
+                    <td>{item.price}</td>
+                    <td className="text-center">{item.stock}</td>
+                    <td>{item.supplier}</td>
+                    <td>{item.category}</td>
+                    <td className="">
+                     <div className="flex gap-2 items-center">
+                     
+                     </div>
+                    </td>
+                  </tr>
+                )) :
+                <tr className="h-[59vh]">
+                  <td colSpan={8} className="text-center ">
+                    <div className="flex flex-col justify-center items-center">
+                        <FolderOpen className="h-8 w-8"/>
+                       <h1 className="text-sm text-gray-600 font-extrabold">Products not available</h1>
+                    </div>                  
+                  </td>
+                </tr>
+              } 
+            </tbody>
          </table>
          </div>
          <div className="flex w-full justify-between items-center">

@@ -120,7 +120,7 @@ export interface PurchaseDetail{
 export type PurchaseFilter = 'All' | 'Pending' | 'Recieved' | 'Canceled'
 export type SupplierFilter = 'All' | 'Active' | 'On hold'
 export type ReturnFilter = 'All' | 'Pending' | 'Completed' | 'Canceled'
-export type StFilter = 'All' | 'In stock' | 'Low stock' | 'Out of stock'
+export type StFilter = 'All' | 'Available' | 'Low stock' | 'Depleted'
 export interface SupplierDetails{
   supplierName: string,
   supplierNumber: string,
