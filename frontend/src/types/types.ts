@@ -73,10 +73,12 @@ export type StockFilter = 'All' | 'Available' | 'Low stock' | 'Depleted'
 
 export interface ProductDetails{
   product: Products[],
+  productSingle: Products[]
   totalProducts: number,
   availableStock: number,
   lowStock: number,
   depletedStock: number,
+  setsignleProduct: (product_id: String) => Promise<void>,
   setavailableProducts: (user_id: String) => Promise<void>,
   setlowProducts: (user_id: String) => Promise<void>,
   setdepletedStock: (user_id: String) => Promise<void>,

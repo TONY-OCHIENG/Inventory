@@ -6,10 +6,18 @@ import { apiClient } from "../components/ClientURL";
 export const useProduct = create<ProductDetails>()(
     devtools((set) => ({
         product: [],
+        productSingle: [],
         totalProducts: 0,
         availableStock: 0,
         lowStock: 0,
         depletedStock: 0,
+        setsignleProduct: async (product_id: String) => {
+          const response = await apiClient.get(`/api/v1/singleProduct/${product_id}`)
+          const { result } = await response.data
+          set(() => ({
+            productSingle: result
+          }))
+        },
         setavailableProducts: async (user_id: String) => {
           const response = await apiClient.get(`/api/v1/availableStock/${user_id}`)
           const { result } = await response.data
