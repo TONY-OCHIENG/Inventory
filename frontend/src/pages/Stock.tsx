@@ -37,6 +37,22 @@ function Stock() {
         }
     }
 
+    //implementing a function that handle stock text color based on availability
+
+    const handleStock = (text: String) => {
+      if (text === 'Available') {
+        return <p className="text-green-500 bg-green-100 rounded-full  w-[70px]">{text}</p>
+      }
+
+      if (text === 'Low stock') {
+        return <p className="text-amber-500 bg-amber-100 rounded-full w-[70px]">{text}</p>
+      } 
+
+      if (text === 'Depleted') {
+        return <p className="text-red-500 bg-red-100  rounded-full w-[70px]">{text}</p>
+      }
+    }
+
     
   return (
    
@@ -120,9 +136,7 @@ function Stock() {
                     <td>{item.quantity}</td>
                     <td>{item.category}</td>  
                     <td>{item.supplier}</td>                  
-                    <td className="text-center">{item.stock}</td>
-                   
-                   
+                    <td className="text-center">{item.stock}</td>                 
                     <td className="">
                      <div className="flex gap-2 items-center">
                      
