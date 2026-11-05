@@ -8,7 +8,7 @@ import Pagination from "../components/Pagination";
 import toast from "react-hot-toast";
 
 function Stock() {
-    const { product, setProducts,totalProducts,productSingle,setsignleProduct} = useProduct()
+    const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity} = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
     const [details,setDetails] = useState<Deduction>({
@@ -71,7 +71,7 @@ function Stock() {
         }))
     }
     
-    const handleSubmit = (event: ChangeEvent) => {
+    const handleSubmit = async (event: ChangeEvent) => {
         event.preventDefault()
         const Rquantity = Number(productSingle.map((item) => item.quantity))
         const quantity = Number(details.quantity)
@@ -79,6 +79,13 @@ function Stock() {
     
         if (quantity > Rquantity){
             return toast.error("Deduction cannot be greater than original")
+        }
+
+        const { success, message} = await deductQuantity(product_id[0],details)
+        if (success) {
+            toast.success(message)
+        } else {
+            toast.error("An error occured")
         }
         
 
