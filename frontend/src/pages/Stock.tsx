@@ -1,10 +1,12 @@
 import { Box, PackageMinus, TrendingDown, TrendingUp } from "lucide-react"
 import { useState } from "react";
 import type { StFilter } from "../types/types";
+import { useProduct } from "../store/productStore";
 
 function Stock() {
-      const [activeFilter, setActiveFilter] = useState<StFilter>('All')
-      const filterButtons: { label: string; value: StFilter }[] = [
+    const { product, setProducts } = useProduct()
+    const [activeFilter, setActiveFilter] = useState<StFilter>('All')
+    const filterButtons: { label: string; value: StFilter }[] = [
                   { label: 'All', value: 'All'},
                   { label: 'In stock', value: 'In stock'},
                   { label: 'Low stock', value: 'Low stock'},
