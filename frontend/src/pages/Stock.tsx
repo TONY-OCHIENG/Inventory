@@ -8,6 +8,7 @@ import Pagination from "../components/Pagination";
 
 function Stock() {
     const { product, setProducts,totalProducts } = useProduct()
+    const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
     const [page, setPage] = useState<number>(1)
     let limit = 10
