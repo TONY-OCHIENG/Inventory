@@ -52,7 +52,13 @@ function Stock() {
       if (text === 'Depleted') {
         return <p className="text-red-500 bg-red-100  rounded-full w-[70px]">{text}</p>
       }
-    }    
+    }  
+    
+    const handleOpenDeduction = async (product_id: String) => {
+      setopenDeduction(!openDeduction)
+      await setsignleProduct(product_id)
+    }
+    console.log(productSingle)
   return (
    
     <div className="relative w-full p-4 h-full">
@@ -138,7 +144,7 @@ function Stock() {
                     <td className="text-center">{handleStock(item.stock)}</td>                 
                     <td className="">
                      <div className="flex gap-2 items-center">
-                       <Minus className="rounded-md text-red-600 bg-red-200 cursor-pointer p-1">
+                       <Minus onClick={() => handleOpenDeduction(item.product_id)} className="rounded-md text-red-600 bg-red-200 cursor-pointer p-1">
                         <title>Move stock</title>
                        </Minus>
                        <Plus className=" rounded-md cursor-pointer bg-green-200 text-green-600 p-1">
