@@ -171,13 +171,15 @@ function Stock() {
          </div>
         </div>  
         <div className={`${openDeduction ? 'block' : 'hidden'} absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
-          <form   action=""  className="relative bg-white p-4 rounded-md max-w-md">
+          <form action=""  className="relative bg-white p-4 rounded-md max-w-md">
             <X onClick={() => setopenDeduction(!openDeduction)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
             <h1 className="text-center text-sm text-gray-600 font-extrabold">Deduct stock</h1>
             <label className="text-sm text-gray-600" htmlFor="">Product name</label>
-            <input type="text" name="productName"  placeholder="" className="w-full p-2 border border-gray-400 rounded-md"/>
+            <input type="text" name="productName" disabled value={productSingle.map((item) => item.productName)} placeholder="" className="text-sm text-gray-500 w-full p-2 border border-gray-400 rounded-md"/>
             <label className="text-sm text-gray-600" htmlFor="">Quantity</label>
-            <input type="number" name="quantity"  placeholder="" className="w-full p-2 border border-gray-400 rounded-md"/>
+            <input type="number" name="Rquantity" disabled value={productSingle.map((item) => item.quantity)} placeholder="" className="text-sm text-gray-500 w-full p-2 border border-gray-400 rounded-md"/>
+            <label className="text-sm text-gray-600" htmlFor="">Deduction </label>
+            <input type="number" name="quantity" placeholder="" className="text-sm text-gray-500 w-full p-2 border border-gray-400 rounded-md"/>
             <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-3">Deduct</button>
           </form>
         </div>    
