@@ -675,20 +675,30 @@ export const singleProduct = (request, response) => {
 export const deductQuantity = (request,response) => {
     const { id } = request.params
     const { quantity } = request.body
-    console.log(quantity)
     if (!quantity) {
         return response.status(200).json({success: false, message: "Fill required field"})
     }
 
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+        return response
+            .status(200)
+            .json({ success: false, message: "Deduction must be a positive whole number" });
+        }
+
     try {
         const deductProduct = "UPDATE products SET quantity = quantity - ? WHERE product_id = ?"
         databaseconnection.query(deductProduct,[quantity,id], (error, result) => {
-            if (error) return response.status(500).json({success: false, message: error})
+            if (error) return response.status(500).json({success: false, message: "An error occured"})
+            if (result.affectedRows === 0) {
+                    return response
+                    .status(200)
+                    .json({ success: false, message: "Product not found or insufficient stock" });
+                }
             return response.status(200).json({success: true, message: "Quantity deducted"})
         })
         
     } catch (error) {
         console.log(error)
-        return response.status(500).json({success: false, message: "An error occured"})
+        return response.status(500).json({success: false, message: "Internal server error"})
     }
 }

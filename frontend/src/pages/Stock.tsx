@@ -85,9 +85,10 @@ function Stock() {
         if (success) {
             toast.success(message)
         } else {
-            toast.error("An error occured")
+            toast.error(message)
         }         
         await setProducts(userID,page,limit)
+        setopenDeduction(!openDeduction)
     }
 
   return (
