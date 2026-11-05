@@ -75,7 +75,7 @@ function Stock() {
         event.preventDefault()
         const Rquantity = Number(productSingle.map((item) => item.quantity))
         const quantity = Number(details.quantity)
-        const product_id = productSingle.map((item) => item.quantity)
+        const product_id = productSingle.map((item) => item.product_id)
     
         if (quantity > Rquantity){
             return toast.error("Deduction cannot be greater than original")
@@ -86,8 +86,8 @@ function Stock() {
             toast.success(message)
         } else {
             toast.error("An error occured")
-        }        
-
+        }         
+        await setProducts(userID,page,limit)
     }
 
   return (

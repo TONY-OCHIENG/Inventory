@@ -675,7 +675,7 @@ export const singleProduct = (request, response) => {
 export const deductQuantity = (request,response) => {
     const { id } = request.params
     const { quantity } = request.body
-    
+    console.log(quantity)
     if (!quantity) {
         return response.status(200).json({success: false, message: "Fill required field"})
     }
