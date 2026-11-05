@@ -79,7 +79,7 @@ function Stock() {
             </div>
           </div> 
         </div> 
-        <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
+        <div className="mt-8 scrollbar-thin h-[72vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
          <div className="flex gap-2 mb-4">
             {filterButtons.map(({ label, value }) => (
                 <button
@@ -94,7 +94,7 @@ function Stock() {
             ))}
          </div>
          <div className="h-[59vh] w-full">
-            <table className="w-full bg-white mt-3">
+         <table className="w-full bg-white mt-3">
             <thead className="text-gray-600 text-sm text-left border-b border-gray-400">
                 <th className="p-2">SKU</th>
                 <th>Product Image</th>
