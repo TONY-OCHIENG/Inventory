@@ -672,7 +672,7 @@ export const singleProduct = (request, response) => {
     }
 }
 
-export const deductProduct = (request,response) => {
+export const deductQuantity = (request,response) => {
     const { id } = request.params
     const { quantity } = request.body
     
