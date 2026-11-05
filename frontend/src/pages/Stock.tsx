@@ -1,5 +1,5 @@
 import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp, X } from "lucide-react"
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import type { StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
 import { useFormDetail } from "../store/authStore";
@@ -10,6 +10,7 @@ function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct} = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
+    
     const [page, setPage] = useState<number>(1)
     let limit = 10
     const navigate = useNavigate()
@@ -57,6 +58,10 @@ function Stock() {
     const handleOpenDeduction = async (product_id: String) => {
       setopenDeduction(!openDeduction)
       await setsignleProduct(product_id)
+    }
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value} = event.target
     }
   return (
    

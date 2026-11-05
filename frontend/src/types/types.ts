@@ -193,3 +193,10 @@ export interface ReturnDetails{
   setReturn: (user_id: String) => Promise<void>,
   addReturns: (user_id: String, detail: Return) => Promise<Response>
 }
+
+export interface Deduction{
+  product_id: string,
+  productName: string,
+  quantity: string,
+  rquantity: string
+}
