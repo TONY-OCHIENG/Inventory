@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity} = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
-    const [openAddStock, setopenAddStock] = useState<Boolean>(true)
+    const [openAddStock, setopenAddStock] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
     const [details,setDetails] = useState<Deduction>({
        quantity:"",
@@ -62,6 +62,11 @@ function Stock() {
     const handleOpenDeduction = async (product_id: String) => {
       setopenDeduction(!openDeduction)
       await setsignleProduct(product_id)
+    }
+
+    const handleopenAddStock = async (product_id: String) => {
+        setopenAddStock(!openAddStock)
+        await setsignleProduct(product_id)
     }
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
