@@ -703,3 +703,16 @@ export const deductQuantity = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const addQuantity = (request,response) => {
+    const { id } = request.params
+    const { quantity } = request.body
+
+    if(!quantity) {
+        return response.status(200).json({success: false, message: "Fill required field"})
+    }
+
+    if (isNaN(quantity)) {
+        return response.status(200).json({success: false, message: "Enter integer"})
+    }
+}
