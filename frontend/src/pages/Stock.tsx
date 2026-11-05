@@ -1,10 +1,15 @@
 import { Box, PackageMinus, TrendingDown, TrendingUp } from "lucide-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
+import { useFormDetail } from "../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 function Stock() {
     const { product, setProducts } = useProduct()
+    const [userID, setUserID] = useState<String>("")
+    const navigate = useNavigate()
+    const { authenticateUser } = useFormDetail()
     const [activeFilter, setActiveFilter] = useState<StFilter>('All')
     const filterButtons: { label: string; value: StFilter }[] = [
                   { label: 'All', value: 'All'},
@@ -12,6 +17,18 @@ function Stock() {
                   { label: 'Low stock', value: 'Low stock'},
                   { label: 'Out of stock', value: 'Out of stock'}               
             ]
+    useEffect(() => {
+        handleAuthentication()
+    },[userID])
+    const handleAuthentication = async () => {
+        const { success, user_id} = await authenticateUser()
+        if (success) {
+          setUserID(user_id)
+        } else {
+          navigate('/login')      
+        }
+    }
+    
   return (
    
     <div className="relative w-full p-4 h-full">
