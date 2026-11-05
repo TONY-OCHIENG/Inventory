@@ -14,6 +14,10 @@ function Stock() {
     const navigate = useNavigate()
     const { authenticateUser } = useFormDetail()
     const [activeFilter, setActiveFilter] = useState<StFilter>('All')
+    const filteredProducts =
+      activeFilter === 'All'
+        ? product
+        : product.filter((item) => item.stock === activeFilter)
     const filterButtons: { label: string; value: StFilter }[] = [
                   { label: 'All', value: 'All'},
                   { label: 'In stock', value: 'In stock'},
