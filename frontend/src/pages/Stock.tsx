@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../components/Pagination";
 
 function Stock() {
-    const { product, setProducts,totalProducts } = useProduct()
+    const { product, setProducts,totalProducts,productSingle,setsignleProduct} = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
     const [page, setPage] = useState<number>(1)
@@ -52,9 +52,7 @@ function Stock() {
       if (text === 'Depleted') {
         return <p className="text-red-500 bg-red-100  rounded-full w-[70px]">{text}</p>
       }
-    }
-
-    
+    }    
   return (
    
     <div className="relative w-full p-4 h-full">
