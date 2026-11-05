@@ -1,6 +1,6 @@
 import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp, X } from "lucide-react"
 import { useEffect, useState, type ChangeEvent } from "react";
-import type { StFilter } from "../types/types";
+import type { Deduction, StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,12 @@ function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct} = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
-    
+    const [details,setDetails] = useState<Deduction>({
+        product_id: "",
+        productName: "",
+        quantity:"",
+        Rquantity:""
+    })
     const [page, setPage] = useState<number>(1)
     let limit = 10
     const navigate = useNavigate()
@@ -62,6 +67,10 @@ function Stock() {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value} = event.target
+        setDetails((prev) => ({
+            ...prev,
+            [name] : value
+        }))
     }
   return (
    

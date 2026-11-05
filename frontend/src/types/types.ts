@@ -198,5 +198,5 @@ export interface Deduction{
   product_id: string,
   productName: string,
   quantity: string,
-  rquantity: string
+  Rquantity: string
 }
