@@ -12,10 +12,7 @@ function Stock() {
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
     const [details,setDetails] = useState<Deduction>({
-        product_id: "",
-        productName: "",
-        quantity:"",
-        Rquantity:""
+       quantity:"",
     })
     const [page, setPage] = useState<number>(1)
     let limit = 10
@@ -79,7 +76,7 @@ function Stock() {
         const Rquantity = Number(productSingle.map((item) => item.quantity))
         const quantity = Number(details.quantity)
         const product_id = productSingle.map((item) => item.quantity)
-
+    
         if (quantity > Rquantity){
             return toast.error("Deduction cannot be greater than original")
         }

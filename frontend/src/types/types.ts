@@ -70,7 +70,9 @@ export interface Products{
 }
 
 export type StockFilter = 'All' | 'Available' | 'Low stock' | 'Depleted'
-
+export interface Deduction{
+  quantity: string, 
+}
 export interface ProductDetails{
   product: Products[],
   productSingle: Products[]
@@ -78,6 +80,7 @@ export interface ProductDetails{
   availableStock: number,
   lowStock: number,
   depletedStock: number,
+  deductQuantity: (product_id: String, quantity: Deduction) => Promise<Response>,
   setsignleProduct: (product_id: String) => Promise<void>,
   setavailableProducts: (user_id: String) => Promise<void>,
   setlowProducts: (user_id: String) => Promise<void>,
@@ -194,9 +197,3 @@ export interface ReturnDetails{
   addReturns: (user_id: String, detail: Return) => Promise<Response>
 }
 
-export interface Deduction{
-  product_id: string,
-  productName: string,
-  quantity: string,
-  Rquantity: string
-}

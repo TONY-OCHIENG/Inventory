@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { ProductDetails } from "../types/types";
+import type { Deduction, ProductDetails } from "../types/types";
 import { devtools } from "zustand/middleware";
 import { apiClient } from "../components/ClientURL";
 
@@ -11,6 +11,11 @@ export const useProduct = create<ProductDetails>()(
         availableStock: 0,
         lowStock: 0,
         depletedStock: 0,
+        deductQuantity: async (product_id: String, quantity: Deduction) => {
+          const response = await apiClient.put(`/api/v1/deductQuantity/${product_id}`,quantity)
+          const { success, message} = await response.data
+          return { success, message}
+        },
         setsignleProduct: async (product_id: String) => {
           const response = await apiClient.get(`/api/v1/singleProduct/${product_id}`)
           const { result } = await response.data
