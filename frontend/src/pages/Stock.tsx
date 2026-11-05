@@ -69,7 +69,8 @@ function Stock() {
                 </button>
             ))}
          </div>
-         <table className="w-full bg-white mt-3">
+         <div className="h-[59vh] w-full">
+            <table className="w-full bg-white mt-3">
             <thead className="text-gray-600 text-sm text-left border-b border-gray-400">
                 <th className="p-2">SKU</th>
                 <th>Product Image</th>
@@ -81,6 +82,7 @@ function Stock() {
                 <th>Action</th>
             </thead>
          </table>
+         </div>
         </div>      
     </div>
   )
