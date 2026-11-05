@@ -1,4 +1,4 @@
-import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp } from "lucide-react"
+import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp, X } from "lucide-react"
 import { useEffect, useState } from "react";
 import type { StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
@@ -164,7 +164,16 @@ function Stock() {
             <h1 className="text-xs text-gray-400"></h1>
             <Pagination page={page} setPage={setPage} total={totalProducts} limit={limit} />
          </div>
-        </div>      
+        </div>  
+        <div className={`${openDeduction ? 'block' : 'hidden'} absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+          <form   action=""  className="relative bg-white p-4 rounded-md max-w-md">
+            <X onClick={() => setopenDeduction(!openDeduction)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
+            <h1 className="text-center text-sm text-gray-600 font-extrabold">Deduct stock</h1>
+            <label className="text-sm text-gray-600" htmlFor="">Balance</label>
+            <input type="number" name="balance"  placeholder="0.00" className="w-full p-2 border border-gray-400 rounded-md"/>
+            <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-3">update balance</button>
+          </form>
+        </div>    
     </div>
   )
 }
