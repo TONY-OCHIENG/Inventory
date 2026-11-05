@@ -40,4 +40,5 @@ actionRoutes.get("/completedReturn/:id",completedReturns)
 actionRoutes.get("/pendingReturn/:id",pendingReturns)
 actionRoutes.get("/canceledReturn/:id",canceledReturns)
 actionRoutes.get("/singleProduct/:id",singleProduct)
+actionRoutes.put('/deductQuantity/:id',deleteProduct)
 export default actionRoutes

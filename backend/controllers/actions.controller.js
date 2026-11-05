@@ -685,9 +685,9 @@ export const deductProduct = (request,response) => {
         databaseconnection.query(deductProduct,[quantity,id], (error, result) => {
             if (error) return response.status(500).json({success: false, message: error})
             if(result[0].affectedRows === 0) {
-                return response.status(200).json({success: false, message: "Not enough stock"})
+                return response.status(200).json({success: false, message: "Not enough quantity"})
             }
-            return response.status(200).json({success: true, message: "Stock deducted"})
+            return response.status(200).json({success: true, message: "Quantity deducted"})
         })
         
     } catch (error) {
