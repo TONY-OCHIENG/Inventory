@@ -44,7 +44,12 @@ function Stock() {
               </div>
             </div>
           </div> 
-        </div>       
+        </div> 
+        <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
+         <div className="flex gap-2 mb-4">
+            
+         </div>
+        </div>      
     </div>
   )
 }
