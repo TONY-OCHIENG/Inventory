@@ -58,7 +58,6 @@ function Stock() {
       setopenDeduction(!openDeduction)
       await setsignleProduct(product_id)
     }
-    console.log(productSingle)
   return (
    
     <div className="relative w-full p-4 h-full">
@@ -175,9 +174,11 @@ function Stock() {
           <form   action=""  className="relative bg-white p-4 rounded-md max-w-md">
             <X onClick={() => setopenDeduction(!openDeduction)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
             <h1 className="text-center text-sm text-gray-600 font-extrabold">Deduct stock</h1>
-            <label className="text-sm text-gray-600" htmlFor="">Balance</label>
-            <input type="number" name="balance"  placeholder="0.00" className="w-full p-2 border border-gray-400 rounded-md"/>
-            <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-3">update balance</button>
+            <label className="text-sm text-gray-600" htmlFor="">Product name</label>
+            <input type="text" name="productName"  placeholder="" className="w-full p-2 border border-gray-400 rounded-md"/>
+            <label className="text-sm text-gray-600" htmlFor="">Quantity</label>
+            <input type="number" name="quantity"  placeholder="" className="w-full p-2 border border-gray-400 rounded-md"/>
+            <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-3">Deduct</button>
           </form>
         </div>    
     </div>
