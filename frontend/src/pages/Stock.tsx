@@ -115,13 +115,14 @@ function Stock() {
                 filteredProducts.map((item) => (
                   <tr className="w-full text-left even:bg-gray-50">
                     <td className="p-2">{item.sku}</td>
-                    <td>{item.productName}</td>
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
+                    <td>{item.productName}</td>                    
                     <td>{item.quantity}</td>
-                    <td>{item.price}</td>
+                    <td>{item.category}</td>  
+                    <td>{item.supplier}</td>                  
                     <td className="text-center">{item.stock}</td>
-                    <td>{item.supplier}</td>
-                    <td>{item.category}</td>
+                   
+                   
                     <td className="">
                      <div className="flex gap-2 items-center">
                      
