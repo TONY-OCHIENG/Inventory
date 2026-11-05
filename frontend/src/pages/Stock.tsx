@@ -1,7 +1,17 @@
 import { Box, PackageMinus, TrendingDown, TrendingUp } from "lucide-react"
+import { useState } from "react";
+import type { StFilter } from "../types/types";
 
 function Stock() {
+      const [activeFilter, setActiveFilter] = useState<StFilter>('All')
+      const filterButtons: { label: string; value: StFilter }[] = [
+                  { label: 'All', value: 'All'},
+                  { label: 'In stock', value: 'In stock'},
+                  { label: 'Low stock', value: 'Low stock'},
+                  { label: 'Out of stock', value: 'Out of stock'}               
+            ]
   return (
+   
     <div className="relative w-full p-4 h-full">
          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
          <div className="bg-white/70 p-4 rounded-md  shadow-md cursor-pointer border-t-2 border-t-white">
@@ -47,7 +57,17 @@ function Stock() {
         </div> 
         <div className="mt-8 h-[70vh] overflow-x-auto w-full p-4 rounded-md border-t-2 border-t-white bg-white/70">
          <div className="flex gap-2 mb-4">
-            
+            {filterButtons.map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setActiveFilter(value)}
+                  className={`px-4 text-xs rounded-md py-1 shadow-md cursor-pointer transition ${
+                    activeFilter === value ? 'bg-green-100 text-green-700 font-semibold' : 'bg-white'
+                  }`}
+                >
+                  {label}
+                </button>
+            ))}
          </div>
         </div>      
     </div>
