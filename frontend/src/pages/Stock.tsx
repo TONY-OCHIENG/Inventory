@@ -86,8 +86,7 @@ function Stock() {
             toast.success(message)
         } else {
             toast.error("An error occured")
-        }
-        
+        }        
 
     }
 
