@@ -89,6 +89,9 @@ function Stock() {
         }         
         await setProducts(userID,page,limit)
         setopenDeduction(!openDeduction)
+        setDetails({
+            quantity: ""
+        })
     }
 
   return (

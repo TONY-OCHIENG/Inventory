@@ -683,7 +683,7 @@ export const deductQuantity = (request,response) => {
         return response
             .status(200)
             .json({ success: false, message: "Deduction must be a positive whole number" });
-        }
+    }
 
     try {
         const deductProduct = "UPDATE products SET quantity = quantity - ? WHERE product_id = ?"
