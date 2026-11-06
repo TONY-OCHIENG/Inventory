@@ -719,4 +719,17 @@ export const addQuantity = (request,response) => {
     if (quantity < 0) {
         return response.status(200).json({success: false, message:"Quantity must be greater than zero"})
     }
+
+    const addQuantity = 
+    "UPDATE products SET quantity = quantity + ? WHERE product_id = ?"
+    databaseconnection.query(addQuantity, [quantity,id], (error, result) => {
+        if (error) return response.status(500).json({success: false, message: "An error occured"})
+        if (result.affectedRows === 0) {
+                    return response
+                    .status(400)
+                    .json({ success: false, message: "Product not found or insufficient stock" });
+            }
+            
+        return response.status(200).json({success: true, message: "Quantity added"})
+    })
 }
