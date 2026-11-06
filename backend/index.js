@@ -24,6 +24,7 @@ app.use(express.static('backend/public'))
 app.use("/api/v1",authenticationRoute)
 app.use("/api/v1", actionRoutes)
 
+
 app.listen(process.env.PORT, () => {
     databaseconnection
     console.log("server is running")

@@ -135,7 +135,16 @@ function Stock() {
             quantity: ""
       })
     }
+    const updateStock = (stock: String) => {
+      if ( Number(stock) <= 10 && Number(stock) > 0) {
+        console.log("low stock")
+      }
 
+      if (Number(stock) <= 0) {
+        console.log("Stock depleted")
+      }
+      return stock
+    }
   return (
    
     <div className="relative w-full p-4 h-full">
@@ -215,7 +224,7 @@ function Stock() {
                     <td className="p-2">{item.sku}</td>
                     <td><img src={`http://localhost:3000/images/`+ item.productImage} alt=""  className="h-11 w-11 p-1"/></td>
                     <td>{item.productName}</td>                    
-                    <td>{item.quantity}</td>
+                    <td>{updateStock(item.quantity)}</td>
                     <td>{item.category}</td>  
                     <td>{item.supplier}</td>                  
                     <td className="text-center">{handleStock(item.stock)}</td>                 

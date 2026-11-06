@@ -733,3 +733,12 @@ export const addQuantity = (request,response) => {
         return response.status(200).json({success: true, message: "Quantity added"})
     })
 }
+
+export const updatetoLowstock = (request,response) => {
+    const { id } = request.params
+    const updatetoLowstock = "UPDATE products SET status = 'low stock' WHERE product_id = ?"
+    databaseconnection.query(updatetoLowstock,[id],(error, result) => {
+        if (error) return response.status(500).json({success: false, message: "An error occured"})
+        return response.status(200)
+    })
+}
