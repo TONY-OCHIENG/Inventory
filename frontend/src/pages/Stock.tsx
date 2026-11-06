@@ -145,6 +145,11 @@ function Stock() {
           updateInstock(stock)
           console.log(stock)
       }
+
+      if (Number(stock) <= 0) {
+
+      }
+      
       return stock
     }
 
