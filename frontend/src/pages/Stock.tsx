@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity,
        addQuantity, availableStock, depletedStock, lowStock, setavailableProducts,
-     setdepletedStock, setlowProducts, updateLowStock
+     setdepletedStock, setlowProducts, updateLowStock,updateInstock
     } = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [openAddStock, setopenAddStock] = useState<Boolean>(false)
@@ -141,9 +141,9 @@ function Stock() {
       if ( Number(stock) <= 10 && Number(stock) > 0) {           
            updateLowStock(stock)
       }
-      if (Number(stock) <= 0) {
-        console.log("Stock depleted")
-        console.log(stock)
+      if (Number(stock) > 10) {
+          updateInstock(stock)
+          console.log(stock)
       }
       return stock
     }
