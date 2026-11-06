@@ -8,7 +8,9 @@ import Pagination from "../components/Pagination";
 import toast from "react-hot-toast";
 
 function Stock() {
-    const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity} = useProduct()
+    const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity,
+       addQuantity
+    } = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [openAddStock, setopenAddStock] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
@@ -109,6 +111,19 @@ function Stock() {
       if (quantity > Rquantity){
             return toast.error("quantity must be greater than one")
       }
+
+      const { success, message} = await  addQuantity(product_id[0],details)
+      if (success) {
+        toast.success(message)
+      } else {
+        toast.error("An error occured")
+      }
+      
+      await setProducts(userID,page,limit)
+      setopenDeduction(!openDeduction)
+      setDetails({
+            quantity: ""
+      })
     }
 
   return (
