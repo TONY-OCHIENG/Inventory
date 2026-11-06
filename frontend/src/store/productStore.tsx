@@ -11,6 +11,11 @@ export const useProduct = create<ProductDetails>()(
         availableStock: 0,
         lowStock: 0,
         depletedStock: 0,
+        addQuantity: async (product_id: String, quantity: Deduction) => {
+          const response = await apiClient.put(`/api/v1/addQuantity/${product_id}`,quantity)
+          const { success, message} = await response.data
+          return { success, message}
+        },
         deductQuantity: async (product_id: String, quantity: Deduction) => {
           const response = await apiClient.put(`/api/v1/deductQuantity/${product_id}`,quantity)
           const { success, message} = await response.data

@@ -80,6 +80,7 @@ export interface ProductDetails{
   availableStock: number,
   lowStock: number,
   depletedStock: number,
+  addQuantity: (product_id: String, quantity: Deduction) => Promise<Response>,
   deductQuantity: (product_id: String, quantity: Deduction) => Promise<Response>,
   setsignleProduct: (product_id: String) => Promise<void>,
   setavailableProducts: (user_id: String) => Promise<void>,
