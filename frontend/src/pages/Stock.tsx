@@ -100,6 +100,17 @@ function Stock() {
         })
     }
 
+    const handleAddQuantity = async (event: ChangeEvent) => {
+      event.preventDefault()
+      const Rquantity = Number(productSingle.map((item) => item.quantity))
+      const quantity = Number(details.quantity)
+      const product_id = productSingle.map((item) => item.product_id)
+    
+      if (quantity > Rquantity){
+            return toast.error("quantity must be greater than one")
+      }
+    }
+
   return (
    
     <div className="relative w-full p-4 h-full">
