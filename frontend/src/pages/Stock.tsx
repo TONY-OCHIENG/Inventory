@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity,
        addQuantity, availableStock, depletedStock, lowStock, setavailableProducts,
-     setdepletedStock, setlowProducts,
+     setdepletedStock, setlowProducts, updateLowStock
     } = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [openAddStock, setopenAddStock] = useState<Boolean>(false)
@@ -115,7 +115,7 @@ function Stock() {
       const quantity = Number(details.quantity)
       const product_id = productSingle.map((item) => item.product_id)
     
-      if (Rquantity > quantity){
+      if (quantity < 0){
             return toast.error("quantity must be greater than one")
       }
 
@@ -136,15 +136,17 @@ function Stock() {
       })
     }
     const updateStock = (stock: String) => {
+      
       if ( Number(stock) <= 10 && Number(stock) > 0) {
         console.log("low stock")
       }
-
       if (Number(stock) <= 0) {
         console.log("Stock depleted")
       }
       return stock
     }
+    
+
   return (
    
     <div className="relative w-full p-4 h-full">
