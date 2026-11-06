@@ -12,7 +12,9 @@ export const useProduct = create<ProductDetails>()(
         lowStock: 0,
         depletedStock: 0,
         updateLowStock: async (product_id: String) => {
-          const response = await apiClient.put(`/api/v1/`)
+          const response = await apiClient.put(`/api/v1/updatelowstock/${product_id}`)
+          const { success,message} = await response.data
+          return {success, message}
         },
         addQuantity: async (product_id: String, quantity: Deduction) => {
           const response = await apiClient.put(`/api/v1/addQuantity/${product_id}`,quantity)
