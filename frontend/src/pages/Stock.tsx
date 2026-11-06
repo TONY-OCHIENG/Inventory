@@ -111,7 +111,6 @@ function Stock() {
 
     const handleAddQuantity = async (event: ChangeEvent) => {
       event.preventDefault()
-      const Rquantity = Number(productSingle.map((item) => item.quantity))
       const quantity = Number(details.quantity)
       const product_id = productSingle.map((item) => item.product_id)
     
@@ -135,14 +134,19 @@ function Stock() {
             quantity: ""
       })
     }
+
     const updateStock = (stock: String) => {
-      
+
       if ( Number(stock) <= 10 && Number(stock) > 0) {
         console.log("low stock")
+        console.log(stock)
+        updateLowStock(stock)
       }
       if (Number(stock) <= 0) {
         console.log("Stock depleted")
+        console.log(stock)
       }
+
       return stock
     }
     
