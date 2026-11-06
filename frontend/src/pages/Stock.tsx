@@ -9,7 +9,8 @@ import toast from "react-hot-toast";
 
 function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity,
-       addQuantity
+       addQuantity, availableStock, depletedStock, lowStock, setavailableProducts,
+     setdepletedStock, setlowProducts,
     } = useProduct()
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [openAddStock, setopenAddStock] = useState<Boolean>(false)
@@ -35,6 +36,9 @@ function Stock() {
     useEffect(() => {
         handleAuthentication()
         setProducts(userID,page,limit)
+        setlowProducts(userID)
+        setavailableProducts(userID)
+        setdepletedStock(userID)
     },[userID,page])
     const handleAuthentication = async () => {
         const { success, user_id} = await authenticateUser()
@@ -96,6 +100,9 @@ function Stock() {
             toast.error(message)
         }         
         await setProducts(userID,page,limit)
+        await setlowProducts(userID)
+        await setavailableProducts(userID)
+        await setdepletedStock(userID)
         setopenDeduction(!openDeduction)
         setDetails({
             quantity: ""
@@ -108,7 +115,7 @@ function Stock() {
       const quantity = Number(details.quantity)
       const product_id = productSingle.map((item) => item.product_id)
     
-      if (quantity > Rquantity){
+      if (Rquantity > quantity){
             return toast.error("quantity must be greater than one")
       }
 
@@ -120,6 +127,9 @@ function Stock() {
       }
       
       await setProducts(userID,page,limit)
+      await setlowProducts(userID)
+      await setavailableProducts(userID)
+      await setdepletedStock(userID)
       setopenAddStock(!openAddStock)
       setDetails({
             quantity: ""
@@ -135,7 +145,7 @@ function Stock() {
             <div className="flex gap-4 ml-4">
               <Box className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">10</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalProducts}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -145,7 +155,7 @@ function Stock() {
             <div className="flex gap-4 ml-4">
               <TrendingUp className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">3</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{availableStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -155,7 +165,7 @@ function Stock() {
             <div className="flex gap-4 ml-4">
               <TrendingDown className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">4</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{lowStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -165,7 +175,7 @@ function Stock() {
             <div className="flex gap-4 ml-4">
               <PackageMinus className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">0</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{depletedStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
