@@ -713,6 +713,10 @@ export const addQuantity = (request,response) => {
     }
 
     if (isNaN(quantity)) {
-        return response.status(200).json({success: false, message: "Enter integer"})
+        return response.status(200).json({success: false, message: "Enter correct number"})
+    }
+
+    if (quantity < 0) {
+        return response.status(200).json({success: false, message:"Quantity must be greater than zero"})
     }
 }
