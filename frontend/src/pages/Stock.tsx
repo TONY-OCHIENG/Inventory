@@ -124,7 +124,7 @@ function Stock() {
       } else {
         toast.error("An error occured")
       }
-      
+    
       await setProducts(userID,page,limit)
       await setlowProducts(userID)
       await setavailableProducts(userID)
@@ -139,16 +139,18 @@ function Stock() {
     
     const updateStock = (stock: String) => {
       if ( Number(stock) <= 10 && Number(stock) > 0) {           
-          updateLowStock(stock)
+           updateLowStock(stock)
       } else if (Number(stock) > 10) {
           updateInstock(stock)
-          console.log(stock)
       } else if (Number(stock) <= 0) {
           updateDepleted(stock)
       }
        
       return stock      
     }
+
+    console.log(product)
+    
 
   return (
    
