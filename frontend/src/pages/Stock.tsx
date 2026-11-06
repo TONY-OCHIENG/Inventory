@@ -140,17 +140,13 @@ function Stock() {
     const updateStock = (stock: String) => {
       if ( Number(stock) <= 10 && Number(stock) > 0) {           
           updateLowStock(stock)
-      }
-
-      if (Number(stock) > 10) {
+      } else if (Number(stock) > 10) {
           updateInstock(stock)
           console.log(stock)
-      }
-
-      if (Number(stock) <= 0) {
+      } else if (Number(stock) <= 0) {
           updateDepleted(stock)
       }
-    
+       
       return stock      
     }
 
@@ -239,10 +235,10 @@ function Stock() {
                     <td className="text-center">{handleStock(item.stock)}</td>                 
                     <td className="">
                      <div className="flex gap-2 items-center">
-                       <Minus onClick={() => {handleOpenDeduction(item.product_id),updateStock(item.quantity)}} className="rounded-md text-red-600 bg-red-200 cursor-pointer p-1">
+                       <Minus onClick={() => {handleOpenDeduction(item.product_id)}} className="rounded-md text-red-600 bg-red-200 cursor-pointer p-1">
                         <title>Move stock</title>
                        </Minus>
-                       <Plus onClick={() => {handleopenAddStock(item.product_id),updateStock(item.quantity)}} className=" rounded-md cursor-pointer bg-green-200 text-green-600 p-1">
+                       <Plus onClick={() => {handleopenAddStock(item.product_id)}} className=" rounded-md cursor-pointer bg-green-200 text-green-600 p-1">
                         <title>Add stock</title>
                        </Plus>
                      </div>
