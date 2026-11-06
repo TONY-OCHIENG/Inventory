@@ -742,3 +742,12 @@ export const updatetoLowstock = (request,response) => {
         return response.status(200).json({success: true, message: "Low stock alert"})
     })
 }
+
+export const updatetoInstock = (request,response) => {
+    const { id } = request.params
+    const updatetoLowstock = "UPDATE products SET stock = 'Available' WHERE quantity = ?"
+    databaseconnection.query(updatetoLowstock,[id],(error, result) => {
+        if (error) return response.status(500).json({success: false, message: "An error occured"})
+        return response.status(200).json({success: true, message: "Low stock alert"})
+    })
+}

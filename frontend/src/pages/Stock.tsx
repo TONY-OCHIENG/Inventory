@@ -133,23 +133,20 @@ function Stock() {
       setDetails({
             quantity: ""
       })
-    }
-
+    }  
+    
+    //A funtion that update stock status
+    
     const updateStock = (stock: String) => {
-
-      if ( Number(stock) <= 10 && Number(stock) > 0) {
-        console.log("low stock")
-        console.log(stock)
-        updateLowStock(stock)
+      if ( Number(stock) <= 10 && Number(stock) > 0) {           
+           updateLowStock(stock)
       }
       if (Number(stock) <= 0) {
         console.log("Stock depleted")
         console.log(stock)
       }
-
       return stock
     }
-    
 
   return (
    
