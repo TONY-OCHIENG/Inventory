@@ -89,7 +89,7 @@ function Home() {
   return (
     <div className={`flex  w-[100%] h-screen`}>
        <div className={` bottom-0 top-0 inset-y-0   left-0 ${open ? 'w-[15%] md:w-[5%]' : 'w-[50%] md:w-[15%]'} transition-all duration-300 bg-white/60 border-r-3 border-r-white
-        shadow-md p-2 flex justify-between flex-col
+        shadow-md p-2 flex  flex-col
         `}>
             <div className={`p-2 bg-white shadow-md rounded-md top-0 `}>
                 <div className="flex gap-2 items-center">
@@ -100,8 +100,7 @@ function Home() {
                     </div>
                 </div>                
             </div>
-            <div className="py-5 flex flex-col overflow-auto scrollbar-none">
-                <h1 className="text-xs text-gray-400">MAIN</h1>
+            <div className="py-1 flex flex-col overflow-auto scrollbar-none">
                 <div>
                     <ul className="">
                         {
@@ -118,8 +117,7 @@ function Home() {
                             ))
                         }
                     </ul>                
-                </div> 
-                  <h1 className="text-xs text-gray-400">STOCK</h1>
+                </div>                  
                 <div>
                     <ul className="">
                         {
@@ -136,26 +134,8 @@ function Home() {
                             ))
                         }
                     </ul>                
-                </div>
-                  <h1 className="text-xs text-gray-400">DOCUMENTS</h1>
-                <div>
-                    <ul className="">
-                        {
-                            documents.map((item) => (
-                                <li className="mb-1"><NavLink 
-                               className={({isActive}) => `relative flex items-center hover:bg-white/60 rounded-md
-                              max-md:justify-center gap-2 w-full rounded-2 py-2.5 text-xs text-gray-400 
-                               ${isActive && 'bg-white/90 rounded-md text-gray-400 group'}`}
-                                to={item.link}> <item.icon className="h-5 text-gray-400">
-                                <title>{item.name}</title>
-                                </item.icon>
-                                 <span className={`${open ? 'hidden' : 'block'}`}>{item.name}</span>
-                                </NavLink></li>
-                            ))
-                        }
-                    </ul>                
-                </div>    
-                   <h1 className="text-xs text-gray-400">BARCODE</h1>
+                </div>               
+                  
                 <div>
                     <ul className="">
                         {
@@ -173,7 +153,7 @@ function Home() {
                         }
                     </ul>                
                 </div>   
-                  <h1 className="text-xs text-gray-400">NOTIFICATIONS</h1>
+                 
                 <div>
                     <ul className="">
                         {
@@ -191,7 +171,7 @@ function Home() {
                         }
                     </ul>                
                 </div>    
-                   <h1 className="text-xs text-gray-400">SETTINGS</h1>
+                  
                 <div>
                     <ul className="">
                         {
@@ -209,27 +189,9 @@ function Home() {
                         }
                     </ul>                
                 </div>                      
-            </div>
-              <div className={`p-2 h-15 bg-white shadow-md rounded-md  mb-1 bottom-0 `}>
-                <div className="flex justify-between items-center">
-                    <div className={`h-10 w-10 bg-green-50 flex justify-center items-center font-extrabold  rounded-full shadow-md`}>
-                        <h1 className="font-extrabold text-gray-600">
-                            {
-                                details.map((item) => (<span>{item.firstName.charAt(0)}{item.lastName.charAt(0)}</span>))               
-                            }
-                        </h1>
-                    </div>
-                    <div className="flex flex-col">
-                     <h1 className={`${open ? 'hidden' : 'block'} text-gray-600 text-xs font-serif`}>{
-                       details.map((item) => (<span>{item.firstName} {item.lastName}</span>))    
-                    }</h1>
-                     <p className={`${open ? 'hidden' : 'block'} text-gray-700 text-xs`}>Admin</p>
-                    </div>  
-                    <LogOut onClick={logoutUser} className={`w-5 h-5 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>                  
-                </div>                
-            </div>
+            </div>            
         </div>        
-        <div className={`overflow-y-auto scrollbar-none w-full flex-1 ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%] right-0 '}`}>
+        <div className={`overflow-y-auto scrollbar-none w-full z-10 flex-1 ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%] right-0 '}`}>
             <div className={` fixed right-0 px-4 shadow-md flex justify-between items-center top-0 h-[8vh] ${open ? 'w-[85%] md:w-[95%]' : 'w-[50%] md:w-[85%]'} transition-all duration-300 bg-white/60 border-b-2 border-b-white`}>
             <div onClick={() => {setOpen(!open)}} className="bg-white cursor-pointer  rounded-md p-1">
                 <Menu className={`h-5 text-green-950`}/>
@@ -259,7 +221,7 @@ function Home() {
                     <div>
                         <ChevronDown className={`text-gray-500 ${openProfile ? 'rotate-180' : ''} transition-all duration-200 cursor-pointer h-5`}/>
                     </div>
-                       <div className={`${openProfile ? 'block' : 'hidden' } absolute bg-white/80 rounded-md shadow-md p-4 w-[200px] h-[120px] right-[1%] bottom-[-7rem]`}>
+                       <div className={`${openProfile ? 'block' : 'hidden' } absolute bg-white rounded-md shadow-md p-4 w-[200px] h-[150px] right-[1%] bottom-[-9rem]`}>
                         <div className="flex flex-col border-b-1 ">
                         <h1 className="text-sm text-gray-800 font-serif">{
                            details.map((item) => (<span>{item.firstName} {item.lastName}</span>))  
@@ -276,7 +238,12 @@ function Home() {
                             <div className={`flex gap-2 items-center mt-2 cursor-pointer`}>
                              <User className="h-5 text-gray-600"/>
                              <p className="text-sm text-gray-600">Profile</p>
-                            </div>                           
+                            </div>  
+                            <div className={`flex gap-2 items-center mt-2 cursor-pointer`}>
+                             <LogOut onClick={logoutUser} className={`w-5 h-5 text-gray-700 ${open ? 'hidden' : 'block'} cursor-pointer`}/>     
+                             <p className="text-sm text-gray-600">Logout</p>
+                            </div>  
+                                                    
                         </div>
                     </div>
                     

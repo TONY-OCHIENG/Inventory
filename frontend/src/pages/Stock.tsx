@@ -1,4 +1,4 @@
-import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp, X } from "lucide-react"
+import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp, Upload, X } from "lucide-react"
 import { useEffect, useState, type ChangeEvent } from "react";
 import type { Deduction, StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
@@ -135,22 +135,17 @@ function Stock() {
       })
     }  
     
-    //A funtion that update stock status
-    
+    //A function that update stock status    
     const updateStock = (stock: String) => {
-      if ( Number(stock) <= 10 && Number(stock) > 0) {           
-           updateLowStock(stock)
+      if(Number(stock) <= 10 && Number(stock) > 0) {           
+          updateLowStock(stock)
       } else if (Number(stock) > 10) {
           updateInstock(stock)
       } else if (Number(stock) <= 0) {
           updateDepleted(stock)
-      }
-       
+      }       
       return stock      
     }
-
-    console.log(product)
-    
 
   return (
    
