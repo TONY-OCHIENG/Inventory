@@ -13,11 +13,13 @@ import Stock from "./pages/Stock"
 import Settings from "./pages/Settings"
 import Notifications from "./pages/Notifications"
 import Profile from "./pages/Profile"
+import Landing from "./pages/Landing"
 
 function App() {
   return (
     <div className="bg-linear-to-br from-[#A5E6A5] fixed h-screen w-full overflow-auto  to-green-100 ">   
     <Routes>
+      <Route path="" element={<Landing/>}/>
       <Route path="/signup" element={<Register/>}/>
       <Route path="/verificationCode" element={<VerificationCode/>}/>
       <Route path="/dashboard" element={<Home/>}>

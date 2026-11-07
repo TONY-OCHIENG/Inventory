@@ -6,7 +6,7 @@ import Password from "./Password"
 
 const TABS = [
   { key: "profile", name: "Profile", icon: User, component: Profile },
-  { key: "password", name: "Password", icon: Lock, component: Password },
+  { key: "password", name: "Update password", icon: Lock, component: Password },
 ] as const
 
 function Settings() {
@@ -44,7 +44,7 @@ function Settings() {
                   replace
                   className={`relative flex items-center gap-2 w-full rounded-md py-2.5 text-xs
                     max-md:justify-center hover:bg-white/60
-                    ${isActive ? "bg-white/90 text-gray-600" : "text-gray-400"}`}
+                    ${isActive ? "bg-white text-gray-600" : "text-gray-400"}`}
                 >
                   <item.icon className="h-5 text-gray-400" />
                   <span>{item.name}</span>
