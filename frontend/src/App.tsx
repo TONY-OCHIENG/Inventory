@@ -12,6 +12,7 @@ import Returns from "./pages/Returns"
 import Stock from "./pages/Stock"
 import Settings from "./pages/Settings"
 import Notifications from "./pages/Notifications"
+import Profile from "./pages/Profile"
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
        <Route path="/dashboard/supplier" element={<Supplier/>}/>
        <Route path="/dashboard/returns" element={<Returns/>}/>
        <Route path="/dashboard/stock" element={<Stock/>}/>
-       <Route path="/dashboard/settings" element={<Settings/>}/>
+       <Route path="/dashboard/settings" element={<Settings/>}>
+        <Route path="" element={<Profile/>}/>
+       </Route>
        <Route path="/dashboard/notification" element={<Notifications/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
