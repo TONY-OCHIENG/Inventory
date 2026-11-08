@@ -1,5 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Camera, Loader2 } from "lucide-react"
+import { useFormDetail } from "../store/authStore"
+import { useNavigate } from "react-router-dom"
 
 type ProfileData = {
   firstName: string
@@ -25,6 +27,18 @@ function Profile() {
   const [form, setForm] = useState<ProfileData>(EMPTY)
   const [status, setStatus] = useState<Status>("loading")
   const [error, setError] = useState("")
+  const [userID, setuserID] = useState<String>("")
+  const navigate = useNavigate()
+  const { authenticateUser } = useFormDetail()
+
+  const handleAuthentication = async () => {
+      const { success, user_id} = await authenticateUser()
+        if (success) {
+          setuserID(user_id)
+        } else {
+          navigate('/login')      
+        }
+  }
 
   // Load current profile
   useEffect(() => {
