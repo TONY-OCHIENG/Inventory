@@ -764,7 +764,10 @@ export const updatetoDepleted = (request,response) => {
 export const userProfile = (request,response) => {
     const { id } = request.params
     try {
-        
+        const userProfile = "SELECT firstName,lastName,email FROM users WHERE user_id = ?"
+        databaseconnection.query(userProfile,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: "Internal server error"})
+        })
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
