@@ -22,7 +22,6 @@ const EMPTY: ProfileData = {
   avatarUrl: "",
 }
 
-type Status = "idle" | "loading" | "saving" | "saved" | "error"
 
 function Profile() {
   const [form, setForm] = useState<ProfileData>(EMPTY)
@@ -67,11 +66,6 @@ function Profile() {
     
   }
 
-  
-
-  const initials =
-    `${form.firstName[0] ?? ""}${form.lastName[0] ?? ""}`.toUpperCase() || "?"
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -83,67 +77,23 @@ function Profile() {
       </p>
       <hr className="mt-3 mb-5 text-gray-300" />
 
-      {/* Avatar */}
-      <div className="flex items-center gap-4 mb-6">
-        <div className="relative h-16 w-16">
-          {form.avatarUrl ? (
-            <img
-              src={form.avatarUrl}
-              alt="Avatar"
-              className="h-16 w-16 rounded-full object-cover"
-            />
-          ) : (
-            <div className="h-16 w-16 rounded-full bg-gray-200 flex items-center justify-center text-sm font-bold text-gray-500">
-              {initials}
-            </div>
-          )}
-          <label
-            htmlFor="avatar"
-            className="absolute -bottom-1 -right-1 bg-white rounded-full p-1.5 shadow cursor-pointer hover:bg-gray-50"
-          >
-            <Camera className="h-3.5 w-3.5 text-gray-500" />
-          </label>
-          <input
-            id="avatar"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleAvatar}
-          />
-        </div>
-        <div className="text-xs text-gray-400">
-          JPG or PNG, up to 2 MB.
-        </div>
-      </div>
+   
 
       {/* Fields */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <Field label="First name" name="firstName" value={form.firstName} onChange={handleChange} required />
         <Field label="Last name" name="lastName" value={form.lastName} onChange={handleChange} required />
         <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
-        <Field label="Phone" name="phone" type="tel" value={form.phone} onChange={handleChange} />
-        <div className="sm:col-span-2">
-          <Field label="Business name" name="businessName" value={form.businessName} onChange={handleChange} />
-        </div>
       </div>
 
       {/* Actions */}
       <div className="flex items-center gap-3 mt-6">
         <button
           type="submit"
-          disabled={status === "saving"}
           className="flex items-center gap-2 rounded-md bg-gray-700 px-4 py-2 text-xs text-white hover:bg-gray-800 disabled:opacity-60"
         >
-          {status === "saving" && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
-          {status === "saving" ? "Saving..." : "Save changes"}
-        </button>
-
-        {status === "saved" && (
-          <span className="text-xs text-green-600">Profile updated.</span>
-        )}
-        {status === "error" && (
-          <span className="text-xs text-red-500">{error}</span>
-        )}
+          Save changes
+        </button>       
       </div>
     </form>
   )
