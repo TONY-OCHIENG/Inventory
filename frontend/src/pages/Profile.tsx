@@ -31,6 +31,10 @@ function Profile() {
   const navigate = useNavigate()
   const { authenticateUser } = useFormDetail()
 
+  useEffect(() => {
+    handleAuthentication()
+  },[userID])
+
   const handleAuthentication = async () => {
       const { success, user_id} = await authenticateUser()
         if (success) {
