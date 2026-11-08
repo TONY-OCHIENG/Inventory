@@ -767,6 +767,11 @@ export const userProfile = (request,response) => {
         const userProfile = "SELECT firstName,lastName,email FROM users WHERE user_id = ?"
         databaseconnection.query(userProfile,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: "Internal server error"})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result})
+            } else {
+                return response.json({success: false, result: result})
+            }
         })
     } catch (error) {
         console.log(error)
