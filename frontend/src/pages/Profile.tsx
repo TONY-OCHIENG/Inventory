@@ -1,5 +1,4 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
-import { Camera, Loader2 } from "lucide-react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import { useProfile } from "../store/profileStore"
@@ -8,28 +7,28 @@ type ProfileData = {
   firstName: string
   lastName: string
   email: string
-  phone: string
-  businessName: string
-  avatarUrl?: string
+
 }
 
 const EMPTY: ProfileData = {
   firstName: "",
   lastName: "",
   email: "",
-  phone: "",
-  businessName: "",
-  avatarUrl: "",
 }
 
 
 function Profile() {
-  const [form, setForm] = useState<ProfileData>(EMPTY)
-  const [error, setError] = useState("")
+  const { profile,setProfile } = useProfile()
+  const current = profile[0];
+  const [form, setForm] = useState<ProfileData>({
+    firstName: current?.firstName ?? "",
+    lastName: current?.lastName ?? "",
+    email: current?.email ?? "",
+  });
   const [userID, setuserID] = useState<String>("")
   const navigate = useNavigate()
   const { authenticateUser } = useFormDetail()
-  const { profile,setProfile } = useProfile()
+ 
 
   useEffect(() => {
     handleAuthentication()
@@ -51,25 +50,15 @@ function Profile() {
     
   }
 
-  const handleAvatar = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    // Preview only; upload it to your API (FormData) on save
-    setForm((prev) => ({ ...prev, avatarUrl: URL.createObjectURL(file) }))
-  }
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-  
-    setError("")
-
     
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white/80 border-t-2 border-t-white rounded-md p-6 max-w-2xl"
+      className="bg-white/80 border-t-2 border-t-white rounded-md p-6 max-w-md"
     >
       <h2 className="text-sm font-bold text-gray-600">Profile</h2>
       <p className="text-xs text-gray-400 mt-1">
