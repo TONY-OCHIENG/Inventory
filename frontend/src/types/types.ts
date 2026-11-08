@@ -201,3 +201,14 @@ export interface ReturnDetails{
   addReturns: (user_id: String, detail: Return) => Promise<Response>
 }
 
+
+export interface Profile{
+  firstName: string,
+  lastName: string,
+  email: string
+}
+
+export interface ProfileDetail{
+  profile: Profile[],
+  setProfile: (user_id: String) => Promise<void>
+}
