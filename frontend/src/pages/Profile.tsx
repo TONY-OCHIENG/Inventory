@@ -26,7 +26,6 @@ type Status = "idle" | "loading" | "saving" | "saved" | "error"
 
 function Profile() {
   const [form, setForm] = useState<ProfileData>(EMPTY)
-  const [status, setStatus] = useState<Status>("loading")
   const [error, setError] = useState("")
   const [userID, setuserID] = useState<String>("")
   const navigate = useNavigate()
@@ -46,37 +45,11 @@ function Profile() {
           navigate('/login')      
         }
   }
-  
-
-
-  
-
-  // Load current profile
-  useEffect(() => {
-    const controller = new AbortController()
-
-    fetch("/api/profile", { signal: controller.signal })
-      .then((r) => {
-        if (!r.ok) throw new Error("Failed to load profile")
-        return r.json() as Promise<ProfileData>
-      })
-      .then((data) => {
-        setForm({ ...EMPTY, ...data })
-        setStatus("idle")
-      })
-      .catch((err) => {
-        if (err.name === "AbortError") return
-        setError(err.message)
-        setStatus("error")
-      })
-
-    return () => controller.abort()
-  }, [])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
-    if (status === "saved") setStatus("idle")
+    
   }
 
   const handleAvatar = (e: ChangeEvent<HTMLInputElement>) => {
@@ -88,30 +61,13 @@ function Profile() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    setStatus("saving")
+  
     setError("")
 
-    try {
-      const res = await fetch("/api/profile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error("Failed to save profile")
-      setStatus("saved")
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong")
-      setStatus("error")
-    }
+    
   }
 
-  if (status === "loading") {
-    return (
-      <div className="flex items-center gap-2 p-4 text-xs text-gray-500">
-        <Loader2 className="h-4 w-4 animate-spin" /> Loading profile...
-      </div>
-    )
-  }
+  
 
   const initials =
     `${form.firstName[0] ?? ""}${form.lastName[0] ?? ""}`.toUpperCase() || "?"
