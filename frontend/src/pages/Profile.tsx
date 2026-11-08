@@ -2,6 +2,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Camera, Loader2 } from "lucide-react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
+import { useProfile } from "../store/profileStore"
 
 type ProfileData = {
   firstName: string
@@ -30,9 +31,11 @@ function Profile() {
   const [userID, setuserID] = useState<String>("")
   const navigate = useNavigate()
   const { authenticateUser } = useFormDetail()
+  const { profile,setProfile } = useProfile()
 
   useEffect(() => {
     handleAuthentication()
+    setProfile(userID)
   },[userID])
 
   const handleAuthentication = async () => {
@@ -43,6 +46,10 @@ function Profile() {
           navigate('/login')      
         }
   }
+  
+
+
+  
 
   // Load current profile
   useEffect(() => {
