@@ -19,12 +19,7 @@ const EMPTY: ProfileData = {
 
 function Profile() {
   const { profile,setProfile } = useProfile()
-  const current = profile[0];
-  const [form, setForm] = useState<ProfileData>({
-    firstName: current?.firstName ?? "",
-    lastName: current?.lastName ?? "",
-    email: current?.email ?? "",
-  });
+  const [form, setForm] = useState<ProfileData>(EMPTY);
   const [userID, setuserID] = useState<String>("")
   const navigate = useNavigate()
   const { authenticateUser } = useFormDetail()
@@ -43,6 +38,8 @@ function Profile() {
           navigate('/login')      
         }
   }
+  
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -54,6 +51,17 @@ function Profile() {
     e.preventDefault()
     
   }
+  
+  useEffect(() => {
+    const current = profile[0];
+    if (!current) return;
+
+    setForm({
+      firstName: current.firstName,
+      lastName: current.lastName,
+      email: current.email,
+    });
+  }, [profile]);
 
   return (
     <form
