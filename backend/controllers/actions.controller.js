@@ -794,3 +794,17 @@ export const updateProfile = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const changePassword = (request, response) => {
+    const { id } = request.params
+    const { currentPassword, newPassword, confirmPassword} = request.body
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        return response.json({success: false, message: "Fill all fields"})
+    }
+
+    if (newPassword !== confirmPassword) {
+        return response.json({success: false, message: "Password mismatch"})
+    }
+
+    
+}

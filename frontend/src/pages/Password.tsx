@@ -76,7 +76,7 @@ function Password() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white/80 border-t-2 border-t-white rounded-md p-6 max-w-2xl"
+      className="bg-white/80 border-t-2 border-t-white rounded-md p-6 max-w-md"
     >
       <h2 className="text-sm font-bold text-gray-600">Password</h2>
       <p className="text-xs text-gray-400 mt-1">
