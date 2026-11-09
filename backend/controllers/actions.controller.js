@@ -1,6 +1,6 @@
 import { request, response } from "express"
 import databaseconnection from "../database/db.js"
-import { comparepassword } from "../configs/hashPassword.js"
+import { comparepassword, hashPassword } from "../configs/hashPassword.js"
 
 export const addReminders = (request,response) => {
     const { reminder } = request.body
@@ -816,7 +816,12 @@ export const changePassword = (request, response) => {
             if (!comparePassword) {
                 return response.json({success: false, message: "Invalid password"})
             } else {
-                
+                const hashpassword = hashPassword(newPassword)
+                const updatePassword = "UPDATE users SET password = ? WHERE user_id = ?"
+                databaseconnection.query(updatePassword,[hashpassword,id],(err,results) => {
+                    if (err) return response.status(500).json({success: false, message: "Internal server error"})
+                    return response.status(200).json({success: false, message: "Password updated"})
+                })
             }
         })
         
