@@ -836,7 +836,11 @@ export const addNotification = (request,response) => {
     const { id } = request.params
     const { notifiactionBody } = request.body
     try {
-        
+        const addNotification = "INSERT INTO notifications(notification,user_id) VALUES(?,?)"
+        databaseconnection.query(addNotification,[notifiactionBody,id], (error,result) => {
+            if (error) return response.status(500).json({success: false, message: "Internal server error"})
+            return response.status(200)
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
