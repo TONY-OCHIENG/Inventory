@@ -14,20 +14,8 @@ const EMPTY: PasswordForm = {
 }
 
 
-function validate(form: PasswordForm): string {
-  if (form.newPassword.length < 8) return "New password must be at least 8 characters."
-  if (!/[A-Za-z]/.test(form.newPassword) || !/\d/.test(form.newPassword))
-    return "New password must include a letter and a number."
-  if (form.newPassword === form.currentPassword)
-    return "New password must be different from the current one."
-  if (form.newPassword !== form.confirmPassword) return "Passwords do not match."
-  return ""
-}
-
 function Password() {
   const [form, setForm] = useState<PasswordForm>(EMPTY)
-  const [error, setError] = useState("")
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
