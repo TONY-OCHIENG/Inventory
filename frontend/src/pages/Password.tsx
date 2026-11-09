@@ -1,5 +1,7 @@
-import { useState, type ChangeEvent, type FormEvent } from "react"
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Eye, EyeOff } from "lucide-react"
+import { useFormDetail } from "../store/authStore"
+import { useNavigate } from "react-router-dom"
 
 type PasswordForm = {
   currentPassword: string
@@ -16,15 +18,26 @@ const EMPTY: PasswordForm = {
 
 function Password() {
   const [form, setForm] = useState<PasswordForm>(EMPTY)
+  const [userID, setuserID] = useState<String>("")
+  const { authenticateUser } = useFormDetail()
+  const navigate = useNavigate()
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
-
   }
-
+  useEffect(() => {
+    handleAuthentication()
+  },[userID])
+  const handleAuthentication = async () => {
+      const { success, user_id} = await authenticateUser()
+        if (success) {
+          setuserID(user_id)
+        } else {
+          navigate('/login')      
+        }
+  }
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-   
+    e.preventDefault()   
   }
 
   return (
