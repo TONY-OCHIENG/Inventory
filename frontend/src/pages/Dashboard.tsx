@@ -1,10 +1,12 @@
-import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, ShieldAlert, ShoppingBag, Trash, Truck } from "lucide-react"
+import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Trash, Truck } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import type { Reminders } from "../types/types"
+import { useProduct } from "../store/productStore"
+import { useReturn } from "../store/returnStore"
 
 
 function Dashboard() {
@@ -13,6 +15,12 @@ function Dashboard() {
   const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
   })
+  const { totalReturn, setReturn } = useReturn()
+  const { availableStock, depletedStock, lowStock, setavailableProducts,
+       setdepletedStock, setlowProducts, setProducts,
+        deleteProduct,totalProducts } = useProduct()
+  const [page, setPage] = useState<number>(1)
+  let limit = 10
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
   const handleSubmit = async (event: ChangeEvent): Promise<void> => {
@@ -32,7 +40,12 @@ function Dashboard() {
   useEffect(() => {
     authentication()
     setReminders(userID)
-  },[userID])
+    setlowProducts(userID)
+    setavailableProducts(userID)
+    setdepletedStock(userID)
+    setProducts(userID,page,limit)
+    setReturn(userID)
+  },[userID,page])
 
   //user authentication function
 
@@ -76,7 +89,7 @@ function Dashboard() {
             <div className="flex gap-4 ">
               <Box className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalProducts}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -86,7 +99,7 @@ function Dashboard() {
             <div className="flex gap-4 ">
               <Package className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{availableStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -96,7 +109,7 @@ function Dashboard() {
             <div className="flex gap-4 ">
               <PackageX className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{depletedStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
@@ -106,18 +119,18 @@ function Dashboard() {
             <div className="flex gap-4 ">
               <PackageMinus className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{lowStock}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Purchase Order</h1>
+            <h1 className="text-center text-sm text-gray-600">Total Returns</h1>
             <div className="flex gap-4 ">
-              <ClipboardList className="w-10 h-10 text-gray-600"/>
+              <RotateCcw className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">documents</p>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalReturn}</h1>
+                <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
           </div>
