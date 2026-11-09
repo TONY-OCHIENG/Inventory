@@ -778,3 +778,15 @@ export const userProfile = (request,response) => {
         return response.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export const updateProfile = (request,response) => {
+    const {id } = request.params
+    const { firstName,lastName,email} = request.body
+
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
