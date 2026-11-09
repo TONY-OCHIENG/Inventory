@@ -210,5 +210,6 @@ export interface Profile{
 
 export interface ProfileDetail{
   profile: Profile[],
+  updateProfile: (user_id: String, profile: Profile) => Promise<Response>,
   setProfile: (user_id: String) => Promise<void>
 }
