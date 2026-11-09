@@ -831,3 +831,14 @@ export const changePassword = (request, response) => {
     }
 
 }
+
+export const addNotification = (request,response) => {
+    const { id } = request.params
+    const { notifiactionBody } = request.body
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        return response.status(500).json({success: false, message: "Internal server error"})
+    }
+}
