@@ -1,4 +1,4 @@
-import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Trash, Truck } from "lucide-react"
+import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
@@ -7,6 +7,8 @@ import toast from "react-hot-toast"
 import type { Reminders } from "../types/types"
 import { useProduct } from "../store/productStore"
 import { useReturn } from "../store/returnStore"
+import { usePurchase } from "../store/purchaseStore"
+import { useSupplier } from "../store/supplierStore"
 
 
 function Dashboard() {
@@ -15,11 +17,11 @@ function Dashboard() {
   const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
   })
-  const { totalReturn, setReturn } = useReturn()
+  const { setPurchases,totalPurchase } = usePurchase()
+  const { totalReturn,settotalReturn,pendingReturn, setpendingReturn } = useReturn()
   const { availableStock, depletedStock, lowStock, setavailableProducts,
-       setdepletedStock, setlowProducts, setProducts,
-        deleteProduct,totalProducts } = useProduct()
-  const [page, setPage] = useState<number>(1)
+       setdepletedStock, setlowProducts, setProducts,totalProducts } = useProduct()
+  const { suppliers, getAllSuppliers } = useSupplier()
   let limit = 10
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
@@ -43,9 +45,12 @@ function Dashboard() {
     setlowProducts(userID)
     setavailableProducts(userID)
     setdepletedStock(userID)
-    setProducts(userID,page,limit)
-    setReturn(userID)
-  },[userID,page])
+    setProducts(userID,1,limit)
+    setPurchases(userID,1,limit),
+    settotalReturn(userID)
+    setpendingReturn(userID)
+    getAllSuppliers(userID)
+  },[userID,1])
 
   //user authentication function
 
@@ -135,21 +140,21 @@ function Dashboard() {
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Invoice</h1>
+            <h1 className="text-center text-sm text-gray-600">Pending Returns</h1>
             <div className="flex gap-4 ">
-              <ReceiptText className="w-10 h-10 text-gray-600"/>
+              <Timer className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">documents</p>
+                <h1 className="text-xl font-extrabold text-gray-700">{pendingReturn}</h1>
+                <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Quotations</h1>
+            <h1 className="text-center text-sm text-gray-600">Total Purchases</h1>
             <div className="flex gap-4 ">
-              <Receipt className="w-10 h-10 text-gray-600"/>
+              <ShoppingBag className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{totalPurchase}</h1>
                 <p className="text-xs text-gray-400">documents</p>
               </div>
             </div>
@@ -159,7 +164,7 @@ function Dashboard() {
             <div className="flex gap-4 ">
               <Truck className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{suppliers}</h1>
                 <p className="text-xs text-gray-400">supplier</p>
               </div>
             </div>
