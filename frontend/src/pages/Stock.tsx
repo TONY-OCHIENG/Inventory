@@ -143,15 +143,17 @@ function Stock() {
     //A function that update stock status    
     const updateStock = (stock: String) => {
       if(Number(stock) <= 10 && Number(stock) > 0) {           
-          updateLowStock(stock)   
-          addNotification(userID, {notification: "Low stock detected"})       
+          updateLowStock(stock)        
       } else if (Number(stock) > 10) {
           updateInstock(stock)
       } else if (Number(stock) <= 0) {
           updateDepleted(stock)
-          addNotification(userID, {notification: "Stock depletion detected"})    
       }       
       return stock      
+    }
+
+    if (lowStock > 1) {
+        addNotification(userID, {notification: "Low stock detected"})  
     }
 
   return (
