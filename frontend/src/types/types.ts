@@ -221,3 +221,12 @@ export interface ProfileDetail{
   updateProfile: (user_id: String, profile: Profile) => Promise<Response>,
   setProfile: (user_id: String) => Promise<void>
 }
+
+export interface Notification{
+  notification: String
+}
+
+export interface NotificationDetail{
+  notification: Notification[],
+  addNotification: (user_id: String, notification: Notification) => Promise<void>
+}

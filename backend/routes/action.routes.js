@@ -48,5 +48,5 @@ actionRoutes.put("/updateDepleted/:id",updatetoDepleted)
 actionRoutes.get("/userProfile/:id",userProfile)
 actionRoutes.put("/updateProfile/:id",updateProfile)
 actionRoutes.put("/changePassword/:id",changePassword)
-actionRoutes.post("/addnotification/:id",addNotification)
+actionRoutes.post("/addNotification/:id",addNotification)
 export default actionRoutes
