@@ -1,4 +1,4 @@
-import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck } from "lucide-react"
+import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck, Wallet } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
@@ -21,7 +21,7 @@ function Dashboard() {
   const { totalReturn,settotalReturn,pendingReturn, setpendingReturn } = useReturn()
   const { availableStock, depletedStock, lowStock, setavailableProducts,
        setdepletedStock, setlowProducts, setProducts,totalProducts } = useProduct()
-  const { suppliers, getAllSuppliers } = useSupplier()
+  const { suppliers, getAllSuppliers, total,totalBalance} = useSupplier()
   let limit = 10
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
@@ -50,6 +50,7 @@ function Dashboard() {
     settotalReturn(userID)
     setpendingReturn(userID)
     getAllSuppliers(userID)
+    totalBalance(userID)
   },[userID,1])
 
   //user authentication function
@@ -170,12 +171,12 @@ function Dashboard() {
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Expired Products</h1>
+            <h1 className="text-center text-sm text-gray-600">Outstanding Balance</h1>
             <div className="flex gap-4 ">
-              <ShieldAlert className="w-10 h-10 text-gray-600"/>
+              <Wallet className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">units</p>
+                <h1 className="text-xl font-extrabold text-gray-700">{total}</h1>
+                <p className="text-xs text-gray-400">KES</p>
               </div>
             </div>
           </div>
