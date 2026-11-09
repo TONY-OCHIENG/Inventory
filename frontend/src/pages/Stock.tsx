@@ -1,6 +1,6 @@
 import { Box, FolderOpen, Minus, PackageMinus, Plus, TrendingDown, TrendingUp, Upload, X } from "lucide-react"
 import { useEffect, useState, type ChangeEvent } from "react";
-import type { Deduction, StFilter } from "../types/types";
+import type { Deduction, Notification, StFilter } from "../types/types";
 import { useProduct } from "../store/productStore";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,9 @@ function Stock() {
     const [openDeduction, setopenDeduction] = useState<Boolean>(false)
     const [openAddStock, setopenAddStock] = useState<Boolean>(false)
     const [userID, setUserID] = useState<String>("")
+    const [notification, setNotification] = useState<Notification>({
+      notification: ""
+    })
     const [details,setDetails] = useState<Deduction>({
        quantity:"",
     })
@@ -140,11 +143,13 @@ function Stock() {
     //A function that update stock status    
     const updateStock = (stock: String) => {
       if(Number(stock) <= 10 && Number(stock) > 0) {           
-          updateLowStock(stock)
+          updateLowStock(stock)   
+          addNotification(userID, {notification: "Low stock detected"})       
       } else if (Number(stock) > 10) {
           updateInstock(stock)
       } else if (Number(stock) <= 0) {
           updateDepleted(stock)
+          addNotification(userID, {notification: "Stock depletion detected"})    
       }       
       return stock      
     }
