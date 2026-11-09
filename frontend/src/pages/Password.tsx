@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type FormEvent } from "react"
-import { Eye, EyeOff, Loader2 } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
 
 type PasswordForm = {
   currentPassword: string
@@ -13,7 +13,6 @@ const EMPTY: PasswordForm = {
   confirmPassword: "",
 }
 
-type Status = "idle" | "saving" | "saved" | "error"
 
 function validate(form: PasswordForm): string {
   if (form.newPassword.length < 8) return "New password must be at least 8 characters."
@@ -27,50 +26,17 @@ function validate(form: PasswordForm): string {
 
 function Password() {
   const [form, setForm] = useState<PasswordForm>(EMPTY)
-  const [status, setStatus] = useState<Status>("idle")
   const [error, setError] = useState("")
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
-    if (status !== "idle") setStatus("idle")
-    setError("")
+
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-
-    const validationError = validate(form)
-    if (validationError) {
-      setError(validationError)
-      setStatus("error")
-      return
-    }
-
-    setStatus("saving")
-    setError("")
-
-    try {
-      const res = await fetch("/api/profile/password", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          currentPassword: form.currentPassword,
-          newPassword: form.newPassword,
-        }),
-      })
-
-      if (!res.ok) {
-        const body = await res.json().catch(() => null)
-        throw new Error(body?.message ?? "Failed to change password")
-      }
-
-      setForm(EMPTY)
-      setStatus("saved")
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong")
-      setStatus("error")
-    }
+   
   }
 
   return (
@@ -114,14 +80,8 @@ function Password() {
           disabled={status === "saving"}
           className="flex items-center gap-2 rounded-md bg-gray-700 px-4 py-2 text-xs text-white hover:bg-gray-800 disabled:opacity-60"
         >
-          {status === "saving" && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
-          {status === "saving" ? "Updating..." : "Update password"}
+          update password
         </button>
-
-        {status === "saved" && (
-          <span className="text-xs text-green-600">Password updated.</span>
-        )}
-        {status === "error" && <span className="text-xs text-red-500">{error}</span>}
       </div>
     </form>
   )
