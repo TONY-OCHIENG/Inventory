@@ -6,6 +6,7 @@ import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../components/Pagination";
 import toast from "react-hot-toast";
+import { useNotification } from "../store/notificationStore";
 
 function Stock() {
     const { product, setProducts,totalProducts,productSingle,setsignleProduct,deductQuantity,
@@ -22,6 +23,7 @@ function Stock() {
     let limit = 10
     const navigate = useNavigate()
     const { authenticateUser } = useFormDetail()
+    const { addNotification } = useNotification()
     const [activeFilter, setActiveFilter] = useState<StFilter>('All')
     const filteredProducts =
       activeFilter === 'All'
