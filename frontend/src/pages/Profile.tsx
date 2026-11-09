@@ -2,6 +2,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import { useProfile } from "../store/profileStore"
+import toast from "react-hot-toast"
 
 type ProfileData = {
   firstName: string
@@ -18,7 +19,7 @@ const EMPTY: ProfileData = {
 
 
 function Profile() {
-  const { profile,setProfile } = useProfile()
+  const { profile,setProfile,updateProfile } = useProfile()
   const [form, setForm] = useState<ProfileData>(EMPTY);
   const [userID, setuserID] = useState<String>("")
   const navigate = useNavigate()
@@ -49,6 +50,14 @@ function Profile() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    const { success, message} = await updateProfile(userID,form)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error("An error occured")
+    }
+
+    await setProfile(userID)
     
   }
   
