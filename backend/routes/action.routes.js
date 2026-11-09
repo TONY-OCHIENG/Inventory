@@ -1,5 +1,5 @@
 import express from 'express'
-import { activateSupplier, addProducts, addPurchase, addQuantity, addReminders, addReturns, addSuppliers, availableStock, canceledPurchase, canceledReturns, cancelPurchase, cancelReturn, changePassword, completedReturns, completeReturn, deactivateSupplier, deductQuantity, deleteProduct, deletePurchase, deleteReminders, deleteReturn, deleteSupplier, depletedStock, getActivesuppliers, getAllsuppliers, getinActivesuppliers, getProducts, getPurchase, getReminders, getReturns, getSuppliers, getTotalBalance, lowStock, pendingPurchase, pendingReturns, recievedPurchase, recievePurchase, singleProduct, totalReturns, updateBalance, updateProfile, updatetoDepleted, updatetoInstock, updatetoLowstock, userProfile } from '../controllers/actions.controller.js'
+import { activateSupplier, addNotification, addProducts, addPurchase, addQuantity, addReminders, addReturns, addSuppliers, availableStock, canceledPurchase, canceledReturns, cancelPurchase, cancelReturn, changePassword, completedReturns, completeReturn, deactivateSupplier, deductQuantity, deleteProduct, deletePurchase, deleteReminders, deleteReturn, deleteSupplier, depletedStock, getActivesuppliers, getAllsuppliers, getinActivesuppliers, getProducts, getPurchase, getReminders, getReturns, getSuppliers, getTotalBalance, lowStock, pendingPurchase, pendingReturns, recievedPurchase, recievePurchase, singleProduct, totalReturns, updateBalance, updateProfile, updatetoDepleted, updatetoInstock, updatetoLowstock, userProfile } from '../controllers/actions.controller.js'
 import { upload } from '../configs/upload.js'
 
 const actionRoutes = express.Router()
@@ -48,4 +48,5 @@ actionRoutes.put("/updateDepleted/:id",updatetoDepleted)
 actionRoutes.get("/userProfile/:id",userProfile)
 actionRoutes.put("/updateProfile/:id",updateProfile)
 actionRoutes.put("/changePassword/:id",changePassword)
+actionRoutes.post("/addnotification/:id",addNotification)
 export default actionRoutes
