@@ -784,7 +784,11 @@ export const updateProfile = (request,response) => {
     const { firstName,lastName,email} = request.body
 
     try {
-        
+        const updateProfile = "UPDATE users SET firstName = ?,lastName = ?, email = ? WHERE user_id = ?"
+        databaseconnection.query(updateProfile,[firstName,lastName,email,id], (error,result) => {
+            if (error) return response.status(500).json({success: false, message: "Internal server error"})
+            return response.status(200).json({success: true, message: "Profile updated"})
+        })        
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
