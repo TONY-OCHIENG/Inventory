@@ -208,8 +208,16 @@ export interface Profile{
   email: string
 }
 
+export interface Password{
+  currentPassword: String,
+  newPassword: String,
+  confirmPassword: String
+}
+
 export interface ProfileDetail{
   profile: Profile[],
+  password:Password[],
+  setPassword: (user_id: String, password: Password) => Promise<Response>,
   updateProfile: (user_id: String, profile: Profile) => Promise<Response>,
   setProfile: (user_id: String) => Promise<void>
 }
