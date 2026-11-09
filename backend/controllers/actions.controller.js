@@ -820,7 +820,7 @@ export const changePassword = (request, response) => {
                 const updatePassword = "UPDATE users SET password = ? WHERE user_id = ?"
                 databaseconnection.query(updatePassword,[hashpassword,id],(err,results) => {
                     if (err) return response.status(500).json({success: false, message: "Internal server error"})
-                    return response.status(200).json({success: false, message: "Password updated"})
+                    return response.status(200).json({success: true, message: "Password updated"})
                 })
             }
         })
