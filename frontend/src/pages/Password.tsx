@@ -2,6 +2,8 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Eye, EyeOff } from "lucide-react"
 import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
+import { useProfile } from "../store/profileStore"
+import toast from "react-hot-toast"
 
 type PasswordForm = {
   currentPassword: string
@@ -20,6 +22,7 @@ function Password() {
   const [form, setForm] = useState<PasswordForm>(EMPTY)
   const [userID, setuserID] = useState<String>("")
   const { authenticateUser } = useFormDetail()
+  const { setPassword } = useProfile()
   const navigate = useNavigate()
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -38,6 +41,12 @@ function Password() {
   }
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()   
+    const { success, message} = await setPassword(userID,form)
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error(message)
+    }
   }
 
   return (
