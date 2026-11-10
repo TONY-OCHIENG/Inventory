@@ -89,14 +89,14 @@ const renderLabel = ({
 export default function InventoryValueDonut() {
     const [userID, setuserID] = useState<String>("")
     const navigate = useNavigate()
-    let limit = 10
     const { authenticateUser } = useFormDetail()
-    const { product, setProducts} = useProduct()
+    const { products, allProducts} = useProduct()
 
     useEffect(() => {
         handleAuthentication()
-        setProducts(userID,1,limit)
+        allProducts(userID)
     },[userID])
+    console.log(products)
     const handleAuthentication = async () => {
         const { success, user_id} = await authenticateUser()
         if (success) {

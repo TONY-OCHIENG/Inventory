@@ -7,6 +7,7 @@ export const useProduct = create<ProductDetails>()(
     devtools((set) => ({
         product: [],
         productSingle: [],
+        products: [],
         totalProducts: 0,
         availableStock: 0,
         lowStock: 0,
@@ -15,7 +16,7 @@ export const useProduct = create<ProductDetails>()(
           const response = await apiClient.get(`/api/v1/allProducts/${user_id}`)
           const { result } = await response.data
           set(() => ({
-            product: result
+            products: result
           }))
         },
         updateDepleted: async (quantity: String) => {

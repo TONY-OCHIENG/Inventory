@@ -75,6 +75,7 @@ export interface Deduction{
 }
 export interface ProductDetails{
   product: Products[],
+  products: Products[]
   productSingle: Products[]
   totalProducts: number,
   availableStock: number,
