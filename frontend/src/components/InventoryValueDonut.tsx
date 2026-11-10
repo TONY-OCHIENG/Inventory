@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
@@ -90,10 +90,14 @@ export default function InventoryValueDonut() {
     const navigate = useNavigate()
     const { authenticateUser } = useFormDetail()
 
+    useEffect(() => {
+        handleAuthentication()
+    },[userID])
+
     const handleAuthentication = async () => {
         const { success, user_id} = await authenticateUser()
         if (success) {
-            setuserID(userID)
+            setuserID(user_id)
         } else {
             navigate("/login")
         }
