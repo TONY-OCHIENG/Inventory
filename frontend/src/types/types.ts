@@ -80,6 +80,7 @@ export interface ProductDetails{
   availableStock: number,
   lowStock: number,
   depletedStock: number,
+  allProducts: (user_id: String) => void,
   updateDepleted: (quantity: String) => void,
   updateInstock: (quantity: String) => void,
   updateLowStock: (quantity: String) => void,
