@@ -1,4 +1,4 @@
-import { Box, CalendarClock, ClipboardList, FolderOpen, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck, Wallet } from "lucide-react"
+import { Box, CalendarClock, FolderOpen, Gift, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck, Wallet } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
@@ -17,11 +17,11 @@ function Dashboard() {
   const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
   })
-  const { setPurchases,totalPurchase } = usePurchase()
+  const { setPurchases,totalPurchase,recievedPurchase, setRecievedPurchase,pendingPurchase,setPendingPurchase} = usePurchase()
   const { totalReturn,settotalReturn,pendingReturn, setpendingReturn } = useReturn()
   const { availableStock, depletedStock, lowStock, setavailableProducts,
        setdepletedStock, setlowProducts, setProducts,totalProducts } = useProduct()
-  const { suppliers, getAllSuppliers, total,totalBalance} = useSupplier()
+  const { suppliers, getAllSuppliers, total,totalBalance,inActiveSupplier,getinActiveSupplier} = useSupplier()
   let limit = 10
   const [userID, setUserID] = useState<String>("")
   const navigate = useNavigate()
@@ -50,6 +50,8 @@ function Dashboard() {
     settotalReturn(userID)
     setpendingReturn(userID)
     getAllSuppliers(userID)
+    getinActiveSupplier(userID)
+    setRecievedPurchase(userID)
     totalBalance(userID)
   },[userID,1])
 
@@ -181,31 +183,31 @@ function Dashboard() {
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white hadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Slow Moving Products</h1>
+            <h1 className="text-center text-sm text-gray-600">On hold suppliers</h1>
             <div className="flex gap-4 ">
               <CalendarClock className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{inActiveSupplier}</h1>
+                <p className="text-xs text-gray-400">suppliers</p>
+              </div>
+            </div>
+          </div>
+           <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
+            <h1 className="text-center text-sm text-gray-600">Recieved Purchases</h1>
+            <div className="flex gap-4 ">
+              <Gift className="w-10 h-10 text-gray-600"/>
+              <div className="flex flex-col">
+                <h1 className="text-xl font-extrabold text-gray-700">{recievedPurchase}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
           </div>
            <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Recent Purchases</h1>
+            <h1 className="text-center text-sm text-gray-600">Pending purchases</h1>
             <div className="flex gap-4 ">
-              <ShoppingBag className="w-10 h-10 text-gray-600"/>
+              <Timer className="w-10 h-10 text-gray-600"/>
               <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
-                <p className="text-xs text-gray-400">units</p>
-              </div>
-            </div>
-          </div>
-           <div className="bg-white/70 p-4 rounded-md w-[200px] border-t-2 border-t-white shadow-md cursor-pointer">
-            <h1 className="text-center text-sm text-gray-600">Reserved Products</h1>
-            <div className="flex gap-4 ">
-              <HandPlatter className="w-10 h-10 text-gray-600"/>
-              <div className="flex flex-col">
-                <h1 className="text-xl font-extrabold text-gray-700">20</h1>
+                <h1 className="text-xl font-extrabold text-gray-700">{pendingPurchase}</h1>
                 <p className="text-xs text-gray-400">units</p>
               </div>
             </div>
