@@ -1,25 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../store/productStore";
 
-type Category = {
+type Slice = {
   name: string;
   value: number;
   color: string;
 };
 
-const DATA: Category[] = [
-  { name: "Electronics", value: 183000, color: "#4e79a7" },
-  { name: "Clothing", value: 96000, color: "#f58518" },
-  { name: "Home & Kitchen", value: 73000, color: "#59a14f" },
-  { name: "Beauty", value: 50000, color: "#e15759" },
-  { name: "Toys", value: 32000, color: "#76b7b2" },
-  { name: "Office", value: 23000, color: "#b07aa1" },
+const PALETTE = [
+  "#4e79a7",
+  "#f58518",
+  "#59a14f",
+  "#e15759",
+  "#76b7b2",
+  "#b07aa1",
+  "#edc948",
+  "#9c755f",
 ];
 
-const TOTAL = DATA.reduce((sum, d) => sum + d.value, 0);
 const RAD = Math.PI / 180;
 
 const currency = new Intl.NumberFormat("en-US", {
@@ -55,7 +56,7 @@ const renderLabel = ({
   const px = cx + inner * cos;
   const py = cy + inner * sin;
 
-  // Category name sits just outside the ring
+  // Product name sits just outside the ring
   const outer = outerRadius + 18;
   const nx = cx + outer * cos;
   const ny = cy + outer * sin;
@@ -87,24 +88,47 @@ const renderLabel = ({
 };
 
 export default function InventoryValueDonut() {
-    const [userID, setuserID] = useState<String>("")
-    const navigate = useNavigate()
-    const { authenticateUser } = useFormDetail()
-    const { products, allProducts} = useProduct()
+  const [userID, setUserID] = useState<String>("");
+  const navigate = useNavigate();
+  const { authenticateUser } = useFormDetail();
+  const { products, allProducts } = useProduct();
 
-    useEffect(() => {
-        handleAuthentication()
-        allProducts(userID)
-    },[userID])
-    console.log(products)
+  // 1. Authenticate once on mount
+  useEffect(() => {
     const handleAuthentication = async () => {
-        const { success, user_id} = await authenticateUser()
-        if (success) {
-            setuserID(user_id)
-        } else {
-            navigate("/login")
-        }
-    }
+      const { success, user_id } = await authenticateUser();
+      if (success) {
+        setUserID(user_id);
+      } else {
+        navigate("/login");
+      }
+    };
+    handleAuthentication();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 2. Fetch products once we have a user id
+  useEffect(() => {
+    if (userID) allProducts(userID);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userID]);
+
+  // 3. Pie needs { name, value } rows: map each product's productName and price
+  const DATA: Slice[] = useMemo(
+    () =>
+      (products ?? [])
+        .map((p) => ({
+          name: String(p.productName),
+          value: Number(p.price) || 0,
+        }))
+        .filter((d) => d.value > 0)
+        .sort((a, b) => b.value - a.value)
+        .map((d, i) => ({ ...d, color: PALETTE[i % PALETTE.length] })),
+    [products]
+  );
+
+  const TOTAL = useMemo(() => DATA.reduce((sum, d) => sum + d.value, 0), [DATA]);
+
   return (
     <div style={{ position: "relative", width: "100%", maxWidth: 560, aspectRatio: "1 / 1" }}>
       <ResponsiveContainer width="100%" height="100%">
@@ -125,8 +149,8 @@ export default function InventoryValueDonut() {
             label={renderLabel as any}
             isAnimationActive={false}
           >
-            {DATA.map((d) => (
-              <Cell key={d.name} fill={d.color} />
+            {DATA.map((d, i) => (
+              <Cell key={`${d.name}-${i}`} fill={d.color} />
             ))}
           </Pie>
         </PieChart>
@@ -142,14 +166,17 @@ export default function InventoryValueDonut() {
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "none",
-          fontWeight: 700,
-          fontSize: 26,
-          lineHeight: 1.2,
           textAlign: "center",
         }}
       >
-        <span className="text-sm font-extrabold">{currency.format(TOTAL)}</span>
-        <span className="text-sm text-gray-600">total value</span>
+        {DATA.length === 0 ? (
+          <span className="text-sm text-gray-500">No products yet</span>
+        ) : (
+          <>
+            <span className="text-lg font-extrabold">{currency.format(TOTAL)}</span>
+            <span className="text-sm text-gray-600">total value</span>
+          </>
+        )}
       </div>
     </div>
   );
