@@ -868,7 +868,7 @@ export const allproducts = (request,response) => {
 export const stockAlert = (request,response) => {
     const { id } = request.params
     try {
-        const stockAlert = "SELECT * FROM products WHERE stock = 'Depleted' OR stock = 'Low stock' AND user_id = ?"    
+        const stockAlert = "SELECT * FROM products WHERE stock = 'Depleted' OR stock = 'Low stock' AND user_id = ? LIMIT 5"    
         databaseconnection.query(stockAlert,[id],(error,result) => {
             if (error) return response.status(500).json({success: false, message: "Internal server error"})
             if (result.length > 0) {
