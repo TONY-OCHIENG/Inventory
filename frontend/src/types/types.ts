@@ -120,6 +120,8 @@ export interface PurchaseDetail{
   pendingPurchase: number,
   recievedPurchase: number,
   canceledPurchase: number,
+  recentPurchase: Purchase[],
+  setRecentPurchase: (user_id: String) => Promise<void>,
   setCanceledPurchase: (user_id: String) => Promise<void>,
   setRecievedPurchase: (user_id: String) => Promise<void>,
   setPendingPurchase: (user_id: String) => Promise<void>,

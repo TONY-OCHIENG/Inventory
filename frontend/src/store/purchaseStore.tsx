@@ -11,6 +11,14 @@ export const usePurchase = create<PurchaseDetail>()(
         pendingPurchase: 0,
         recievedPurchase: 0,
         canceledPurchase: 0,
+        recentPurchase: [],
+        setRecentPurchase: async (user_id: String) => {
+            const response = await apiClient.get(`/api/v1/recentPurchases/${user_id}`)
+            const { result } = await response.data
+            set(() => ({
+                recentPurchase: result
+            }))
+        }, 
         setCanceledPurchase: async (user_id: String) => {
             const response = await apiClient.get(`/api/v1/canceledPurchase/${user_id}`)
             const { result } = await response.data
