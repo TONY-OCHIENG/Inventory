@@ -342,7 +342,7 @@ function Purchases() {
          </div>
          </div>
         </div>  
-        <div className={`absolute ${openPurchase ? 'block' : 'hidden'} fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+        <div className={`absolute ${openPurchase ? 'block' : 'hidden'} z-20 fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
          <form onSubmit={handleSubmit} className="relative bg-white p-4 rounded-md max-w-md">
           <X onClick={() => setopenPurchase(!openPurchase)} className="absolute top-3 right-4 h-5 w-5 text-gray-600 cursor-pointer"/>
           <h1 className="font-bold text-center text-sm text-gray-600">Add Purchase</h1>

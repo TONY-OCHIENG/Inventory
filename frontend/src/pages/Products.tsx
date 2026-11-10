@@ -307,7 +307,7 @@ function Product() {
          </div>
          </div>
         </div>   
-        <div className={`${openAddProduct ? 'block' : 'hidden'} absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
+        <div className={`${openAddProduct ? 'block' : 'hidden'} z-20 absolute fixed w-full h-full bg-black/50 top-0 left-0 flex justify-center items-center`}>
           <form onSubmit={handleSubmit} className="relative p-4 bg-white rounded-md max-w-md">
            <h1 className="text-sm font-bold text-gray-600 text-center">Add Products</h1>
            <X onClick={() => setOpenAddProduct(!openAddProduct)} className="h-5 w-5 cursor-pointer font-extrabold text-gray-600 absolute top-1 right-3"/>
