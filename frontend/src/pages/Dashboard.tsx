@@ -1,4 +1,4 @@
-import { Box, CalendarClock, FolderOpen, Gift, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck, Wallet } from "lucide-react"
+import { Bell, Box, CalendarClock, FolderOpen, Gift, HandPlatter, Package, PackageMinus, PackageX, Receipt, ReceiptText, RotateCcw, ShieldAlert, ShoppingBag, Timer, Trash, Truck, Wallet } from "lucide-react"
 import { useActions } from "../store/actionStore"
 import { useEffect, useState, type ChangeEvent } from "react"
 import { useFormDetail } from "../store/authStore"
@@ -97,7 +97,7 @@ function Dashboard() {
       
 
       if (text === 'Low stock') {
-        return <p className="text-amber-500  ">{text}</p>
+        return <p className="text-amber-500 ">{text}</p>
       } 
 
       if (text === 'Depleted') {
@@ -252,12 +252,20 @@ function Dashboard() {
            <div className="w-full h-[90%] overflow-auto scrollbar-none">
               <table className="w-full p-2 text-gray-600 text-xs mt-4 bg-white">
                {
-                 stockAlert.map((item) => (
+                 stockAlert && stockAlert.length > 0 ? stockAlert.map((item) => (
                   <tr className="p-2 even:bg-gray-50">
                     <td className="p-2">{item.productName}</td>
                     <td className="text-right pr-2">{handleStock(item.stock)}</td>
                   </tr>
-                 ))
+                 )) : 
+                  <tr className="h-[30vh]">
+                  <td colSpan={8} className="text-center ">
+                    <div className="flex flex-col justify-center items-center">
+                        <Bell className="h-8 w-8"/>
+                       <h1 className="text-sm text-gray-600 font-extrabold">No available alerts</h1>
+                    </div>                  
+                  </td>
+                </tr>
                }
               </table>
            </div>
