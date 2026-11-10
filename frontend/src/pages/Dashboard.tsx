@@ -271,7 +271,7 @@ function Dashboard() {
            </div>
           </div>
           <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
-           <h1 className="font-bold text-sm text-gray-600">Recent Invoice</h1>
+           <h1 className="font-bold text-sm text-gray-600">Recent Purchases</h1>
            <hr  className="mt-2 text-gray-600"/>
           </div>
           
