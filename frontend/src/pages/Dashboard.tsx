@@ -9,6 +9,7 @@ import { useProduct } from "../store/productStore"
 import { useReturn } from "../store/returnStore"
 import { usePurchase } from "../store/purchaseStore"
 import { useSupplier } from "../store/supplierStore"
+import InventoryValueDonut from "../components/InventoryValueDonut"
 
 
 function Dashboard() {
@@ -237,6 +238,9 @@ function Dashboard() {
           <div className="p-4 h-[300px] w-[380px] rounded-md shadow-md bg-white/70 border-t-2 border-t-white md:fixed">
           <h1 className="text-sm text-gray-600 font-bold">Inventory value</h1>
           <hr className="text-gray-600 mt-2"/>
+          <div className="h-[80%] mt-4 w-[100%] flex justify-center items-center">
+           <InventoryValueDonut/>
+          </div>
           </div>
            <div className="p-4 h-[320px] w-[380px] rounded-md shadow-md bg-white/70 border-t-2 border-t-white md:fixed md:top-[55%]">
           <h1 className="text-sm text-gray-600 font-bold">Reminders</h1>
