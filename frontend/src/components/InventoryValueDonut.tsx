@@ -261,7 +261,7 @@ export default function InventoryValueDonut() {
           <span className="text-sm text-gray-500">No products yet</span>
         ) : (
           <>
-            <span className="text-lg font-extrabold">{currency.format(TOTAL)}</span>
+            <span className="text-xs font-extrabold">{currency.format(TOTAL)}</span>
             <span className="text-sm text-gray-600">total value</span>
           </>
         )}
