@@ -280,7 +280,7 @@ function Dashboard() {
                  recentPurchase && recentPurchase.length > 0 ? recentPurchase.map((item) => (
                   <tr className="p-2 even:bg-gray-50">
                     <td className="p-2">{item.productName}</td>
-                    <td className="text-right pr-2">{(item.status)}</td>
+                    <td className="text-right pr-2 text-red-400">{(item.status)}</td>
                   </tr>
                  )) : 
                   <tr className="h-[30vh]">
