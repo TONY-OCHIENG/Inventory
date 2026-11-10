@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import Pagination from "../components/Pagination"
 import { useDownloadExcel } from 'react-export-table-to-excel'
 import { formatDate } from "../components/dateFormat"
+import { useSupplier } from "../store/supplierStore"
 
 function Purchases() {
     const [open, setopen] = useState<Boolean>(true)
@@ -16,6 +17,7 @@ function Purchases() {
       deletePurchase, pendingPurchase, setPendingPurchase, recievedPurchase, setRecievedPurchase,
       canceledPurchase, setCanceledPurchase
      } = usePurchase()
+     const { supplier, setSupplier } = useSupplier()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()
@@ -355,8 +357,21 @@ function Purchases() {
           <input type="number" name="amount" value={String(purchaseDetail.amount)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>
           <label htmlFor="" className="text-sm text-gray-400">Date</label>
           <input type="date" name="date" value={String(purchaseDetail.date)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>
-          <label htmlFor="" className="text-sm text-gray-400">Supplier</label>
-          <input type="text" name="supplier" value={String(purchaseDetail.supplier)} onChange={handleChange} className="w-full p-2 mb-2 border rounded-md outline-none"/>
+          <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
+          <select required name="supplier" value={String(purchaseDetail.supplier)} 
+              onChange={(event) =>
+              setpurchaseDetail((prev) => ({ ...prev, supplier: event.target.value }))
+            }
+            className="w-full text-sm  mb-2 border rounded-md outline-none p-2" id="">
+              <option value="" disabled>
+                Select a supplier
+              </option>
+           {
+            supplier.map((item) => (
+              <option value={item.supplierName}>{item.supplierName}</option>
+            ))
+           }  
+          </select>  
           <button className="w-full py-2 rounded-md font-extrabold text-white bg-[#244504] cursor-pointer mt-2">Add purchase</button>
          </form>
         </div>           
