@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { useFormDetail } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
+import { useProduct } from "../store/productStore";
 
 type Category = {
   name: string;
@@ -88,12 +89,14 @@ const renderLabel = ({
 export default function InventoryValueDonut() {
     const [userID, setuserID] = useState<String>("")
     const navigate = useNavigate()
+    let limit = 10
     const { authenticateUser } = useFormDetail()
+    const { product, setProducts} = useProduct()
 
     useEffect(() => {
         handleAuthentication()
+        setProducts(userID,1,limit)
     },[userID])
-
     const handleAuthentication = async () => {
         const { success, user_id} = await authenticateUser()
         if (success) {
