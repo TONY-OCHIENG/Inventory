@@ -20,10 +20,10 @@ function Dashboard() {
   const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
   })
-  const { setPurchases,totalPurchase,recievedPurchase, setRecievedPurchase,pendingPurchase,setPendingPurchase} = usePurchase()
+  const { setPurchases,totalPurchase,recievedPurchase, setRecievedPurchase,pendingPurchase} = usePurchase()
   const { totalReturn,settotalReturn,pendingReturn, setpendingReturn } = useReturn()
   const { availableStock, depletedStock, lowStock, setavailableProducts,
-       setdepletedStock, setlowProducts, setProducts,totalProducts } = useProduct()
+       setdepletedStock, setlowProducts, setProducts,totalProducts,setStockAlert,stockAlert } = useProduct()
   const { suppliers, getAllSuppliers, total,totalBalance,inActiveSupplier,getinActiveSupplier} = useSupplier()
   let limit = 10
   const [userID, setUserID] = useState<String>("")
@@ -56,6 +56,7 @@ function Dashboard() {
     getinActiveSupplier(userID)
     setRecievedPurchase(userID)
     totalBalance(userID)
+    setStockAlert(userID)    
   },[userID,1])
 
   //user authentication function
@@ -234,6 +235,18 @@ function Dashboard() {
           <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
            <h1 className="font-bold text-sm text-gray-600">Stock Alert</h1>
            <hr  className="mt-2 text-gray-600"/>
+           <div className="w-full h-[90%] overflow-auto scrollbar-none">
+              <table className="w-full p-2 text-gray-600 text-xs mt-4 bg-white">
+               {
+                 stockAlert.map((item) => (
+                  <tr className="p-2 even:bg-gray-50">
+                    <td className="p-2">{item.productName}</td>
+                    <td className="text-right pr-2">{item.stock}</td>
+                  </tr>
+                 ))
+               }
+              </table>
+           </div>
           </div>
           <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
            <h1 className="font-bold text-sm text-gray-600">Recent Invoice</h1>
