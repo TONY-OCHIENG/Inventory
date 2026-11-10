@@ -8,10 +8,18 @@ export const useProduct = create<ProductDetails>()(
         product: [],
         productSingle: [],
         products: [],
+        stockAlert: [],
         totalProducts: 0,
         availableStock: 0,
         lowStock: 0,
         depletedStock: 0,
+        setStockAlert: async (user_id: String) => {
+          const response = await apiClient.get(`/api/v1/stockAlert/${user_id}`)
+          const { result } = await response.data
+          set(() => ({
+            stockAlert: result
+          }))
+        },
         allProducts: async (user_id: String) => {
           const response = await apiClient.get(`/api/v1/allProducts/${user_id}`)
           const { result } = await response.data

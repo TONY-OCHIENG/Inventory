@@ -75,12 +75,14 @@ export interface Deduction{
 }
 export interface ProductDetails{
   product: Products[],
-  products: Products[]
+  products: Products[],
+  stockAlert: Products[],
   productSingle: Products[]
   totalProducts: number,
   availableStock: number,
   lowStock: number,
   depletedStock: number,
+  setStockAlert: (user_id: String) => void,
   allProducts: (user_id: String) => void,
   updateDepleted: (quantity: String) => void,
   updateInstock: (quantity: String) => void,
