@@ -42,6 +42,7 @@ function Product() {
         setlowProducts(userID)
         setavailableProducts(userID)
         setdepletedStock(userID)
+        setSupplier(userID)
       },[userID,page])
     
       //user authentication function

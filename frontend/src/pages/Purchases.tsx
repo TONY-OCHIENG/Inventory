@@ -43,6 +43,7 @@ function Purchases() {
       setPendingPurchase(userID)
       setRecievedPurchase(userID)
       setCanceledPurchase(userID)
+      setSupplier(userID)
     },[userID,page])
 
      //user authentication function
