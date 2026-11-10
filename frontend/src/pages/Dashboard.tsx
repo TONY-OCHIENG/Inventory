@@ -90,6 +90,20 @@ function Dashboard() {
     
     await setReminders(userID)
   }
+
+    //implementing a function that handle stock text color based on availability
+
+    const handleStock = (text: String) => {
+      
+
+      if (text === 'Low stock') {
+        return <p className="text-amber-500  ">{text}</p>
+      } 
+
+      if (text === 'Depleted') {
+        return <p className="text-red-500  ">{text}</p>
+      }
+    }
   
   return (
     <div className={`w-full py-2`}>
@@ -241,7 +255,7 @@ function Dashboard() {
                  stockAlert.map((item) => (
                   <tr className="p-2 even:bg-gray-50">
                     <td className="p-2">{item.productName}</td>
-                    <td className="text-right pr-2">{item.stock}</td>
+                    <td className="text-right pr-2">{handleStock(item.stock)}</td>
                   </tr>
                  ))
                }
