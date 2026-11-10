@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { useFormDetail } from "../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 type Category = {
   name: string;
@@ -84,6 +86,18 @@ const renderLabel = ({
 };
 
 export default function InventoryValueDonut() {
+    const [userID, setuserID] = useState<String>("")
+    const navigate = useNavigate()
+    const { authenticateUser } = useFormDetail()
+
+    const handleAuthentication = async () => {
+        const { success, user_id} = await authenticateUser()
+        if (success) {
+            setuserID(userID)
+        } else {
+            navigate("/login")
+        }
+    }
   return (
     <div style={{ position: "relative", width: "100%", maxWidth: 560, aspectRatio: "1 / 1" }}>
       <ResponsiveContainer width="100%" height="100%">
