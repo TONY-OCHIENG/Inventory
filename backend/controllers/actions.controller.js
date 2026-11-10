@@ -886,7 +886,15 @@ export const stockAlert = (request,response) => {
 export const recentPurchase = (request, response) => {
     const { id } = request.params
     try {
-        
+        const recentPurchase = "SELECT * FROM purchases WHERE status = 'Pending' AND user_id = ?"
+        databaseconnection.query(recentPurchase,[id],(error,result) => {
+            if (error) return response.status(500).json({success: false, message: "Internal server error"})
+            if (result.length > 0) {
+                return response.status(200).json({success: true, result: result})
+            } else {
+                return response.json({success: false, result: result})
+            }
+        })
     } catch (error) {
         console.log(error)
         return response.status(500).json({success: false, message: "Internal server error"})
