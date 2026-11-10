@@ -11,6 +11,7 @@ import { usePurchase } from "../store/purchaseStore"
 import { useSupplier } from "../store/supplierStore"
 import InventoryValueDonut from "../components/InventoryValueDonut"
 import StockDistributionPie from "../components/StockDistributionPie"
+import StockMovementChart from "../components/StockmovementChart"
 
 
 function Dashboard() {
@@ -219,6 +220,9 @@ function Dashboard() {
           <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
            <h1 className="font-bold text-sm text-gray-600">Stock Movement</h1>
            <hr  className="mt-2 text-gray-600"/>
+            <div className="h-[70%] mt-4 w-[100%] flex justify-center items-center">
+               <StockMovementChart/>
+            </div>
           </div>
           <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
            <h1 className="font-bold text-sm text-gray-600">Stock Distribution</h1>
