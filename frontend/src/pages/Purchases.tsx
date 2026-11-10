@@ -17,7 +17,7 @@ function Purchases() {
       deletePurchase, pendingPurchase, setPendingPurchase, recievedPurchase, setRecievedPurchase,
       canceledPurchase, setCanceledPurchase
      } = usePurchase()
-     const { supplier, setSupplier } = useSupplier()
+    const { supplier, setSupplier } = useSupplier()
     const { authenticateUser} = useFormDetail()
     const [userID, setUserID] = useState<String>("")
     const navigate = useNavigate()

@@ -7,11 +7,13 @@ import { useFormDetail } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
 import { useDownloadExcel } from 'react-export-table-to-excel'
 import Pagination from "../components/Pagination"
+import { useSupplier } from "../store/supplierStore"
 
 function Product() {
     const [open, setopen] = useState<Boolean>(true)
     const [openAddProduct, setOpenAddProduct] = useState<Boolean>(false)
     const [image, setImage] = useState<File | null>()
+    const { supplier, setSupplier } = useSupplier()
     const { product, createProducts, setProducts,
      availableStock, depletedStock, lowStock, setavailableProducts,
      setdepletedStock, setlowProducts, 
@@ -319,8 +321,21 @@ function Product() {
            <label htmlFor="" className="text-sm text-gray-600 ">Amount</label>
            <input type="number" value={String(productDetail.price)} name="price" onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <label htmlFor="" className="text-sm text-gray-600 ">Supplier name</label>
-           <input type="text" name="supplier" value={String(productDetail.supplier)} onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
-           <label htmlFor="" className="text-sm text-gray-600 ">Product Category</label>
+          <label htmlFor="" className="text-sm text-gray-400">Supplier name</label>
+          <select required name="supplier" value={String(productDetail.supplier)} 
+              onChange={(event) =>
+              setProductdetails((prev) => ({ ...prev, supplier: event.target.value }))
+            }
+            className="w-full text-sm  mb-2 border rounded-md outline-none p-2" id="">
+              <option value="" disabled>
+                Select a supplier
+              </option>
+           {
+            supplier.map((item) => (
+              <option value={item.supplierName}>{item.supplierName}</option>
+            ))
+           }  
+          </select>            
            <input type="text" name="category" value={String(productDetail.category)} onChange={handleOnchange}  className="w-full p-2 border rounded-md outline-none mb-2"/>
            <button className="py-2 w-full bg-[#244504] font-extrabold text-white mt-2 cursor-pointer rounded-md">Add products</button>
           </form>
