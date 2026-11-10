@@ -20,7 +20,7 @@ function Dashboard() {
   const [reminders, setReminder] = useState<Reminders>({
     reminder: ""
   })
-  const { setPurchases,totalPurchase,recievedPurchase, setRecievedPurchase,pendingPurchase} = usePurchase()
+  const { setPurchases,totalPurchase,recievedPurchase, setRecievedPurchase,pendingPurchase ,recentPurchase,setRecentPurchase} = usePurchase()
   const { totalReturn,settotalReturn,pendingReturn, setpendingReturn } = useReturn()
   const { availableStock, depletedStock, lowStock, setavailableProducts,
        setdepletedStock, setlowProducts, setProducts,totalProducts,setStockAlert,stockAlert } = useProduct()
@@ -56,7 +56,8 @@ function Dashboard() {
     getinActiveSupplier(userID)
     setRecievedPurchase(userID)
     totalBalance(userID)
-    setStockAlert(userID)    
+    setStockAlert(userID)  
+    setRecentPurchase(userID)  
   },[userID,1])
 
   //user authentication function
@@ -273,6 +274,26 @@ function Dashboard() {
           <div className="p-4 bg-white/70 shadow-md rounded-md h-[280px] border-t-2 border-t-white">
            <h1 className="font-bold text-sm text-gray-600">Recent Purchases</h1>
            <hr  className="mt-2 text-gray-600"/>
+           <div className="w-full h-[90%] overflow-auto scrollbar-none">
+              <table className="w-full p-2 text-gray-600 text-xs mt-4 bg-white">
+               {
+                 recentPurchase && recentPurchase.length > 0 ? recentPurchase.map((item) => (
+                  <tr className="p-2 even:bg-gray-50">
+                    <td className="p-2">{item.productName}</td>
+                    <td className="text-right pr-2">{(item.status)}</td>
+                  </tr>
+                 )) : 
+                  <tr className="h-[30vh]">
+                  <td colSpan={8} className="text-center ">
+                    <div className="flex flex-col justify-center items-center">
+                        <ShoppingBag className="h-8 w-8"/>
+                       <h1 className="text-sm text-gray-600 font-extrabold">No recent purchases</h1>
+                    </div>                  
+                  </td>
+                </tr>
+               }
+              </table>
+           </div>
           </div>
           
         </div>
