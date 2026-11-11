@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useFormDetail } from "../store/authStore"
-import { NavLink, Outlet, useNavigate } from "react-router-dom"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import { Barcode, Bell, Box, ChevronDown, LayoutDashboard, LogOut, Menu, Notebook, NotebookPen, Package, Receipt, ReceiptText, RotateCcw, Settings, ShoppingBag, Truck, User } from "lucide-react"
 import toast from "react-hot-toast"
 
@@ -213,14 +213,14 @@ function Home() {
                             }</p>
                         </div>
                         <div className="flex flex-col w-full ">
-                            <div className={`flex gap-2 items-center mt-2 cursor-pointer`}>
+                            <Link to={"/dashboard/settings"} className={`flex gap-2 items-center mt-2 cursor-pointer`}>
                              <Settings className="h-5 text-gray-600"/>
                              <p className="text-sm text-gray-600">Settings</p>
-                            </div>  
-                            <div className={`flex gap-2 items-center mt-2 cursor-pointer`}>
+                            </Link>  
+                            <Link to={"/dashboard/settings?tab=profile"} className={`flex gap-2 items-center mt-2 cursor-pointer`}>
                              <User className="h-5 text-gray-600"/>
                              <p className="text-sm text-gray-600">Profile</p>
-                            </div>  
+                            </Link>  
                             <div onClick={logoutUser} className={`flex gap-2 items-center mt-2 cursor-pointer`}>
                              <LogOut onClick={logoutUser} className={`w-5 h-5 text-gray-700 ml-1 ${open ? 'hidden' : 'block'} cursor-pointer`}/>     
                              <p className="text-sm text-gray-600">Logout</p>
